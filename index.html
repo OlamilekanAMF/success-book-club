@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Book Club</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                     <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fff;stop-opacity:1" /> 
+                            <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                </svg>
+                   <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="9" r="8"/>
+                            <path d="M14 14L18 18" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search books, authors, topics..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Where Readers Find Success</h1>
+                    <p class="hero-subtitle">Join our community of readers exploring stories of achievement, growth, and the journeys that lead to success and comfort.</p>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="location.href='all-books.html'">Discover Our Picks</button>
+                        <button class="btn-secondary" onclick="openAuthModal('signup')">Join The Club</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="book-stack">
+                        <div class="book book-1"></div>
+                        <div class="book book-2"></div>
+                        <div class="book book-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Book Spotlight Section -->
+        <section class="book-spotlight" id="book-spotlight" aria-label="Featured book spotlight">
+            <div class="spotlight-background">
+                <img alt="" class="spotlight-bg-image" src="assets/img/hero-spotlight.jpg" decoding="async"/>
+                <div class="spotlight-gradient-left"></div>
+                <div class="spotlight-gradient-bottom"></div>
+                <div class="spotlight-glow"></div>
+            </div>
+            <div class="spotlight-content">
+                <div class="container">
+                    <div class="spotlight-grid">
+                        <div class="spotlight-info">
+                            <div class="spotlight-badges">
+                                <span class="badge badge-primary">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 7h6v6"></path>
+                                        <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                                    </svg>
+                                    Spotlight
+                                </span>
+                                <span class="badge badge-secondary">Literary Fiction</span>
+                                <span class="badge badge-secondary">Book of the Month</span>
+                            </div>
+                            <h1 class="spotlight-title">The Garden of Memories</h1>
+                            <div class="spotlight-author">
+                                <img alt="Kenji Tanaka" class="author-avatar" src="assets/img/joanna Olczak-Ronikier.PNG" width="36" height="36"/>
+                                <span>by <strong>Kenji Tanaka</strong></span>
+                            </div>
+                            <div class="spotlight-stats">
+                                <div class="stat-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--primary-color)" stroke="var(--primary-color)" stroke-width="2" class="star-filled">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--primary-color)" stroke="var(--primary-color)" stroke-width="2" class="star-filled">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--primary-color)" stroke="var(--primary-color)" stroke-width="2" class="star-filled">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--primary-color)" stroke="var(--primary-color)" stroke-width="2" class="star-filled">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" class="star-empty">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <span class="stat-value">4.9</span>
+                                </div>
+                                <div class="stat-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 6v6l4 2"></path>
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span>6h 30m</span>
+                                </div>
+                                <div class="stat-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                    </svg>
+                                    <span>2.4M readers</span>
+                                </div>
+                                <span class="stat-item">378 pages</span>
+                            </div>
+                            <p class="spotlight-award">Winner of the International Booker Prize</p>
+                            <p class="spotlight-description">A multigenerational saga that blooms with secrets buried deep in a family's past.</p>
+                            <div class="spotlight-actions">
+                                <a href="all-books.html" class="btn-spotlight-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path>
+                                    </svg>
+                                    Read Now
+                                </a>
+                                <a href="all-books.html" class="btn-spotlight-secondary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 7v14"></path>
+                                        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
+                                    </svg>
+                                    More Details
+                                </a>
+                                <a href="mailto:support@rejoicebookclub.org?subject=Add to Reading List: The Garden of Memories" class="btn-spotlight-icon" aria-label="Add to reading list">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14"></path>
+                                        <path d="M12 5v14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="spotlight-visual">
+                            <div class="book-showcase">
+                                <div class="book-glow"></div>
+                                <div class="book-container">
+                                    <img alt="The Garden of Memories" class="book-cover-image" src="assets/img/In the Garden of Memory A Family Memoir.jfif" width="360" height="520"/>
+                                    <div class="book-shine"></div>
+                                </div>
+                                <div class="floating-badge badge-trending">
+                                    <div class="badge-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M16 7h6v6"></path>
+                                            <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="badge-text">
+                                        <span class="badge-label">This Week</span>
+                                        <span class="badge-value">#1 Most Read</span>
+                                    </div>
+                                </div>
+                                <div class="floating-badge badge-rating">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--primary-color)" stroke="var(--primary-color)" stroke-width="2">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                    </svg>
+                                    <span class="rating-value">4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spotlight-carousel">
+                        <div class="carousel-progress">
+                            <button class="progress-item active" data-book="0" aria-label="View The Garden of Memories" aria-current="true">
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                                <span class="progress-label">The Garden of Memories</span>
+                            </button>
+                            <button class="progress-item" data-book="1" aria-label="View The Silent Echo">
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                                <span class="progress-label">The Silent Echo</span>
+                            </button>
+                            <button class="progress-item" data-book="2" aria-label="View The Forgotten Codex">
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                                <span class="progress-label">The Forgotten Codex</span>
+                            </button>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="carousel-btn carousel-prev" aria-label="Previous featured book">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m15 18-6-6 6-6"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-btn carousel-next" aria-label="Next featured book">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m9 18 6-6-6-6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>From Our Bookshelf to Yours</h2>
+                    <p class="about-intro">It all started with a love of reading. We wanted to connect with fellow readers by sharing inspiring stories to celebrate diverse voices and achievement.</p>
+                    
+                    <div class="about-grid">
+                        <div class="about-card">
+                            <h3>Oh The Places We'll Grow</h3>
+                            <p>We are a vibrant community propelled by meaningful connections with different authors, protagonists, and fellow readers.</p>
+                        </div>
+                        <div class="about-card">
+                            <h3>Joy is Contagious</h3>
+                            <p>The more we share joy, the more it grows. Reading together makes the experience richer and more meaningful.</p>
+                        </div>
+                        <div class="about-card">
+                            <h3>We're Picky - In A Good Way</h3>
+                            <p>Just like our readers, there's no one type of book pick. Our books are diverse, thoughtful, romantic, hilarious, honest, and so much more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Virtual Spotlight - Featured Authors Section -->
+        <section class="virtual-spotlight" id="virtual-spotlight" aria-label="Virtual Spotlight - Featured authors">
+            <div class="container">
+                <div class="spotlight-header">
+                    <div class="spotlight-title">
+                        <h2 class="font-serif">Virtual Spotlight</h2>
+                        <p class="spotlight-subtitle">Featured authors and their acclaimed works</p>
+                    </div>
+                    <a href="#authors" class="view-all-link">
+                        View All
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="spotlight-grid">
+                    <!-- Author Selector -->
+                    <div class="author-selector">
+                        <button type="button" class="author-btn active" data-author="amara">
+                            <div class="author-avatar">
+                                <img src="assets/img/Amara Okafor.webp" alt="Amara Okafor" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <p class="author-name">Amara Okafor</p>
+                                <p class="author-nationality">British</p>
+                            </div>
+                        </button>
+                        <button type="button" class="author-btn" data-author="henrik">
+                            <div class="author-avatar">
+                                <img src="assets/img/Henrik Larsson.webp" alt="Henrik Larsson" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <p class="author-name">Henrik Larsson</p>
+                                <p class="author-nationality">Swedish</p>
+                            </div>
+                        </button>
+                        <button type="button" class="author-btn" data-author="isabella">
+                            <div class="author-avatar">
+                                <img src="assets/img/isabella Moreno.webp" alt="Isabella Moreno" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <p class="author-name">Isabella Moreno</p>
+                                <p class="author-nationality">Colombian</p>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Author Display -->
+                    <div class="author-display">
+                        <!-- Amara Okafor -->
+                        <div class="author-card active" data-author="amara">
+                            <div class="author-card-inner">
+                                <div class="author-image">
+                                    <img src="assets/img/Amara Okafor.webp" alt="Amara Okafor" loading="lazy">
+                                    <div class="author-image-overlay"></div>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-badges">
+                                        <span class="featured-badge">Featured Author</span>
+                                        <span class="nationality-badge">British</span>
+                                    </div>
+                                    <h3 class="author-fullname">Amara Okafor</h3>
+                                    <p class="author-bio">Award-winning novelist known for her lyrical prose and vivid portrayals of contemporary life. Her works have been translated into over 30 languages.</p>
+                                    <div class="author-stats">
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 7v14"></path>
+                                                <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
+                                            </svg>
+                                            <span>8 Books</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+                                                <circle cx="12" cy="8" r="6"></circle>
+                                            </svg>
+                                            <span>2 Awards</span>
+                                        </div>
+                                    </div>
+                                    <div class="author-awards">
+                                        <span>Booker Prize</span>
+                                        <span>Commonwealth Writers Prize</span>
+                                    </div>
+                                    <div class="author-books">
+                                        <p class="books-label">Books in Our Collection</p>
+                                        <div class="books-grid">
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/The Silent Echo.webp" alt="The Silent Echo" loading="lazy">
+                                                </div>
+                                                <p class="book-title">The Silent Echo</p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.8</span>
+                                                </div>
+                                            </div>
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/book-7.webp" alt="Crimson Letters" loading="lazy">
+                                                </div>
+                                                <p class="book-title">Crimson Letters</p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Henrik Larsson -->
+                        <div class="author-card" data-author="henrik">
+                            <div class="author-card-inner">
+                                <div class="author-image">
+                                    <img src="assets/img/Henrik Larsson.webp" alt="Henrik Larsson" loading="lazy">
+                                    <div class="author-image-overlay"></div>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-badges">
+                                        <span class="featured-badge">Featured Author</span>
+                                        <span class="nationality-badge">Swedish</span>
+                                    </div>
+                                    <h3 class="author-fullname">Henrik Larsson</h3>
+                                    <p class="author-bio">Master of Nordic noir and psychological thrillers. His atmospheric storytelling has captivated readers worldwide, selling over 15 million copies.</p>
+                                    <div class="author-stats">
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 7v14"></path>
+                                                <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
+                                            </svg>
+                                            <span>12 Books</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+                                                <circle cx="12" cy="8" r="6"></circle>
+                                            </svg>
+                                            <span>4 Awards</span>
+                                        </div>
+                                    </div>
+                                    <div class="author-awards">
+                                        <span>Nordic Council Prize</span>
+                                        <span>CWA Dagger</span>
+                                    </div>
+                                    <div class="author-books">
+                                        <p class="books-label">Books in Our Collection</p>
+                                        <div class="books-grid">
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/book-8.webp" alt="The Forgotten Codex" loading="lazy">
+                                                </div>
+                                                <p class="book-title">The Forgotten Codex</p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.9</span>
+                                                </div>
+                                            </div>
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/book-2.webp" alt="Beneath The Tides" loading="lazy">
+                                                </div>
+                                                <p class="book-title">Beneath The Tides </p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.7</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Isabella Moreno -->
+                        <div class="author-card" data-author="isabella">
+                            <div class="author-card-inner">
+                                <div class="author-image">
+                                    <img src="assets/img/isabella Moreno.webp" alt="Isabella Moreno" loading="lazy">
+                                    <div class="author-image-overlay"></div>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-badges">
+                                        <span class="featured-badge">Featured Author</span>
+                                        <span class="nationality-badge">Colombian</span>
+                                    </div>
+                                    <h3 class="author-fullname">Isabella Moreno</h3>
+                                    <p class="author-bio">Celebrated author of magical realism and contemporary Latin American fiction. Her evocative narratives blend folklore with modern storytelling.</p>
+                                    <div class="author-stats">
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 7v14"></path>
+                                                <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
+                                            </svg>
+                                            <span>6 Books</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+                                                <circle cx="12" cy="8" r="6"></circle>
+                                            </svg>
+                                            <span>3 Awards</span>
+                                        </div>
+                                    </div>
+                                    <div class="author-awards">
+                                        <span>Alfaguara Prize</span>
+                                        <span>Rómulo Gallegos Prize</span>
+                                    </div>
+                                    <div class="author-books">
+                                        <p class="books-label">Books in Our Collection</p>
+                                        <div class="books-grid">
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/book-6.webp" alt="Wings of Memory" loading="lazy">
+                                                </div>
+                                                <p class="book-title">The Last Journey</p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.6</span>
+                                                </div>
+                                            </div>
+                                            <div class="book-item">
+                                                <div class="book-cover">
+                                                    <img src="assets/img/book-5.webp" alt="River of Dreams" loading="lazy">
+                                                </div>
+                                                <p class="book-title">Above The Clouds</p>
+                                                <div class="book-rating">
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                                    </svg>
+                                                    <span>4.8</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Join Section -->
+        <section class="join" id="join">
+            <div class="container">
+                <div class="join-content">
+                    <h2>Join The Club</h2>
+                    <p>Get exclusive access to book picks, author events, reading guides, and a community of passionate readers.</p>
+                    
+                    <div class="join-perks">
+                        <div class="perk">
+                            <div class="perk-icon">📚</div>
+                            <h3>First Dibs on Book Picks</h3>
+                            <p>Be the first to know our monthly selections</p>
+                        </div>
+                        
+                        <div class="perk">
+                            <div class="perk-icon">🎉</div>
+                            <h3>Exclusive Events</h3>
+                            <p>Join author Q&As and book club discussions</p>
+                        </div>
+                        
+                        <div class="perk">
+                            <div class="perk-icon">📧</div>
+                            <h3>Bookmarked Newsletter</h3>
+                            <p>Book joy, delivered straight to your inbox</p>
+                        </div>
+                    </div>
+                    
+                    <div class="join-form">
+                        <input type="email" placeholder="Enter your email address" class="email-input">
+                        <button class="btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Articles Section -->
+        <section class="featured-articles" id="articles" aria-label="Featured articles">
+            <div class="container">
+                <div class="section-header">
+                    <h2>From Our Blog</h2>
+                    <p>Explore the latest articles on books, authors, and reading culture</p>
+                </div>
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=500&fit=crop" alt="The Art of Storytelling" loading="lazy">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-category">Writing Craft</span>
+                            <h3>The Art of Storytelling: How to Captivate Your Readers from Page One</h3>
+                            <p>Every great book begins with a single sentence that hooks the reader immediately. In this guide, we explore techniques that bestselling authors use.</p>
+                            <a href="article.html?id=featured-1" class="article-link">Read More &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=220&fit=crop" alt="Finding Your Unique Author Voice" loading="lazy">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-category">Writing Craft</span>
+                            <h3>Finding Your Unique Author Voice in a Crowded Market</h3>
+                            <p>Your voice is what makes readers fall in love with your books. Discover how to develop and refine your unique writing style.</p>
+                            <a href="article.html?id=article-1" class="article-link">Read More &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1535016120720-40c6874c3b13?w=400&h=220&fit=crop" alt="Screenwriting 101" loading="lazy">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-category">Script Writing</span>
+                            <h3>Screenwriting 101: Transitioning from Page to Screen</h3>
+                            <p>The transition from novel writing to screenwriting requires understanding a whole new language of visual storytelling.</p>
+                            <a href="article.html?id=article-2" class="article-link">Read More &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="articles-cta">
+                    <a href="blog.html" class="btn-primary">View All Articles</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-preview" id="faq" aria-label="Frequently asked questions">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Everything you need to know about joining our book club</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>How do I join the book club?</h3>
+                        <p>Simply sign up for free using your email address. You'll receive our monthly book picks and access to member discussions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Are the book discussions virtual?</h3>
+                        <p>Yes! We host monthly virtual discussions via video call. Past recordings are available for members who can't attend live.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do I need to buy the books?</h3>
+                        <p>While we recommend purchasing books for the best experience, members can also access audio versions through our partners.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I suggest a book for the club?</h3>
+                        <p>Absolutely! We love member suggestions. Submit your recommendations through the community page each month.</p>
+                    </div>
+                </div>
+                <div class="faq-cta">
+                    <a href="faq.html" class="btn-secondary">View All FAQs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section class="upcoming-events" id="events" aria-label="Upcoming events">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Upcoming Events</h2>
+                    <p>Join our virtual and in-person book club events</p>
+                </div>
+                <div class="events-grid">
+                    <div class="event-item">
+                        <div class="event-date-badge">
+                            <span class="event-month">MAR</span>
+                            <span class="event-day">25</span>
+                        </div>
+                        <div class="event-info">
+                            <span class="event-type">Author Talk</span>
+                            <h3>An Evening with Charlotte McConaghy</h3>
+                            <p>Join us for an intimate evening with the award-winning author of "Wild Dark Shore." Charlotte will discuss her journey as a writer and participate in a Q&A session.</p>
+                            <div class="event-time">📅 Monday, 7:00 PM EST • The Grand Theater, NYC</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date-badge">
+                            <span class="event-month">APR</span>
+                            <span class="event-day">05</span>
+                        </div>
+                        <div class="event-info">
+                            <span class="event-type">Book Club Discussion</span>
+                            <h3>Monthly Pick Discussion</h3>
+                            <p>Join our monthly discussion of "The Power Within" by Dr. Robert Chen. We'll explore themes of personal triumph and resilience in this thought-provoking memoir.</p>
+                            <div class="event-time">📅 Saturday, 8:00 PM EST • Online via Zoom</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date-badge">
+                            <span class="event-month">APR</span>
+                            <span class="event-day">12</span>
+                        </div>
+                        <div class="event-info">
+                            <span class="event-type">Author Signing</span>
+                            <h3>Eliana Ramage Book Signing</h3>
+                            <p>Meet the author of our September pick as she signs copies of "To the Moon and Back." Celebrate with us and get your book personally inscribed.</p>
+                            <div class="event-time">📅 Saturday, 6:00 PM EST • The Book Nook, LA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="events-cta">
+                    <a href="events.html" class="btn-primary">View All Events</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Stay Connected</h2>
+                    <p>Get the latest book recommendations, author interviews, and reading guides delivered to your inbox.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="newsletter-input">
+                        <button class="btn-secondary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Celebrating stories of success and diverse voices through the joy of reading.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <div class="social-login">
+                    <button type="button" class="social-btn google" onclick="loginWithGoogle()">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Continue with Google
+                    </button>
+                </div>
+                <div class="auth-divider"><span>or</span></div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Shared Auth -->
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

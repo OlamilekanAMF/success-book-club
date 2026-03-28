@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About - Success Book Club</title>
+    <meta name="description" content="Discover the story behind Success Book Club, our mission, and the passionate team dedicated to celebrating stories of triumph and resilience.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff" stop-opacity="1" /> 
+                                <stop offset="100%" stop-color="#8B5CF6" stop-opacity="1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                    </svg>
+                       <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="9" r="8"/>
+                            <path d="M14 14L18 18" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search books, authors, topics..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">From Our Shelf to Yours</h1>
+                <p class="hero-subtitle">It started with a simple belief: stories of triumph and resilience have the power to transform lives. Now, we invite you to join the journey of discovering books that celebrate the indomitable human spirit.</p>
+                <div class="hero-buttons">
+                    <a href="#join" class="btn btn-primary btn-large">Join the Community</a>
+                    <a href="all-books.html" class="btn btn-secondary btn-large">Explore Our Picks</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Journey</h2>
+                <p class="section-subtitle">Building a community around stories that inspire and uplift</p>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Success Book Club began with a simple mission: to celebrate stories that showcase the incredible journeys toward success and achievement. In a world that often focuses on struggle, we choose to highlight the victories—big and small—that make life meaningful.</p>
+                    
+                    <p>Each month, our team carefully selects books featuring characters and real-life stories that embody perseverance, courage, and the power of hope. We believe that reading these stories isn't just entertainment—it's inspiration for our own paths to success.</p>
+                    
+                    <blockquote class="story-quote">
+                        <p>"The more we share stories of success, the more we create a world where everyone believes in their own capacity to achieve."</p>
+                        <cite>— Our Founding Principle</cite>
+                    </blockquote>
+                    
+                    <p>From intimate memoirs of achieving dreams to fictional tales of characters overcoming challenges, our selections reflect the full spectrum of success stories. We champion diverse voices and emerging authors who bring fresh perspectives to what it means to succeed.</p>
+                </div>
+                
+                <div class="story-image">
+                    <img src="https://picsum.photos/seed/success-story/600/400" alt="Community reading together">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Community We're Building</h2>
+                <p class="section-subtitle">Together, we're creating something remarkable</p>
+            </div>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">50,000+</div>
+                    <div class="impact-label">Active Members</div>
+                    <p class="impact-description">Readers who share our passion for stories of success and achievement</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">200+</div>
+                    <div class="impact-label">Books Celebrated</div>
+                    <p class="impact-description">Carefully selected stories that have motivated our community</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">15</div>
+                    <div class="impact-label">Countries Reached</div>
+                    <p class="impact-description">A global community united by love for stories of success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Milestones</h2>
+                <p class="section-subtitle">Celebrating the moments that defined our journey</p>
+            </div>
+            
+            <div class="milestones-timeline">
+                <div class="milestone-item">
+                    <div class="milestone-year">2018</div>
+                    <div class="milestone-content">
+                        <h3>The Beginning</h3>
+                        <p>Success Book Club was founded with a vision to share inspiring stories</p>
+                    </div>
+                </div>
+                
+                <div class="milestone-item">
+                    <div class="milestone-year">2019</div>
+                    <div class="milestone-content">
+                        <h3>First 1,000 Members</h3>
+                        <p>Reached our first major milestone and launched the monthly book selection</p>
+                    </div>
+                </div>
+                
+                <div class="milestone-item">
+                    <div class="milestone-year">2020</div>
+                    <div class="milestone-content">
+                        <h3>Virtual Events Launch</h3>
+                        <p>Started hosting author events and virtual book discussions</p>
+                    </div>
+                </div>
+                
+                <div class="milestone-item">
+                    <div class="milestone-year">2021</div>
+                    <div class="milestone-content">
+                        <h3>International Expansion</h3>
+                        <p>Expanded to 15+ countries with multilingual community support</p>
+                    </div>
+                </div>
+                
+                <div class="milestone-item">
+                    <div class="milestone-year">2022</div>
+                    <div class="milestone-content">
+                        <h3>Podcast Launch</h3>
+                        <p>Launched "Triumph Tales" podcast featuring inspiring author interviews</p>
+                    </div>
+                </div>
+                
+                <div class="milestone-item">
+                    <div class="milestone-year">2023</div>
+                    <div class="milestone-content">
+                        <h3>50,000 Members</h3>
+                        <p>Celebrated reaching 50,000 active members worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What We Stand For</h2>
+                <p class="section-subtitle">The principles that guide every book selection</p>
+            </div>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="24,4 20,12 12,12 8,20 12,28 16,36 24,44 32,36 36,28 40,20 36,12 28,12"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Authentic Triumph</h3>
+                    <p class="philosophy-description">We celebrate genuine stories of overcoming adversity, not superficial success narratives.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="24" cy="24" r="18"/>
+                            <circle cx="24" cy="24" r="8"/>
+                            <circle cx="24" cy="24" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Diverse Voices</h3>
+                    <p class="philosophy-description">We champion authors and characters from all backgrounds and walks of life.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M24 4L8 14V26C8 32.8 14.4 39.6 24 42C33.6 39.6 40 32.8 40 26V14L24 4Z"/>
+                            <path d="M18 22L24 28L30 22"/>
+                            <path d="M24 28V42"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Literary Excellence</h3>
+                    <p class="philosophy-description">Every selection meets our high standards for storytelling and craftsmanship.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="18" r="8"/>
+                            <circle cx="30" cy="18" r="8"/>
+                            <circle cx="24" cy="32" r="8"/>
+                            <path d="M18 26V32L24 38L30 32V26"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Community Connection</h3>
+                    <p class="philosophy-description">We believe reading together amplifies the power of these stories.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The passionate readers behind your monthly inspiration</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://picsum.photos/seed/team1/400/400" alt="Sarah Mitchell">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Sarah Mitchell</h3>
+                        <p class="team-role">Founder & Chief Curator</p>
+                        <p class="team-bio">Former literary agent with 15 years in publishing. Sarah's passion for stories of resilience led her to create a community celebrating triumph in all its forms.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://picsum.photos/seed/team2/400/400" alt="Marcus Chen">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Marcus Chen</h3>
+                        <p class="team-role">Head of Community</p>
+                        <p class="team-bio">Community builder and book club veteran. Marcus ensures every member feels connected and inspired through our vibrant reading community.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://picsum.photos/seed/team3/400/400" alt="Dr. Amara Okonkwo">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Amara Okonkwo</h3>
+                        <p class="team-role">Director of Author Relations</p>
+                        <p class="team-bio">PhD in Comparative Literature. Amara connects our community with inspiring authors and curates meaningful author events.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://picsum.photos/seed/team4/400/400" alt="James Rodriguez">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">James Rodriguez</h3>
+                        <p class="team-role">Lead Book Selector</p>
+                        <p class="team-bio">Former bookstore owner with a passion for discovering hidden gems. James spends countless hours finding the perfect monthly selections.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Member Success Stories</h2>
+                <p class="section-subtitle">Hear from our community members about how reading has transformed their lives</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"Joining Success Book Club was the best decision I made last year. The monthly selections have helped me through some of the toughest times in my life. I now have a community of like-minded readers who inspire me daily."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/member1/100/100" alt="Jennifer L.">
+                        <div class="testimonial-info">
+                            <h4>Jennifer L.</h4>
+                            <p>Member since 2022</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"As someone who struggled with reading, this reign clubited my love for books. The carefully selected stories about triumph and resilience gave me the motivation to pursue my dreams. I've started my own business this year!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/member2/100/100" alt="Michael R.">
+                        <div class="testimonial-info">
+                            <h4>Michael R.</h4>
+                            <p>Member since 2021</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"The author events have been life-changing. Hearing directly from the people who wrote these inspiring stories gave me tools to overcome my own challenges. This isn't just a book club—it's a support system."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/member3/100/100" alt="Sarah K.">
+                        <div class="testimonial-info">
+                            <h4>Sarah K.</h4>
+                            <p>Member since 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"I gifted a membership to my mother and we've bonded over these books like never before. We now have weekly calls discussing the latest selection. It's brought us closer than we've ever been."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/member4/100/100" alt="David M.">
+                        <div class="testimonial-info">
+                            <h4>David M.</h4>
+                            <p>Member since 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Logo Carousel -->
+    <section class="partnership-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">As Seen In & Partners</h2>
+                <p class="section-subtitle">Trusted by leading platforms and publishers</p>
+            </div>
+            
+            <div class="logo-carousel">
+                <div class="logo-track">
+                    <!-- Spotify -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="16" fill="#1DB954"/>
+                            <path d="M28 22c1-1 2.5-1.5 4-1.5M31 18c1.5-.5 4 0 5.5 1.5M33 14c1 .5 3 1 4.5 1.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <!-- Amazon -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <text x="10" y="28" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FF9900">amazon</text>
+                        </svg>
+                    </div>
+                    <!-- Kindle -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <text x="12" y="27" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000000">kindle</text>
+                        </svg>
+                    </div>
+                    <!-- Apple Books -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="20" r="12" fill="#000000"/>
+                            <text x="17" y="24" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">Books</text>
+                        </svg>
+                    </div>
+                    <!-- Audible -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="20" r="12" fill="#000000"/>
+                            <text x="14" y="24" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">audible</text>
+                        </svg>
+                    </div>
+                    <!-- Bookshop -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="8" width="30" height="24" rx="2" fill="#231F20"/>
+                            <text x="12" y="22" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#FFFFFF">bookshop</text>
+                        </svg>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="16" fill="#1DB954"/>
+                            <path d="M28 22c1-1 2.5-1.5 4-1.5M31 18c1.5-.5 4 0 5.5 1.5M33 14c1 .5 3 1 4.5 1.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <text x="10" y="28" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FF9900">amazon</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <text x="12" y="27" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000000">kindle</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="20" r="12" fill="#000000"/>
+                            <text x="17" y="24" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">Books</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="20" r="12" fill="#000000"/>
+                            <text x="14" y="24" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">audible</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="8" width="30" height="24" rx="2" fill="#231F20"/>
+                            <text x="12" y="22" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#FFFFFF">bookshop</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Carousel -->
+    <section class="instagram-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join Our Community</h2>
+                <p class="section-subtitle">Follow us on Instagram for daily inspiration</p>
+            </div>
+            <div class="instagram-carousel">
+                <div class="instagram-track">
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success1/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success2/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success3/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success4/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success5/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success6/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <!-- Duplicate for scroll -->
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success1/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success2/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success3/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success4/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success5/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                    <div class="instagram-post">
+                        <img src="https://picsum.photos/seed/success6/400/400" alt="Instagram Post">
+                        <div class="instagram-overlay">
+                            <span>@TriumphantBookClub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Follow on Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="1" /> 
+                                <stop offset="100%" stop-color="#8B5CF6" stop-opacity="1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Stories of triumph, resilience, and the human spirit. Join our community celebrating books that inspire and empower.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="podcast.html">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <div class="social-login">
+                    <button type="button" class="social-btn google" onclick="loginWithGoogle()">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Continue with Google
+                    </button>
+                </div>
+                <div class="auth-divider"><span>or</span></div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

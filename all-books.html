@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Next Great Read • Success Book Club</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { box-sizing: border-box; }
+        
+        body { margin: 0; background-color: #F9FAFB; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5; min-height: 100vh; }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #E5E7EB;
+            z-index: 1000;
+        }
+
+        .main { padding-top: 80px; }
+
+        .section { margin-top: 1.5rem; padding: 3rem 0; }
+        .section-header { margin-bottom: 1.5rem; text-align: center; }
+        .section .section-title { font-family: 'Georgia', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); letter-spacing: .01em; margin: 0 0 .5rem; color: #1F2937; }
+        .section .section-subtitle { margin: 0 0 1rem; color: #6B7280; font-size: 1.1rem; }
+
+        .hero-shell { 
+            padding: calc(80px + 3rem) 0 3rem; 
+            background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content-zone { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+        .hero-text h1 { margin: 0; font-family: 'Georgia', serif; font-size: clamp(2rem, 4vw, 3rem); color: #fff; line-height: 1.2; }
+        .hero-text p { color: rgba(255,255,255,0.9); margin: 1rem 0 1.5rem; font-size: 1.1rem; }
+        .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+        .btn-primary, .btn-secondary { display: inline-block; padding: 0.75rem 1.5rem; text-decoration: none; border: none; border-radius: 9999px; font-weight: 600; font-size: 0.875rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-primary { background-color: #fff; color: #8B5CF6; }
+        .btn-primary:hover { background-color: #F3F4F6; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .btn-secondary { background-color: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-secondary:hover { background-color: #fff; color: #8B5CF6; transform: translateY(-2px); }
+
+        .hero-search { margin-top: 1.5rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 14px; padding: .7rem; display: flex; gap: .5rem; backdrop-filter: blur(10px); }
+        .hero-search input { width: 100%; border: none; background: transparent; color: #fff; font-size: 1rem; padding: .5rem; outline: none; }
+        .hero-search input::placeholder { color: rgba(255,255,255,0.7); }
+        .filter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .chip { border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.1); color: #fff; border-radius: 999px; padding: .5rem 1rem; font-size: .875rem; cursor: pointer; transition: all 0.3s ease; }
+        .chip:hover, .chip.active { background: #fff; color: #8B5CF6; border-color: #fff; font-weight: 600; }
+
+        .search-dropdown { position: absolute; width: min(650px, calc(100vw - 2rem)); background: #fff; border: 1px solid #E5E7EB; border-radius: 14px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); overflow: hidden; max-height: 0; opacity: 0; transition: max-height 300ms ease, opacity 300ms ease; z-index: 30; }
+        .search-dropdown.open { max-height: 29rem; opacity: 1; }
+        .search-item { display: flex; align-items: center; gap: .7rem; padding: .75rem .85rem; border-bottom: 1px solid #F3F4F6; cursor: pointer; }
+        .search-item:hover { background: #F9FAFB; }
+        .search-thumb { width: 36px; height: 52px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+        .search-details { min-width: 0; }
+        .search-details strong { display: block; color: #1F2937; font-size: .95rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .search-details span { font-size: .82rem; color: #6B7280; }
+
+        .hero-banner-inner { display: flex; gap: 1.5rem; align-items: center; padding: 1.5rem; background: rgba(255,255,255,0.15); border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        .hero-banner-cover { width: 130px; min-width: 130px; border-radius: 12px; overflow: hidden; }
+        .hero-banner-cover img { width: 100%; height: 196px; object-fit: cover; }
+        .hero-banner-data { flex: 1; color: #fff; }
+        .hero-banner-data h3 { margin: 0; font-size: 1.3rem; }
+        .hero-banner-data p { margin: .5rem 0 0.75rem; color: rgba(255,255,255,0.85); line-height: 1.4; font-size: .95rem; }
+        .hero-banner-cta { margin-top: .7rem; }
+
+        .grid { display: grid; gap: 1.5rem; }
+        .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+        .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+        .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+        .card { position: relative; background: #fff; border: 1px solid #E5E7EB; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .card-cover { position: relative; height: 0; padding-bottom: 150%; overflow: hidden; background: linear-gradient(135deg, #8B5CF6, #EC4899); }
+        .card-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+        .card:hover .card-cover img { transform: scale(1.04); }
+        .card-badge { position: absolute; top: 0.75rem; left: 0.75rem; padding: .25rem .6rem; border-radius: 999px; font-size: .7rem; background: #8B5CF6; color: #fff; font-weight: 600; }
+        .card[style*="cursor: pointer"] { cursor: pointer; }
+
+        /* Author section styles */
+        .author-spotlight-card { 
+          background: #fff; 
+          border: 1px solid #E5E7EB; 
+          border-radius: 16px; 
+          padding: 1.25rem; 
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .author-spotlight-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .author-card-header {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          align-items: flex-start;
+        }
+        .author-avatar-large {
+          width: 80px;
+          height: 80px;
+          min-width: 80px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid #8B5CF6;
+        }
+        .author-avatar-large img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .author-card-info {
+          flex: 1;
+          min-width: 0;
+        }
+        .author-nationality {
+          display: inline-block;
+          padding: 0.15rem 0.5rem;
+          background: rgba(139,92,246,0.1);
+          color: #8B5CF6;
+          border-radius: 999px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          margin-bottom: 0.35rem;
+        }
+        .author-name {
+          margin: 0 0 0.35rem;
+          font-size: 1.1rem;
+          color: #1F2937;
+          font-weight: 700;
+          line-height: 1.3;
+        }
+        .author-bio-text {
+          margin: 0 0 0.35rem;
+          font-size: 0.8rem;
+          color: #6B7280;
+          line-height: 1.4;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .author-awards-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+        }
+        .author-award-badge {
+          display: inline-block;
+          padding: 0.15rem 0.4rem;
+          background: linear-gradient(135deg, #8B5CF6, #EC4899);
+          color: #fff;
+          border-radius: 4px;
+          font-size: 0.65rem;
+          font-weight: 600;
+        }
+        .author-books-section {
+          margin-top: 0.75rem;
+          border-top: 1px solid #E5E7EB;
+          padding-top: 0.75rem;
+        }
+        .author-books-label {
+          margin: 0 0 0.5rem;
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #1F2937;
+        }
+        .author-books-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.5rem;
+        }
+        .author-book-item {
+          text-align: center;
+          max-width: 90px;
+          margin: 0 auto;
+        }
+        .author-book-cover {
+          width: 100%;
+          max-width: 90px;
+          aspect-ratio: 2/3;
+          border-radius: 6px;
+          overflow: hidden;
+          margin-bottom: 0.35rem;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          background: #F3F4F6;
+        }
+        .author-book-cover:hover {
+          transform: scale(1.03);
+          box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .author-book-cover img {
+          width: 100%;
+          max-width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .author-book-title {
+          margin: 0;
+          font-size: 0.7rem;
+          color: #1F2937;
+          font-weight: 500;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .author-book-rating {
+          display: block;
+          font-size: 0.65rem;
+          color: #F59E0B;
+          margin-top: 0.15rem;
+        }
+
+        @media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+        @media (max-width: 830px) { .hero-content-zone { grid-template-columns: 1fr; } .hero-banner-inner { flex-direction: column; text-align: center; } .author-books-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 720px) { .grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); } .grid-3 { grid-template-columns: repeat(2,minmax(0,1fr)); } .grid-2 { grid-template-columns: 1fr; } .author-card-header { flex-direction: column; align-items: center; text-align: center; } }
+        @media (max-width: 540px) { .grid-4 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } .hero-search { position: relative; } .search-dropdown { width: calc(100vw - 2rem); } }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateX(-50%) translateY(0); }
+            to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        }
+        .card-body { padding: 1rem; }
+        .card-title { margin: 0 0 .25rem; font-size: 1rem; font-weight: 700; line-height: 1.3; color: #1F2937; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-author { color: #6B7280; font-size: 0.85rem; margin: 0 0 .5rem; }
+        .card-meta { display: flex; justify-content: space-between; align-items: center; gap: .45rem; font-size: .78rem; color: #6B7280; }
+        .tag-pill { padding: .25rem .6rem; border-radius: 999px; font-size: .72rem; background: rgba(139,92,246,0.1); color: #8B5CF6; font-weight: 600; }
+        
+        /* Blog card specific styles */
+        .card-excerpt { font-size: 0.85rem; color: #6B7280; margin: 0.5rem 0; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
+        .read-more-btn { display: inline-block; margin-top: 0.5rem; color: #8B5CF6; font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: color 0.2s ease; }
+        .read-more-btn:hover { color: #7C3AED; text-decoration: underline; }
+        .blog-section-footer { grid-column: 1 / -1; text-align: center; margin-top: 1.5rem; }
+        .view-more-blogs-btn { display: inline-block; padding: 0.75rem 2rem; background: #8B5CF6; color: #fff; text-decoration: none; border-radius: 9999px; font-weight: 600; transition: background 0.2s ease, transform 0.2s ease; }
+        .view-more-blogs-btn:hover { background: #7C3AED; transform: translateY(-2px); }
+
+        .card-actions { margin-top: .75rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+        .card-actions button { border: 1px solid #E5E7EB; background: #fff; color: #1F2937; border-radius: 10px; min-height: 36px; font-size: .75rem; cursor: pointer; transition: all 0.2s ease; font-weight: 500; }
+        .card-actions button:hover { background: #F9FAFB; border-color: #8B5CF6; color: #8B5CF6; }
+        .vote-pill { margin-inline-start: auto; font-size: .75rem; background: rgba(139,92,246,0.1); color: #8B5CF6; border-radius: 8px; padding: .25rem .5rem; font-weight: 600; }
+
+        .preview-overlay { position: absolute; inset: 0; background: linear-gradient(180deg,transparent,rgba(0,0,0,0.8)); color: #fff; padding: 12px; transform: translateY(100%); transition: transform .24s ease; display: flex; flex-direction: column; justify-content: end; gap: .35rem; opacity: 0; }
+        .card:hover .preview-overlay { transform: translateY(0); opacity: 1; }
+        .preview-text { font-size: .78rem; color: rgba(255,255,255,0.9); height: 46px; overflow: hidden; }
+        .preview-actions { display: flex; justify-content: space-between; gap: .3rem; }
+        .preview-actions button { border: none; border-radius: 8px; background: rgba(255,255,255,0.2); color: #fff; font-size: .72rem; padding: .3rem .5rem; }
+
+        .badge-trending { position: absolute; top: .75rem; right: .75rem; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6, #EC4899); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 10px 15px -3px rgba(139,92,246,0.4); animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        .skeleton-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(4, minmax(0,1fr)); }
+        .skeleton { border-radius: 16px; background: linear-gradient(90deg, #F3F4F6 20%, #E5E7EB 40%, #F3F4F6 60%); background-size: 200% 100%; animation: shimmer 1.5s linear infinite; min-height: 260px; }
+        @keyframes shimmer { 0% { background-position: -150% 0; } 100% { background-position: 150% 0; } }
+
+        .empty-state, .error-state { background: #fff; border: 1px solid #E5E7EB; border-radius: 14px; padding: 2rem; color: #6B7280; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .empty-state a, .error-state button { color: #8B5CF6; font-weight: 600; }
+
+        .section-actions { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .section-actions .small { font-size: .86rem; color: #6B7280; }
+        .stat-pill { color: #8B5CF6; background: rgba(139,92,246,0.1); border-radius: 999px; padding: .25rem .6rem; border: 1px solid rgba(139,92,246,0.2); font-weight: 600; }
+
+        .community-banner { border-radius: 16px; position: relative; overflow: hidden; background: linear-gradient(135deg, #8B5CF6, #EC4899); padding: 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; color: #fff; }
+        .community-banner h2 { margin: 0 0 .5rem; font-family: 'Georgia', serif; font-size: 1.5rem; }
+        .community-banner p { margin: 0; color: rgba(255,255,255,0.9); }
+        .community-banner .cta-group { display: flex; gap: .6rem; margin-top: 1rem; }
+
+        @media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+        @media (max-width: 830px) { .hero-content-zone { grid-template-columns: 1fr; } .hero-banner-inner { flex-direction: column; text-align: center; } }
+        @media (max-width: 720px) { .grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); } .grid-3 { grid-template-columns: repeat(2,minmax(0,1fr)); } .grid-2 { grid-template-columns: 1fr; } }
+        @media (max-width: 540px) { .grid-4 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } .hero-search { position: relative; } .search-dropdown { width: calc(100vw - 2rem); } }
+
+        [aria-hidden='true'] { display: none !important; }
+    </style>
+</head>
+<body>
+  <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                     <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fff;stop-opacity:1" /> 
+                            <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                </svg>
+                   <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html" class="active">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="9" r="8"/>
+                            <path d="M14 14L18 18" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search books, authors, topics..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-section" style="position: relative; z-index: 1;">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content" style="position: relative; z-index: 2;">
+                <h1 class="hero-title">Your Personal Book Discovery Hub</h1>
+                <p class="hero-subtitle">Explore trending books, discover hidden gems, and find your next favorite read from our curated collections.</p>
+                <div class="hero-buttons">
+                    <a href="#section-trending" class="btn btn-primary btn-large">Trending Now</a>
+                    <a href="#section-category" class="btn btn-secondary btn-large">Browse Categories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container main" id="app">
+
+    <!-- SECTION 2 — HERO -->
+    <section class="hero-shell" id="section-hero">
+      <div class="hero-content-zone">
+        <div class="hero-text">
+          <h1>Discover Your Next Great Read</h1>
+          <p>Trending reads, community picks, and books chosen just for you.</p>
+          <div class="hero-actions">
+            <button class="btn-primary" id="bookmarkHero">Explore Community Picks</button>
+            <button class="btn-secondary" id="focusSearch">Search Books</button>
+          </div>
+
+          <div class="hero-search" style="position: relative;">
+            <input type="text" id="searchInput" placeholder="Search books, authors, topics..." aria-label="Book search" />
+            <div class="search-dropdown" id="searchDropdown" aria-live="polite"></div>
+          </div>
+
+          <div class="filter-chips" id="filterChips"></div>
+        </div>
+
+        <div class="hero-banner-inner" id="featuredBanner">
+          <div class="hero-banner-cover"><img src="" alt="Featured book cover" id="featuredCover" loading="lazy" /></div>
+          <div class="hero-banner-data">
+            <div class="badge-trending">★</div>
+            <h3 id="featuredTitle">Loading featured title...</h3>
+            <p id="featuredSubtitle">Animated spotlight from Google Books data.</p>
+            <p id="featuredDesc">Fetching data ...</p>
+            <div class="hero-banner-cta"><button class="btn-primary" id="openFeatured">Explore Book</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — TRENDING NOW -->
+    <section class="section" id="section-trending" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">🔥 Trending This Week</h2>
+        <p class="section-subtitle" id="trendingUpdated">Loading trending...</p>
+      </div>
+      <div class="section-actions"><span class="small">Vote fast — counts update instantly</span></div>
+      <div id="trendingGrid" class="grid grid-4"></div>
+      <div id="trendingState"></div>
+    </section>
+
+    <!-- SECTION 4 — RECOMMENDED FOR YOU -->
+    <section class="section" id="section-recommended" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">✨ Picked For You</h2>
+        <p class="section-subtitle">Personalized recommendations based on your history.</p>
+      </div>
+      <div id="recommendedScroll" style="display:flex; overflow-x:auto; gap:0.8rem; padding-bottom:0.5rem; scroll-snap-type:x mandatory;"></div>
+      <div id="recommendedState"></div>
+    </section>
+
+    <!-- SECTION 5 — BROWSE BY CATEGORY -->
+    <section class="section" id="section-category" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">Browse by Category</h2>
+        <p class="section-subtitle" id="categoryCount">Select category to explore</p>
+      </div>
+      <div class="section-actions" id="categoryPills"></div>
+      <div id="categoryGrid" class="grid grid-4"></div>
+      <div style="margin-top:.8rem; text-align:center;"><button id="loadMoreBtn" class="btn-secondary">Load More</button></div>
+      <div id="categoryState"></div>
+    </section>
+
+    <!-- SECTION 6 — COMMUNITY FAVORITES -->
+    <section class="section" id="section-favorites" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">❤️ Most Loved by Our Readers</h2>
+      </div>
+      <div id="favoritesGrid" class="grid grid-3"></div>
+      <div style="margin-top:0.8rem;"><a href="community.html" class="btn-primary" style="font-size:.9rem;">Join the community to vote →</a></div>
+      <div id="favoritesState"></div>
+    </section>
+
+    <!-- SECTION 7 — NEW & RECENTLY ADDED -->
+    <section class="section" id="section-new" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">🆕 Fresh Off the Shelf</h2>
+        <p class="section-subtitle">Discover new voices and recent releases</p>
+      </div>
+      <div id="newGrid" class="grid grid-4"></div>
+      <div id="newState"></div>
+    </section>
+
+    <!-- SECTION 8 — READING CHALLENGE PICKS -->
+    <section class="section" id="section-challenges" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">📚 Your Challenge Reading List</h2>
+      </div>
+      <div id="challengesGrid" class="grid grid-2"></div>
+      <div id="challengeState"></div>
+    </section>
+
+    <!-- SECTION 9 — AUTHOR SPOTLIGHT -->
+    <section class="section" id="section-authors" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">✍️ Authors We're Celebrating</h2>
+      </div>
+      <div id="authorGrid" class="grid grid-3"></div>
+      <div id="authorState"></div>
+    </section>
+
+    <!-- SECTION 9B — HIDDEN GEMS -->
+    <section class="section" id="section-hidden-gems" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">💎 Hidden Gems</h2>
+        <p class="section-subtitle">Underrated books that deserve more attention</p>
+      </div>
+      <div id="hiddenGemsGrid" class="grid grid-4"></div>
+      <div id="hiddenGemsState"></div>
+    </section>
+
+    <!-- SECTION 9C — MUST-READ CLASSICS -->
+    <section class="section" id="section-classics" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">📖 Must-Read Classics</h2>
+        <p class="section-subtitle">Timeless books everyone should experience</p>
+      </div>
+      <div id="classicsGrid" class="grid grid-4"></div>
+      <div id="classicsState"></div>
+    </section>
+
+    <!-- SECTION 9D — AWARD WINNERS -->
+    <section class="section" id="section-awards" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">🏆 Award Winners</h2>
+        <p class="section-subtitle">Books that have been recognized for excellence</p>
+      </div>
+      <div id="awardsGrid" class="grid grid-4"></div>
+      <div id="awardsState"></div>
+    </section>
+
+    <!-- SECTION 9E — PAGE TURNERS -->
+    <section class="section" id="section-page-turners" style="background-color: #fff;">
+      <div class="section-header">
+        <h2 class="section-title">⚡ Page Turners</h2>
+        <p class="section-subtitle">Unputdownable books you wont be able to stop reading</p>
+      </div>
+      <div id="pageTurnersGrid" class="grid grid-4"></div>
+      <div id="pageTurnersState"></div>
+    </section>
+
+    <!-- SECTION 9F — BLOG SPOTLIGHT -->
+    <section class="section" id="section-blog" style="background-color: #F9FAFB;">
+      <div class="section-header">
+        <h2 class="section-title">📝 From Our Blog</h2>
+        <p class="section-subtitle">Latest articles and book recommendations</p>
+      </div>
+      <div id="blogGrid" class="grid grid-3"></div>
+      <div id="blogState"></div>
+    </section>
+
+    <!-- SECTION 10 — COMMUNITY BANNER CTA -->
+    <section id="section-community-cta">
+      <div class="container">
+        <div class="community-banner">
+          <div>
+            <h2 style="margin:0;">Reading is better together</h2>
+            <p>Join discussions, vote for your favourites, and complete reading challenges with thousands of book lovers.</p>
+            <div class="cta-group">
+              <a href="community.html" class="btn-primary" style="background:#fff; color:#8B5CF6;">Join the Community →</a>
+              <button class="btn-secondary" id="scrollToCategory">Browse All Books</button>
+            </div>
+          </div>
+          <div style="position:relative; min-height:130px;">
+            <div class="dot" style="left:10%; top:15%; animation-delay:0s;"></div>
+            <div class="dot" style="left:34%; top:43%; animation-delay:.8s;"></div>
+            <div class="dot" style="left:75%; top:25%; animation-delay:.4s;"></div>
+            <div class="dot" style="left:62%; top:70%; animation-delay:1.1s;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Celebrating stories of success and diverse voices through the joy of reading.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Join Now</button>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script>
+    // ---------- Mock Data Layer ----------
+    const mockData = {
+      mockVotes: {},
+      mockChallenges: [
+        { id: 'fiction-fiesta', title:'Fiction Fiesta Challenge', progress:3, target:5, genre:'Fiction', query:'fiction classics'},
+        { id: 'african-voices', title:'African Voices Challenge', progress:2, target:4, genre:'African Authors', query:'African literature'},
+        { id: 'self-help-sprint', title:'Self-Help Sprint', progress:1, target:3, genre:'Self-Help', query:'self improvement'}
+      ],
+      mockUser: {
+        isLoggedIn:false,
+        name:'Amina',
+        avatar:'',
+        preferences:['Atomic Habits','Things Fall Apart','Rich Dad Poor Dad'],
+        savedBooks:[],
+        votedBooks:{}
+      },
+      communityFavorites: []
+    };
+
+    const runtime = {
+      appState:{
+        currentCategory:'Fiction',
+        categoryPage:0,
+        trendingList:[],
+        recommendedList:[],
+        activeBook:null,
+        renderedIDs:new Set()
+      }
+    };
+
+    const supportsReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Helper Functions ----------
+    function clamp(value, min, max){ return Math.max(min, Math.min(max, value)); }
+    function sleep(ms){ return new Promise(resolve=>setTimeout(resolve,ms)); }
+    function safeJson(res){ return res.ok ? res.json() : Promise.reject(new Error('API error '+res.status)); }
+
+    function getCategorySlug(cat){ return cat.toLowerCase().replaceAll(/\s+/g,'-'); }
+    function setText(id, text){ const el=document.getElementById(id); if(el){ el.textContent=text; } }
+
+    function getSavedBooks(){
+      const stored = localStorage.getItem('ttbc_saved_books');
+      if(!stored) return [];
+      try { return JSON.parse(stored); } catch { return []; }
+    }
+    function persistSavedBooks(){
+      localStorage.setItem('ttbc_saved_books', JSON.stringify(mockData.mockUser.savedBooks));
+    }
+
+    function HowLongAgo(minutes){
+      if(minutes < 1) return 'just now';
+      const m = Math.floor(minutes); if(m<60) return m + ' minutes ago';
+      const h=Math.floor(m/60); return h===1 ? 'an hour ago' : h + ' hours ago';
+    }
+
+    function getVolumeId(book){ return (book && book.id) ? book.id : Math.random().toString(36).substring(2);
+    }
+
+    function getDecorator(book){
+      const {volumeInfo={}} = book;
+      return {
+        title: volumeInfo.title || 'Untitled Book',
+        authors: (volumeInfo.authors && volumeInfo.authors.join(', ')) || 'Unknown Author',
+        category: ((volumeInfo.categories && volumeInfo.categories[0]) || 'General').replaceAll('/',' • '),
+        description: (volumeInfo.description || volumeInfo.searchInfo?.textSnippet || 'No description available').replaceAll(/<[^>]*>/g,'')
+      };
+    }
+
+    function getImageLink(book){
+      const link = book.volumeInfo?.imageLinks?.thumbnail || book.volumeInfo?.imageLinks?.smallThumbnail;
+      if(!link) return 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 150 220%22%3E%3Crect fill=%22%231f2b47%22 width=%22150%22 height=%22220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23e2eaf5%22 font-family=%22Arial,Helvetica,sans-serif%22 font-size=%2214%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22%3ENo Cover%3C/text%3E%3C/svg%3E';
+      return link.startsWith('http:') ? 'https:' + link.slice(5) : link;
+    }
+
+    function dedupeBooks(items){
+      return items.filter(book => {
+        const id = getVolumeId(book);
+        if(runtime.appState.renderedIDs.has(id)){
+          return false;
+        }
+        runtime.appState.renderedIDs.add(id);
+        return true;
+      }).slice(0,8);
+    }
+
+    // ---------- Backend API Configuration ----------
+    const API_BASE_URL = 'http://localhost:3001';
+
+    async function apiRequest(endpoint) {
+        try {
+            const response = await fetch(`${API_BASE_URL}${endpoint}`);
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+            const data = await response.json();
+            if (!data.success) {
+                throw new Error(data.error?.message || 'API request failed');
+            }
+            return data;
+        } catch (error) {
+            console.error('API Request Error:', error);
+            throw error;
+        }
+    }
+
+    // Transform backend API response to match original format
+    function transformBookFromAPI(book) {
+        return {
+            id: book.id,
+            previewLink: book.previewLink || book.infoLink,
+            infoLink: book.infoLink,
+            volumeInfo: {
+                title: book.title || 'Untitled Book',
+                authors: book.authors || ['Unknown Author'],
+                categories: book.categories || ['General'],
+                description: book.description || '',
+                previewLink: book.previewLink || book.infoLink,
+                imageLinks: {
+                    thumbnail: book.thumbnail
+                }
+            }
+        };
+    }
+
+    async function fetchTrendingBooks(){
+      try {
+        const response = await apiRequest('/api/external-books/trending?maxResults=12');
+        const items = response.data || [];
+        return items.map(book => {
+            const transformed = transformBookFromAPI(book);
+            const votes = mockData.mockVotes[book.id] || (mockData.mockVotes[book.id] = Math.floor(Math.random()*1801)+200);
+            const views = Math.floor(Math.random()*18001)+500;
+            return {...transformed, __voteCount:votes, __viewCount:views, __score: votes*0.6 + views*0.4};
+        });
+      } catch (err){
+        console.error(err);
+        return [
+            { id: 'trend-1', volumeInfo: { title: 'It Ends with Us', authors: ['Colleen Hoover'], categories: ['Romance'], description: 'A powerful story about love and loss.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501110368-L.jpg' }, previewLink: 'https://books.google.com/books?id=itf7DwAAQBAJ' }, __voteCount: 1850, __viewCount: 15000, __score: 1850 },
+            { id: 'trend-2', volumeInfo: { title: 'Verity', authors: ['Colleen Hoover'], categories: ['Thriller'], description: 'A dark romantic thriller.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781982130565-L.jpg' }, previewLink: 'https://books.google.com/books?id=PdKIEAAAQBAJ' }, __voteCount: 1620, __viewCount: 12500, __score: 1620 },
+            { id: 'trend-3', volumeInfo: { title: 'The Seven Husbands of Evelyn Hugo', authors: ['Taylor Jenkins Reid'], categories: ['Fiction'], description: 'A glamorous Hollywood icon tells her story.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501161933-L.jpg' }, previewLink: 'https://books.google.com/books?id=QqJMEAAAQBAJ' }, __voteCount: 1480, __viewCount: 11000, __score: 1480 },
+            { id: 'trend-4', volumeInfo: { title: 'Ugly Love', authors: ['Colleen Hoover'], categories: ['Romance'], description: 'When attraction becomes something else.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501110375-L.jpg' }, previewLink: 'https://books.google.com/books?id=r4X7DwAAQBAJ' }, __voteCount: 1350, __viewCount: 9500, __score: 1350 },
+            { id: 'trend-5', volumeInfo: { title: 'November 9', authors: ['Colleen Hoover'], categories: ['Romance'], description: 'A story of what ifs and could have beens.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501110382-L.jpg' }, previewLink: 'https://books.google.com/books?id=g5f7DwAAQBAJ' }, __voteCount: 1200, __viewCount: 8800, __score: 1200 },
+            { id: 'trend-6', volumeInfo: { title: 'People We Meet on Vacation', authors: ['Emily Henry'], categories: ['Romance'], description: 'Best friends take a trip every year.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525555391-L.jpg' }, previewLink: 'https://books.google.com/books?id=9gQOEAAAQBAJ' }, __voteCount: 1100, __viewCount: 8200, __score: 1100 },
+            { id: 'trend-7', volumeInfo: { title: 'Beach Read', authors: ['Emily Henry'], categories: ['Romance'], description: 'Two writers. One summer. Everything changes.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781984806734-L.jpg' }, previewLink: 'https://books.google.com/books?id=fGfGEAAAQBAJ' }, __voteCount: 980, __viewCount: 7500, __score: 980 },
+            { id: 'trend-8', volumeInfo: { title: 'Happy Place', authors: ['Emily Henry'], categories: ['Romance'], description: 'Friends reunite at their happy place.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525555483-L.jpg' }, previewLink: 'https://books.google.com/books?id=UXZ_EAAAQBAJ' }, __voteCount: 890, __viewCount: 6800, __score: 890 }
+        ];
+      }
+    }
+
+    async function fetchRecommended(preferences=[]){
+      if(!preferences || preferences.length===0) return [];
+      const seed = preferences[Math.floor(Math.random()*preferences.length)];
+      try {
+        const response = await apiRequest(`/api/external-books/recommended?seed=${encodeURIComponent(seed)}&maxResults=12`);
+        const items = response.data || [];
+        const unique = [];
+        const seen = new Set();
+        for(const book of items) {
+            if(!seen.has(book.id) && !runtime.appState.renderedIDs.has(book.id)){
+                seen.add(book.id);
+                unique.push(transformBookFromAPI(book));
+            }
+            if(unique.length >= 6) break;
+        }
+        return unique;
+      } catch(err){ console.warn(err); return [];
+      }
+    }
+
+    async function fetchByCategory(category, page=0){
+      try {
+        const response = await apiRequest(`/api/external-books/category/${encodeURIComponent(category)}?maxResults=8&startIndex=${page*8}`);
+        const items = response.data || [];
+        if(items.length > 0) return items.map(transformBookFromAPI);
+      } catch(err){ console.error(err); }
+      // Fallback data by category
+      const fallbacks = {
+        'Fiction': [
+            { id: 'fic-1', volumeInfo: { title: 'It Ends with Us', authors: ['Colleen Hoover'], categories: ['Romance'], description: 'A powerful story about love and loss.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501110368-L.jpg' }, previewLink: 'https://books.google.com/books?id=itf7DwAAQBAJ' } },
+            { id: 'fic-2', volumeInfo: { title: 'The Seven Husbands of Evelyn Hugo', authors: ['Taylor Jenkins Reid'], categories: ['Fiction'], description: 'A glamorous Hollywood icon tells her story.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501161933-L.jpg' }, previewLink: 'https://books.google.com/books?id=QqJMEAAAQBAJ' } },
+            { id: 'fic-3', volumeInfo: { title: 'The Midnight Library', authors: ['Matt Haig'], categories: ['Fiction'], description: 'Between life and death there is a library.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg' }, previewLink: 'https://books.google.com/books?id=dqC3DwAAQBAJ' } },
+            { id: 'fic-4', volumeInfo: { title: 'The Vanishing Half', authors: ['Brit Bennett'], categories: ['Fiction'], description: 'Twin sisters choose different worlds.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525536291-L.jpg' }, previewLink: 'https://books.google.com/books?id=W1LTEAAAQBAJ' } }
+        ],
+        'Romance': [
+            { id: 'rom-1', volumeInfo: { title: 'People We Meet on Vacation', authors: ['Emily Henry'], categories: ['Romance'], description: 'Best friends take a trip every year.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525555391-L.jpg' }, previewLink: 'https://books.google.com/books?id=9gQOEAAAQBAJ' } },
+            { id: 'rom-2', volumeInfo: { title: 'Beach Read', authors: ['Emily Henry'], categories: ['Romance'], description: 'Two writers. One summer. Everything changes.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781984806734-L.jpg' }, previewLink: 'https://books.google.com/books?id=fGfGEAAAQBAJ' } },
+            { id: 'rom-3', volumeInfo: { title: 'Ugly Love', authors: ['Colleen Hoover'], categories: ['Romance'], description: 'When attraction becomes something else.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781501110375-L.jpg' }, previewLink: 'https://books.google.com/books?id=r4X7DwAAQBAJ' } },
+            { id: 'rom-4', volumeInfo: { title: 'Happy Place', authors: ['Emily Henry'], categories: ['Romance'], description: 'Friends reunite at their happy place.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525555483-L.jpg' }, previewLink: 'https://books.google.com/books?id=UXZ_EAAAQBAJ' } }
+        ],
+        'Mystery': [
+            { id: 'mys-1', volumeInfo: { title: 'Gone Girl', authors: ['Gillian Flynn'], categories: ['Thriller'], description: 'You wont be able to put it down.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780307588371-L.jpg' }, previewLink: 'https://books.google.com/books?id=rqSYEAAAQBAJ' } },
+            { id: 'mys-2', volumeInfo: { title: 'The Girl on the Train', authors: ['Paula Hawkins'], categories: ['Thriller'], description: 'A twisting psychological thriller.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780553418533-L.jpg' }, previewLink: 'https://books.google.com/books?id=gE7VBQAAQBAJ' } },
+            { id: 'mys-3', volumeInfo: { title: 'Sharp Objects', authors: ['Gillian Flynn'], categories: ['Thriller'], description: 'Dark secrets come to light.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780307341556-L.jpg' }, previewLink: 'https://books.google.com/books?id=oWb4DwAAQBAJ' } },
+            { id: 'mys-4', volumeInfo: { title: 'The Silent Patient', authors: ['Alex Michaelides'], categories: ['Thriller'], description: 'A shocking psychological thriller.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781250301697-L.jpg' }, previewLink: 'https://books.google.com/books?id=BC5DwAAQBAJ' } }
+        ],
+        'Science Fiction': [
+            { id: 'sci-1', volumeInfo: { title: 'Project Hail Mary', authors: ['Andy Weir'], categories: ['Sci-Fi'], description: 'A lone astronaut must save the earth.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780593135204-L.jpg' }, previewLink: 'https://books.google.com/books?id=5nEIEAAAQBAJ' } },
+            { id: 'sci-2', volumeInfo: { title: 'Dune', authors: ['Frank Herbert'], categories: ['Sci-Fi'], description: 'A mythic and emotionally charged hero journey.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg' }, previewLink: 'https://books.google.com/books?id=b1t4DwAAQBAJ' } },
+            { id: 'sci-3', volumeInfo: { title: 'The Martian', authors: ['Andy Weir'], categories: ['Sci-Fi'], description: 'An astronaut becomes stranded on Mars.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780553418026-L.jpg' }, previewLink: 'https://books.google.com/books?id=9n1ZEAAAQBAJ' } },
+            { id: 'sci-4', volumeInfo: { title: 'Ready Player One', authors: ['Ernest Cline'], categories: ['Sci-Fi'], description: 'A virtual reality adventure.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780307887436-L.jpg' }, previewLink: 'https://books.google.com/books?id=8g1ZEAAAQBAJ' } }
+        ],
+        'Biography': [
+            { id: 'bio-1', volumeInfo: { title: 'Educated', authors: ['Tara Westover'], categories: ['Memoir'], description: 'A memoir about the power of education.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg' }, previewLink: 'https://books.google.com/books?id=BnMRDwAAQBAJ' } },
+            { id: 'bio-2', volumeInfo: { title: 'Becoming', authors: ['Michelle Obama'], categories: ['Biography'], description: 'An intimate look into the life of a First Lady.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781524763138-L.jpg' }, previewLink: 'https://books.google.com/books?id=GiZ3DwAAQBAJ' } },
+            { id: 'bio-3', volumeInfo: { title: 'Born a Crime', authors: ['Trevor Noah'], categories: ['Comedy'], description: 'Stories from a South African childhood.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780399588171-L.jpg' }, previewLink: 'https://books.google.com/books?id=2hNSDQAAQBAJ' } },
+            { id: 'bio-4', volumeInfo: { title: 'Greenlights', authors: ['Matthew McConaughey'], categories: ['Memoir'], description: 'A unique and compelling life story.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780593135655-L.jpg' }, previewLink: 'https://books.google.com/books?id=7nN4DwAAQBAJ' } }
+        ],
+        'Self-Help': [
+            { id: 'self-1', volumeInfo: { title: 'Atomic Habits', authors: ['James Clear'], categories: ['Self-Help'], description: 'Build good habits and break bad ones.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg' }, previewLink: 'https://books.google.com/books?id=6Da3DwAAQBAJ' } },
+            { id: 'self-2', volumeInfo: { title: 'The 7 Habits of Highly Effective People', authors: ['Stephen R. Covey'], categories: ['Self-Help'], description: 'A principle-centered approach to personal effectiveness.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781982137274-L.jpg' }, previewLink: 'https://books.google.com/books?id=g5FZEAAAQBAJ' } },
+            { id: 'self-3', volumeInfo: { title: 'Think and Grow Rich', authors: ['Napoleon Hill'], categories: ['Self-Help'], description: 'The classic guide to success.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781585424337-L.jpg' }, previewLink: 'https://books.google.com/books?id=r5GZEAAAQBAJ' } },
+            { id: 'self-4', volumeInfo: { title: 'Rich Dad Poor Dad', authors: ['Robert Kiyosaki'], categories: ['Finance'], description: 'What the rich teach their kids about money.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg' }, previewLink: 'https://books.google.com/books?id=s6GZEAAAQBAJ' } }
+        ],
+        'History': [
+            { id: 'his-1', volumeInfo: { title: 'Sapiens', authors: ['Yuval Noah Harari'], categories: ['History'], description: 'A brief history of humankind.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg' }, previewLink: 'https://books.google.com/books?id=t3ZMEAAAQBAJ' } },
+            { id: 'his-2', volumeInfo: { title: 'Guns Germs and Steel', authors: ['Jared Diamond'], categories: ['History'], description: 'The fates of human societies.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780393317558-L.jpg' }, previewLink: 'https://books.google.com/books?id=u3ZMEAAAQBAJ' } },
+            { id: 'his-3', volumeInfo: { title: 'The Silk Roads', authors: ['Peter Frankopan'], categories: ['History'], description: 'A new history of the world.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781101912379-L.jpg' }, previewLink: 'https://books.google.com/books?id=v3ZMEAAAQBAJ' } },
+            { id: 'his-4', volumeInfo: { title: 'A Peoples History of the United States', authors: ['Howard Zinn'], categories: ['History'], description: 'American history from the perspective of the people.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780062397348-L.jpg' }, previewLink: 'https://books.google.com/books?id=w3ZMEAAAQBAJ' } }
+        ],
+        'Fantasy': [
+            { id: 'fan-1', volumeInfo: { title: 'Harry Potter and the Sorcerers Stone', authors: ['J.K. Rowling'], categories: ['Fantasy'], description: 'The boy who lived begins his magical journey.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg' }, previewLink: 'https://books.google.com/books?id=x3ZMEAAAQBAJ' } },
+            { id: 'fan-2', volumeInfo: { title: 'The Name of the Wind', authors: ['Patrick Rothfuss'], categories: ['Fantasy'], description: 'The story of a hero awakened.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780756404741-L.jpg' }, previewLink: 'https://books.google.com/books?id=y3ZMEAAAQBAJ' } },
+            { id: 'fan-3', volumeInfo: { title: 'The Way of Kings', authors: ['Brandon Sanderson'], categories: ['Fantasy'], description: 'Epic fantasy adventure begins.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780765365279-L.jpg' }, previewLink: 'https://books.google.com/books?id=z3ZMEAAAQBAJ' } },
+            { id: 'fan-4', volumeInfo: { title: 'The Hobbit', authors: ['J.R.R. Tolkien'], categories: ['Fantasy'], description: 'A hobbits unexpected journey.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg' }, previewLink: 'https://books.google.com/books?id=a3ZMEAAAQBAJ' } }
+        ]
+      };
+      return fallbacks[category] || fallbacks['Fiction'];
+    }
+
+    async function fetchNewArrivals(){
+      try {
+        const response = await apiRequest('/api/external-books/new-releases?maxResults=8');
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ 
+        console.error(err);
+        // Real books with Open Library covers
+        return [
+            { id: 'new-1', volumeInfo: { title: 'The Midnight Library', authors: ['Matt Haig'], categories: ['Fiction'], description: 'Between life and death there is a library.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg' }, previewLink: 'https://books.google.com/books?id=dqC3DwAAQBAJ', publishedDate: '2024-01-15' } },
+            { id: 'new-2', volumeInfo: { title: 'Atomic Habits', authors: ['James Clear'], categories: ['Self-Help'], description: 'Build good habits and break bad ones.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg' }, previewLink: 'https://books.google.com/books?id=6Da3DwAAQBAJ', publishedDate: '2024-02-20' } },
+            { id: 'new-3', volumeInfo: { title: 'Project Hail Mary', authors: ['Andy Weir'], categories: ['Sci-Fi'], description: 'A lone astronaut must save the earth.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780593135204-L.jpg' }, previewLink: 'https://books.google.com/books?id=5nEIEAAAQBAJ', publishedDate: '2024-03-01' } },
+            { id: 'new-4', volumeInfo: { title: 'The Vanishing Half', authors: ['Brit Bennett'], categories: ['Fiction'], description: 'Twin sisters choose different worlds.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780525536291-L.jpg' }, previewLink: 'https://books.google.com/books?id=W1LTEAAAQBAJ', publishedDate: '2024-01-10' } },
+            { id: 'new-5', volumeInfo: { title: 'Where the Crawdads Sing', authors: ['Delia Owens'], categories: ['Fiction'], description: 'A mystery set in the marshlands of North Carolina.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780735219090-L.jpg' }, previewLink: 'https://books.google.com/books?id=Pg2EDwAAQBAJ', publishedDate: '2023-12-01' } },
+            { id: 'new-6', volumeInfo: { title: 'Educated', authors: ['Tara Westover'], categories: ['Memoir'], description: 'A memoir about the power of education.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg' }, previewLink: 'https://books.google.com/books?id=BnMRDwAAQBAJ', publishedDate: '2023-11-15' } }
+        ];
+      }
+    }
+
+    async function fetchAuthorBooks(author){
+      if(!author) return [];
+      try {
+        const response = await apiRequest(`/api/external-books/author/${encodeURIComponent(author)}?maxResults=6`);
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ console.error(err); return [];
+      }
+    }
+
+    async function fetchSearchResults(query){
+      if(!query || query.trim().length===0) return [];
+      try {
+        const response = await apiRequest(`/api/external-books/search?q=${encodeURIComponent(query)}&maxResults=5`);
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ console.warn(err); return [];
+      }
+    }
+
+    // New section fetchers
+    async function fetchHiddenGems(){
+      try {
+        const response = await apiRequest('/api/external-books/search?q=underrated+books+hidden+gem&maxResults=8');
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ 
+        console.error(err);
+        // Real books with Open Library covers
+        return [
+            { id: 'gem-1', volumeInfo: { title: 'The House in the Cerulean Sea', authors: ['TJ Klune'], categories: ['Fiction'], description: 'A magical story about found family.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781250217318-L.jpg' }, previewLink: 'https://books.google.com/books?id=CgRADwAAQBAJ' } },
+            { id: 'gem-2', volumeInfo: { title: 'Piranesi', authors: ['Susanna Clarke'], categories: ['Fantasy'], description: 'A mysterious labyrinth of halls.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn//9781635575637-L.jpg' }, previewLink: 'https://books.google.com/books?id=WjLtDwAAQBAJ' } },
+            { id: 'gem-3', volumeInfo: { title: 'Anxious People', authors: ['Fredrik Backman'], categories: ['Fiction'], description: 'A hilarious and touching tale.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781982121303-L.jpg' }, previewLink: 'https://books.google.com/books?id=QnbDwAAQBAJ' } },
+            { id: 'gem-4', volumeInfo: { title: 'A Gentleman in Moscow', authors: ['Amor Towles'], categories: ['Fiction'], description: 'A man under house arrest in a luxury hotel.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780399564429-L.jpg' }, previewLink: 'https://books.google.com/books?id=x7l_DQAAQBAJ' } }
+        ];
+      }
+    }
+
+    async function fetchMustReadClassics(){
+      try {
+        const response = await apiRequest('/api/external-books/search?q=classic+literature+must+read&maxResults=8');
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ 
+        console.error(err);
+        return [
+            { id: 'classic-1', volumeInfo: { title: 'To Kill a Mockingbird', authors: ['Harper Lee'], categories: ['Classic'], description: 'A timeless story of justice and race.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg' }, previewLink: 'https://books.google.com/books?id=BO1ONgEACAAJ' } },
+            { id: 'classic-2', volumeInfo: { title: 'Pride and Prejudice', authors: ['Jane Austen'], categories: ['Classic'], description: 'A witty romance about manners.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg' }, previewLink: 'https://books.google.com/books?id=alQMAAAAYAAJ' } },
+            { id: 'classic-3', volumeInfo: { title: '1984', authors: ['George Orwell'], categories: ['Dystopian'], description: 'A haunting vision of totalitarianism.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg' }, previewLink: 'https://books.google.com/books?id=txtSNdAACAAJ' } },
+            { id: 'classic-4', volumeInfo: { title: 'The Great Gatsby', authors: ['F. Scott Fitzgerald'], categories: ['Classic'], description: 'The American dream gone wrong.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg' }, previewLink: 'https://books.google.com/books?id=3AvRvQEACAAJ' } }
+        ];
+      }
+    }
+
+    async function fetchAwardWinners(){
+      try {
+        const response = await apiRequest('/api/external-books/search?q=award+winner+prize+books&maxResults=8');
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ 
+        console.error(err);
+        return [
+            { id: 'award-1', volumeInfo: { title: 'The Testaments', authors: ['Margaret Atwood'], categories: ['Fiction'], description: 'Winner of the Booker Prize.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780385543781-L.jpg' }, previewLink: 'https://books.google.com/books?id=HFW_DwAAQBAJ' } },
+            { id: 'award-2', volumeInfo: { title: 'Normal People', authors: ['Sally Rooney'], categories: ['Fiction'], description: 'Winner of the Costa Prize.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780571334650-L.jpg' }, previewLink: 'https://books.google.com/books?id=oJHVEAAAQBAJ' } },
+            { id: 'award-3', volumeInfo: { title: 'Shuggie Bain', authors: ['Douglas Stuart'], categories: ['Fiction'], description: 'Winner of the Booker Prize.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781529032493-L.jpg' }, previewLink: 'https://books.google.com/books?id=srALEAAAQBAJ' } },
+            { id: 'award-4', volumeInfo: { title: 'The Night Watchman', authors: ['Louise Erdrich'], categories: ['Fiction'], description: 'Winner of the Pulitzer Prize.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780062822274-L.jpg' }, previewLink: 'https://books.google.com/books?id=Z3VvDwAAQBAJ' } }
+        ];
+      }
+    }
+
+    async function fetchPageTurners(){
+      try {
+        const response = await apiRequest('/api/external-books/search?q=thriller+mystery+unputdownable&maxResults=8');
+        const items = response.data || [];
+        return items.map(transformBookFromAPI);
+      } catch(err){ 
+        console.error(err);
+        return [
+            { id: 'page-1', volumeInfo: { title: 'Gone Girl', authors: ['Gillian Flynn'], categories: ['Thriller'], description: 'You wont be able to put it down.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780307588371-L.jpg' }, previewLink: 'https://books.google.com/books?id=rqSYEAAAQBAJ' } },
+            { id: 'page-2', volumeInfo: { title: 'The Girl on the Train', authors: ['Paula Hawkins'], categories: ['Thriller'], description: 'A twisting psychological thriller.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780553418533-L.jpg' }, previewLink: 'https://books.google.com/books?id=gE7VBQAAQBAJ' } },
+            { id: 'page-3', volumeInfo: { title: 'Sharp Objects', authors: ['Gillian Flynn'], categories: ['Thriller'], description: 'Dark secrets come to light.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9780307341556-L.jpg' }, previewLink: 'https://books.google.com/books?id=oWb4DwAAQBAJ' } },
+            { id: 'page-4', volumeInfo: { title: 'The Silent Patient', authors: ['Alex Michaelides'], categories: ['Thriller'], description: 'A shocking psychological thriller.', imageLinks: { thumbnail: 'https://covers.openlibrary.org/b/isbn/9781250301697-L.jpg' }, previewLink: 'https://books.google.com/books?id=BC5DwAAQBAJ' } }
+        ];
+      }
+    }
+
+    // ---------- Rendering Helpers ----------
+    function createCard(book, {showCategory=true, showRank=null}={}) {
+      const id = getVolumeId(book);
+      const {title,authors,category,description} = getDecorator(book);
+      const image = getImageLink(book);
+      const isSaved = mockData.mockUser.savedBooks.includes(id);
+      const voteCount = book.__voteCount || mockData.mockVotes[id] || 0;
+      const previewLink = book.previewLink || book.volumeInfo?.previewLink || book.infoLink || `https://books.google.com/books?id=${id}`;
+
+      const card = document.createElement('article'); 
+      card.className='card';
+      card.dataset.bookId = id;
+      card.style.cursor = 'pointer';
+
+      // Make entire card clickable to open book in new tab
+      card.addEventListener('click', (e) => {
+        if (!e.target.closest('button')) {
+          window.open(previewLink, '_blank', 'noopener,noreferrer');
+        }
+      });
+
+      const cover = document.createElement('div'); cover.className='card-cover';
+      const img = document.createElement('img'); img.src=image; img.alt=title; img.loading='lazy'; cover.appendChild(img);
+      if(showRank && showRank <=3){ const badge=document.createElement('div'); badge.className='badge-trending'; badge.title='Top '+showRank; badge.textContent='🔥'; cover.appendChild(badge); }
+      card.appendChild(cover);
+
+      const body=document.createElement('div'); body.className='card-body';
+      body.innerHTML = `<h4 class="card-title">${title}</h4><p class="card-author">${authors}</p><div class="card-meta"><span class="tag-pill">${category}</span><span class="vote-pill">${voteCount} votes</span></div>`;
+
+      // quick preview overlay
+      const overlay = document.createElement('div'); overlay.className='preview-overlay';
+      overlay.innerHTML = `<p class="preview-text">${description.substring(0,150)}${description.length>150?'...':''}</p><div class="preview-actions"><button class="btn-ghost" data-action="vote" style="background:rgba(255,255,255,0.2); border:none; color:#fff; padding:0.3rem 0.6rem; border-radius:6px;">Vote</button><button class="btn-ghost" style="background:rgba(255,255,255,0.2); border:none; color:#fff; padding:0.3rem 0.6rem; border-radius:6px;" onclick="window.open('${previewLink}', '_blank')">View</button></div>`;
+      card.appendChild(overlay);
+
+      const actions=document.createElement('div'); actions.className='card-actions';
+      const viewBtn=document.createElement('button'); viewBtn.textContent='View'; viewBtn.onclick=(e)=>{ e.stopPropagation(); window.open(previewLink, '_blank', 'noopener,noreferrer'); };
+      const voteBtn=document.createElement('button'); voteBtn.textContent='Vote ▲'; voteBtn.onclick=(e)=>{ e.stopPropagation(); handleVote(book,1); voteBtn.textContent='Voted! ✓'; voteBtn.style.background='#8B5CF6'; voteBtn.style.color='#fff'; };
+      const saveBtn=document.createElement('button'); saveBtn.textContent=isSaved ? 'Saved ✓' : 'Save ♡'; saveBtn.onclick=(e)=>{ e.stopPropagation(); handleSave(book, saveBtn); };
+      actions.appendChild(viewBtn); actions.appendChild(voteBtn); actions.appendChild(saveBtn);
+
+      body.appendChild(actions);
+      card.appendChild(body);
+
+      card.dataset.loaded=true;
+
+      // assign data for card-level vote dot
+      card.querySelector('[data-action="vote"]')?.addEventListener('click', (e)=>{ e.stopPropagation(); handleVote(book,1); });
+
+      return card;
+    }
+
+    function createSkeletonGrid(cols=4){
+      const container=document.createElement('div'); container.className='skeleton-grid';
+      for(let i=0;i<Math.max(cols,4);i++){ const sk=document.createElement('div'); sk.className='skeleton'; container.appendChild(sk);} return container;
+    }
+
+    function setErrorState(container, message, retry){ container.innerHTML=''; container.className='error-state'; container.innerHTML = `<p>${message}</p><button>${retry?'Retry':'Close'}</button>`;
+      if(retry){ container.querySelector('button').onclick=retry; }
+    }
+
+    function setEmptyState(container, message){ container.innerHTML=''; container.className='empty-state'; container.innerHTML = `<p>${message}</p><p><a href="community.html">Suggest a book in community</a></p>`; }
+
+    function renderSectionWithBooks(wrapper, books, options={}){
+      wrapper.innerHTML='';
+      if(!books || books.length===0){ setEmptyState(wrapper,'No books found in this section yet. Be the first to suggest one!'); return; }
+      books.forEach((book,i)=>{ const card = createCard(book,{showRank: options.ranked? i+1: null}); wrapper.appendChild(card); });
+    }
+
+    // ---------- Core Interactions ----------
+    async function handleVote(book, delta=1){
+      const id=getVolumeId(book);
+      mockData.mockVotes[id] = (mockData.mockVotes[id] || (book.__voteCount||0) || 0) + delta;
+      if(!mockData.mockUser.votedBooks[id]) mockData.mockUser.votedBooks[id]=0;
+      mockData.mockUser.votedBooks[id] += delta;
+      const target = document.querySelector(`[data-book-id="${id}"] .vote-pill`);
+      if(target){ target.textContent = `${mockData.mockVotes[id]} votes`; }
+      showToast('Vote recorded! Thanks for voting.');
+    }
+
+    function handleSave(book, btn){
+      const id=getVolumeId(book);
+      const idx = mockData.mockUser.savedBooks.indexOf(id);
+      if(idx===-1){ 
+        mockData.mockUser.savedBooks.push(id); 
+        btn.textContent='Saved ✓'; 
+        btn.style.background='#8B5CF6';
+        btn.style.color='#fff';
+        showToast('Book saved!');
+      }
+      else { 
+        mockData.mockUser.savedBooks.splice(idx,1); 
+        btn.textContent='Save ♡';
+        btn.style.background='';
+        btn.style.color='';
+        showToast('Book removed from saved');
+      }
+      persistSavedBooks();
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#8B5CF6;color:#fff;padding:12px 24px;border-radius:9999px;font-size:14px;font-weight:600;z-index:9999;animation:fadeIn 0.3s ease;';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2000);
+    }
+
+    // ---------- Section Renders ----------
+    async function updateTrendingSection(){
+      const wrapper = document.getElementById('trendingGrid'); const state = document.getElementById('trendingState');
+      wrapper.innerHTML=''; state.innerHTML=''; const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        let items = await fetchTrendingBooks();
+        if(!items || items.length===0){ throw new Error('No trending results'); }
+        items.sort((a,b)=> (b.__score||0) - (a.__score||0));
+        items = dedupeBooks(items).slice(0,8);
+        if(items.length===0){ setEmptyState(state,'No current trending books.'); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, items, {ranked:true});
+        setText('trendingUpdated', `Last updated: ${HowLongAgo(Math.floor(Math.random()*25)+1)}`);
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed loading trending books.','updateTrendingSection'); }
+    }
+
+    async function updateRecommendedSection(){
+      const wrapper=document.getElementById('recommendedScroll'); const state=document.getElementById('recommendedState'); wrapper.innerHTML=''; state.innerHTML='';
+      if(!mockData.mockUser.isLoggedIn){ wrapper.style.filter='blur(1px)'; wrapper.style.pointerEvents='none'; state.innerHTML=`<div class="empty-state">Sign in to unlock your personal picks → <a href="community.html">Go to Community</a></div>`; return; }
+      wrapper.style.filter='none'; wrapper.style.pointerEvents='auto';
+      const placeholder = createSkeletonGrid(3); wrapper.appendChild(placeholder);
+      try {
+        let books = await fetchRecommended(mockData.mockUser.preferences);
+        books = dedupeBooks(books);
+        if(books.length===0){ setEmptyState(state,'No recommendations available yet.'); return; }
+        wrapper.innerHTML='';
+        books.forEach(book=>{
+          const item = createCard(book,{showCategory:true});
+          item.style.minWidth='240px'; item.style.scrollSnapAlign='start';
+          wrapper.appendChild(item);
+        });
+      } catch(err){ console.error(err); state.innerHTML=''; setErrorState(state,'Failed to load recommendations.', 'updateRecommendedSection'); }
+    }
+
+    async function updateCategorySection(selectedCategory=null){
+      const wrapper=document.getElementById('categoryGrid'); const state=document.getElementById('categoryState'); const count = document.getElementById('categoryCount');
+      state.innerHTML=''; wrapper.innerHTML='';
+      const category=selectedCategory || runtime.appState.currentCategory;
+      setText('categoryCount', `Searching ${category} books...`);
+      const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const page= runtime.appState.categoryPage;
+        const books = await fetchByCategory(category, page);
+        if(page===0){ runtime.appState.categoryResults=books; } else { runtime.appState.categoryResults = [...(runtime.appState.categoryResults||[]), ...books]; }
+        const deduped = dedupeBooks(runtime.appState.categoryResults);
+        if(deduped.length===0){ setEmptyState(state, `No books found in ${category} yet. Be the first to suggest one!`); setText('categoryCount', `0 books found in ${category}`); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, deduped);
+        setText('categoryCount', `${deduped.length} books found in ${category}`);
+        if(books.length < 8) {
+          document.getElementById('loadMoreBtn').disabled = true;
+        } else {
+          document.getElementById('loadMoreBtn').disabled = false;
+        }
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch category books.', ()=>updateCategorySection(category)); }
+    }
+
+    async function updateFavoritesSection(){
+      const wrapper=document.getElementById('favoritesGrid'); const state=document.getElementById('favoritesState'); wrapper.innerHTML=''; state.innerHTML=''; const placeholder = createSkeletonGrid(3); wrapper.appendChild(placeholder);
+      try {
+        let items = await fetchTrendingBooks();
+        items = items.sort((a,b)=> (b.__voteCount||0)-(a.__voteCount||0)).slice(0,6);
+        items = dedupeBooks(items);
+        wrapper.innerHTML=''; if(items.length===0){ setEmptyState(state,'No favorites yet - join community to seed votes.'); return; }
+        items.forEach((book,i)=>{
+          const card = createCard(book); const bar = document.createElement('div'); bar.style.margin='0.45rem 0 0'; const percent = Math.round(((book.__voteCount||0)/5000)*100);
+          bar.innerHTML=`<div style="height:7px;border-radius:8px;background:rgba(255,255,255,.1);overflow:hidden;"><div style="width:${percent}%;height:100%;background:linear-gradient(90deg,#ffb453,#ffd36e);"></div></div><p style="margin:.33rem 0 0;font-size:.75rem;color:#c7d1ed;">${book.__voteCount||0} votes — ${percent}% share</p>`;
+          card.appendChild(bar); wrapper.appendChild(card);
+        });
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to load community favorites.', updateFavoritesSection); }
+    }
+
+    async function updateNewArrivalsSection(){
+      const wrapper=document.getElementById('newGrid'); const state=document.getElementById('newState'); wrapper.innerHTML=''; state.innerHTML=''; const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const items = await fetchNewArrivals();
+        const deduped = dedupeBooks(items.slice(0,8));
+        if(!deduped || deduped.length===0){ setEmptyState(state, 'No new arrivals found.'); return; }
+        wrapper.innerHTML='';
+        deduped.forEach(book=>{
+          const card = createCard(book);
+          const pubDate = book.volumeInfo.publishedDate; if(pubDate){ const t = new Date(pubDate); const now = new Date(); const diffDays = Math.floor((now-t)/(1000*60*60*24)); if(diffDays <=30){ const badge=document.createElement('div'); badge.className='card-badge'; badge.textContent='NEW'; card.querySelector('.card-cover').appendChild(badge); }}
+          wrapper.appendChild(card);
+        });
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch new arrivals.', updateNewArrivalsSection); }
+    }
+
+    async function updateChallengesSection(){
+      const wrapper=document.getElementById('challengesGrid'); const state=document.getElementById('challengeState'); wrapper.innerHTML=''; state.innerHTML='';
+      if(!mockData.mockUser.isLoggedIn){ wrapper.innerHTML='<div class="empty-state">Join a challenge to see your picks. <a href="community.html">Visit Community</a></div>'; return; }
+      try {
+        for(const challenge of mockData.mockChallenges){
+          const card = document.createElement('div'); card.className='card'; card.style.border = '1px solid #E5E7EB'; card.style.background='#fff';
+          const progress = Math.round((challenge.progress/challenge.target)*100);
+          card.innerHTML = `<div style='padding:1rem;'><h3 style='margin:0 0 .3rem;font-size:1rem;color:#1F2937;'>${challenge.title}</h3><p style='margin:0 0 .5rem;color:#6B7280;'>${challenge.progress} of ${challenge.target} books read — ${progress}%</p><div style='height:8px;border-radius:8px;background:#E5E7EB;overflow:hidden;'><div style='width:${progress}%;height:100%;background:linear-gradient(90deg,#8B5CF6,#EC4899);'></div></div><div style='margin:.7rem 0;color:#1F2937;'>Suggested:</div><div class='grid' style='grid-template-columns:repeat(3,1fr);gap:.4rem;' id='challenge-${challenge.id}'></div><div style='margin-top:.65rem;'><a href="community.html" style='display:block;text-align:center;padding:0.75rem;background:#8B5CF6;color:#fff;text-decoration:none;border-radius:12px;font-weight:600;'>View Full Challenge →</a></div></div>`;
+          wrapper.appendChild(card);
+
+          const vehicle = card.querySelector(`#challenge-${challenge.id}`);
+          const items = await fetchByCategory(challenge.query,0);
+          (items||[]).slice(0,3).forEach(book=>{
+            const thumb=document.createElement('img'); thumb.src=getImageLink(book); thumb.alt='challenge book'; thumb.style.width='100%'; thumb.style.borderRadius='8px'; thumb.style.height='100px'; thumb.style.objectFit='cover'; thumb.style.cursor='pointer'; thumb.onclick = () => window.open(book.previewLink || `https://books.google.com/books?id=${book.id}`, '_blank'); vehicle.appendChild(thumb);
+          });
+        }
+      } catch(err){ console.error(err); setErrorState(state,'Failed to load challenge cards.', updateChallengesSection); }
+    }
+
+    async function updateAuthorSpotlightSection(){
+      const wrapper=document.getElementById('authorGrid'); const state=document.getElementById('authorState'); wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(3); wrapper.appendChild(placeholder);
+      try {
+        const response = await apiRequest('/api/authors/featured?maxResults=4');
+        const authors = response.data || [];
+        
+        if(authors.length === 0){
+          setEmptyState(state, 'No featured authors available.');
+          return;
+        }
+        
+        wrapper.innerHTML='';
+        
+        authors.forEach(author => {
+          const card = document.createElement('article');
+          card.className='author-spotlight-card';
+          
+          // Create author header with avatar and info
+          const awardsHtml = author.awards && author.awards.length > 0 
+            ? author.awards.slice(0, 2).map(award => `<span class="author-award-badge">${award}</span>`).join('')
+            : '';
+          
+          card.innerHTML = `
+            <div class="author-card-header">
+              <div class="author-avatar-large">
+                <img src="${author.image}" alt="${author.name}" onerror="this.style.display='none';">
+              </div>
+              <div class="author-card-info">
+                <span class="author-nationality">${author.nationality}</span>
+                <h3 class="author-name">${author.name}</h3>
+                <p class="author-bio-text">${author.bio}</p>
+                <div class="author-awards-row">${awardsHtml}</div>
+              </div>
+            </div>
+            <div class="author-books-section">
+              <p class="author-books-label">Books by ${author.name.split(' ')[0]}</p>
+              <div class="author-books-grid"></div>
+            </div>
+          `;
+          
+          const booksGrid = card.querySelector('.author-books-grid');
+          (author.books || []).slice(0, 4).forEach(book => {
+            const bookItem = document.createElement('div');
+            bookItem.className = 'author-book-item';
+            bookItem.innerHTML = `
+              <div class="author-book-cover">
+                <img src="${book.thumbnail || 'https://via.placeholder.com/120x180/8B5CF6/ffffff?text=No+Cover'}" 
+                     alt="${book.title}" 
+                     loading="lazy"
+                     onclick="window.open('${book.previewLink || `https://books.google.com/books?id=${book.id}`}', '_blank')"
+                     style="cursor:pointer;">
+              </div>
+              <p class="author-book-title">${book.title}</p>
+              ${book.rating ? `<span class="author-book-rating">★ ${book.rating}</span>` : ''}
+            `;
+            booksGrid.appendChild(bookItem);
+          });
+          
+          wrapper.appendChild(card);
+        });
+      } catch(err){ 
+        console.error(err);
+        // Fallback to old static method
+        const fallbackAuthors=['Chimamanda Ngozi Adichie','James Clear','Colleen Hoover'];
+        wrapper.innerHTML='';
+        for(const name of fallbackAuthors){
+          const books = await fetchAuthorBooks(name);
+          const authorBio = (books[0]?.volumeInfo?.description||'No bio available.').substring(0,120)+'...';
+          const card = document.createElement('article'); card.className='author-spotlight-card'; card.style.padding='1rem';
+          card.innerHTML = `
+            <div class="author-card-header">
+              <div class="author-avatar-large">
+                <img src="https://via.placeholder.com/80x80/8B5CF6/ffffff?text=${name.charAt(0)}" alt="${name}">
+              </div>
+              <div class="author-card-info">
+                <h3 class="author-name">${name}</h3>
+                <p class="author-bio-text">${authorBio}</p>
+              </div>
+            </div>
+            <div class="author-books-section">
+              <p class="author-books-label">Books</p>
+              <div class="author-books-grid"></div>
+            </div>
+          `;
+          const mini = card.querySelector('.author-books-grid');
+          (books||[]).slice(0,4).forEach(book=>{ 
+            const bookItem = document.createElement('div');
+            bookItem.className = 'author-book-item';
+            bookItem.innerHTML = `
+              <div class="author-book-cover">
+                <img src="${getImageLink(book)}" alt="${book.volumeInfo.title}" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <p class="author-book-title">${book.volumeInfo.title || 'Untitled'}</p>
+            `;
+            bookItem.querySelector('img').onclick = () => window.open(book.previewLink || `https://books.google.com/books?id=${book.id}`, '_blank');
+            mini.appendChild(bookItem); 
+          });
+          wrapper.appendChild(card);
+        }
+      }
+    }
+
+    // ---------- Search and filters ----------
+    const filterOptions=['All','Fiction','Romance','Self-Help','Business','African Authors'];
+    function createFilterChips(){
+      const wrapper=document.getElementById('filterChips'); wrapper.innerHTML='';
+      filterOptions.forEach(opt => {
+        const chip=document.createElement('button');
+        chip.className='chip';
+        chip.textContent=opt;
+        if(opt==='All'){
+          chip.classList.add('active');
+        }
+        chip.onclick = () => {
+          document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+          chip.classList.add('active');
+          searchBooks(opt==='All'? '': opt);
+        };
+        wrapper.appendChild(chip);
+      });
+    }
+
+    // ---------- Category Pills ----------
+    const categoryOptions=['Fiction','Romance','Mystery','Science Fiction','Biography','Self-Help','History','Fantasy'];
+    let selectedCategory = 'Fiction';
+    
+    function createCategoryPills(){
+      const wrapper=document.getElementById('categoryPills'); 
+      if(!wrapper) return;
+      wrapper.innerHTML='';
+      categoryOptions.forEach(cat => {
+        const pill=document.createElement('button');
+        pill.className='tag-pill';
+        pill.textContent=cat;
+        pill.style.cursor='pointer';
+        if(cat===selectedCategory){
+          pill.style.background='#8B5CF6';
+          pill.style.color='#fff';
+        }
+        pill.onclick = async () => {
+          document.querySelectorAll('#categoryPills .tag-pill').forEach(p=>{ p.style.background='rgba(139,92,246,0.1)'; p.style.color='#8B5CF6'; });
+          pill.style.background='#8B5CF6';
+          pill.style.color='#fff';
+          selectedCategory=cat;
+          runtime.appState.currentCategory=cat;
+          runtime.appState.categoryPage=0;
+          await updateCategorySection(cat);
+        };
+        wrapper.appendChild(pill);
+      });
+    }
+
+    let searchTimeout;
+    async function searchBooks(query){
+      const dropdown=document.getElementById('searchDropdown'); dropdown.innerHTML='';
+      if(searchTimeout) clearTimeout(searchTimeout);
+      if(!query || query.trim()===''){ dropdown.classList.remove('open'); return; }
+      searchTimeout=setTimeout(async ()=>{
+        const items = await fetchSearchResults(query+' inauthor,subject');
+        if(!items || items.length===0){ dropdown.innerHTML='<div class="search-item" style="justify-content:center;">No results found.</div>' ; dropdown.classList.add('open'); return; }
+        dropdown.innerHTML='';
+        items.forEach(item=>{
+          const {title,authors}=getDecorator(item);
+          const row=document.createElement('div'); row.className='search-item'; row.innerHTML = `<img class='search-thumb' src='${getImageLink(item)}' alt='${title}'/><div class='search-details'><strong>${title}</strong><span>${authors}</span></div>`;
+          row.onclick=()=>{ dropdown.classList.remove('open'); };
+          dropdown.appendChild(row);
+        });
+        dropdown.classList.add('open');
+      },400);
+    }
+
+    // New section renderers
+    async function updateHiddenGemsSection(){
+      const wrapper=document.getElementById('hiddenGemsGrid'); const state=document.getElementById('hiddenGemsState');
+      wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const items = await fetchHiddenGems();
+        const deduped = dedupeBooks(items);
+        if(!deduped || deduped.length===0){ setEmptyState(state, 'No hidden gems found.'); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, deduped);
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch hidden gems.', updateHiddenGemsSection); }
+    }
+
+    async function updateClassicsSection(){
+      const wrapper=document.getElementById('classicsGrid'); const state=document.getElementById('classicsState');
+      wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const items = await fetchMustReadClassics();
+        const deduped = dedupeBooks(items);
+        if(!deduped || deduped.length===0){ setEmptyState(state, 'No classics found.'); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, deduped);
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch classics.', updateClassicsSection); }
+    }
+
+    async function updateAwardsSection(){
+      const wrapper=document.getElementById('awardsGrid'); const state=document.getElementById('awardsState');
+      wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const items = await fetchAwardWinners();
+        const deduped = dedupeBooks(items);
+        if(!deduped || deduped.length===0){ setEmptyState(state, 'No award winners found.'); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, deduped);
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch award winners.', updateAwardsSection); }
+    }
+
+    async function updatePageTurnersSection(){
+      const wrapper=document.getElementById('pageTurnersGrid'); const state=document.getElementById('pageTurnersState');
+      wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(4); wrapper.appendChild(placeholder);
+      try {
+        const items = await fetchPageTurners();
+        const deduped = dedupeBooks(items);
+        if(!deduped || deduped.length===0){ setEmptyState(state, 'No page turners found.'); return; }
+        wrapper.innerHTML=''; renderSectionWithBooks(wrapper, deduped);
+      } catch(err){ console.error(err); wrapper.innerHTML=''; setErrorState(state,'Failed to fetch page turners.', updatePageTurnersSection); }
+    }
+
+    async function updateBlogSection(){
+      const wrapper=document.getElementById('blogGrid'); const state=document.getElementById('blogState');
+      wrapper.innerHTML=''; state.innerHTML='';
+      const placeholder = createSkeletonGrid(3); wrapper.appendChild(placeholder);
+      try {
+        const response = await fetch('http://localhost:3001/api/articles?limit=3');
+        const data = await response.json();
+        
+        // Handle both API response formats
+        const articles = data.articles || data.data || [];
+        
+        if(articles.length > 0){
+          wrapper.innerHTML='';
+          articles.slice(0, 3).forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const dateStr = article.published_at || article.date || article.created_at;
+            const formattedDate = dateStr ? new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+            const authorName = article.author_name || article.author?.full_name || article.author || 'Success Book Club';
+            const excerpt = article.excerpt || article.content?.substring(0, 120) || 'Read this fascinating article about books and literature...';
+            card.innerHTML = `
+              <div class="card-cover" style="padding-bottom: 56.25%;">
+                <img src="${article.image || article.image_url || 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=225&fit=crop'}" alt="${article.title}" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div class="card-body">
+                <span class="tag-pill">${article.category || 'Blog'}</span>
+                <h4 class="card-title" style="margin-top:0.5rem;">${article.title}</h4>
+                <p class="card-excerpt">${excerpt}...</p>
+                <p class="card-author">By ${authorName} • ${formattedDate}</p>
+                <a href="article.html?id=${article.id}" class="read-more-btn">Read More →</a>
+              </div>
+            `;
+            wrapper.appendChild(card);
+          });
+          // Add View More Blog button
+          const footerDiv = document.createElement('div');
+          footerDiv.className = 'blog-section-footer';
+          footerDiv.innerHTML = '<a href="blog.html" class="view-more-blogs-btn">View More Blog →</a>';
+          wrapper.appendChild(footerDiv);
+        } else {
+          renderFallbackBlogCards(wrapper);
+        }
+      } catch(err){ 
+        console.error(err);
+        renderFallbackBlogCards(wrapper);
+      }
+    }
+
+    function renderFallbackBlogCards(wrapper) {
+      wrapper.innerHTML='';
+      const fallbackPosts = [
+        { id: 'featured-1', title: 'The Art of Storytelling', category: 'Writing', date: 'Feb 12, 2026', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=225&fit=crop', excerpt: 'Learn the secrets of captivating storytelling techniques used by bestselling authors to hook readers from page one.' },
+        { id: 'article-1', title: 'Finding Your Author Voice', category: 'Craft', date: 'Feb 10, 2026', image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=225&fit=crop', excerpt: 'Discover how to develop your unique writing style and voice that sets your work apart from others.' },
+        { id: 'article-2', title: 'Screenwriting 101', category: 'Script', date: 'Feb 8, 2026', image: 'https://images.unsplash.com/photo-1535016120720-40c6874c3b13?w=400&h=225&fit=crop', excerpt: 'Master the fundamentals of screenplay writing and bring your stories to life on the big screen.' }
+      ];
+      fallbackPosts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-cover" style="padding-bottom: 56.25%;">
+            <img src="${post.image}" alt="${post.title}" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="card-body">
+            <span class="tag-pill">${post.category}</span>
+            <h4 class="card-title" style="margin-top:0.5rem;">${post.title}</h4>
+            <p class="card-excerpt">${post.excerpt}</p>
+            <p class="card-author">${post.date}</p>
+            <a href="article.html?id=${post.id}" class="read-more-btn">Read More →</a>
+          </div>
+        `;
+        wrapper.appendChild(card);
+      });
+      // Add View More Blog button for fallback too
+      const footerDiv = document.createElement('div');
+      footerDiv.className = 'blog-section-footer';
+      footerDiv.innerHTML = '<a href="blog.html" class="view-more-blogs-btn">View More Blog →</a>';
+      wrapper.appendChild(footerDiv);
+    }
+
+    // ---------- Initial load ----------
+    async function init(){
+      mockData.mockUser.savedBooks = getSavedBooks();
+      createFilterChips();
+      document.getElementById('bookmarkHero').onclick = ()=>{ document.getElementById('section-favorites').scrollIntoView({behavior:'smooth'}); };
+      document.getElementById('focusSearch').onclick = ()=>{ document.getElementById('searchInput').focus(); };
+      document.getElementById('scrollToCategory').onclick = ()=>{ document.getElementById('section-category').scrollIntoView({behavior:'smooth'}); };
+      document.getElementById('loadMoreBtn').onclick = async ()=>{ runtime.appState.categoryPage += 1; await updateCategorySection(); };
+      document.getElementById('searchInput').addEventListener('input',(e)=>{
+        const q = e.target.value;
+        if(q.trim() === '') {
+          return;
+        }
+        searchBooks(q);
+      });
+
+      document.addEventListener('click', (e)=>{
+        const dropdown = document.getElementById('searchDropdown');
+        if(!e.target.closest('#searchInput') && !e.target.closest('#searchDropdown')){
+          dropdown.classList.remove('open');
+        }
+      });
+
+      // featured book
+      try {
+        const response = await apiRequest('/api/external-books/search?q=african+literature+bestseller&maxResults=1');
+        const feature = response.data?.[0];
+        if(feature){
+          const transformed = transformBookFromAPI(feature);
+          const {title,description}=getDecorator(transformed);
+          document.getElementById('featuredCover').src=getImageLink(transformed);
+          setText('featuredTitle', title); setText('featuredSubtitle', 'Featured community lead pick');
+          setText('featuredDesc', description.substring(0,140)+'...');
+          runtime.appState.renderedIDs.add(feature.id);
+        }
+      } catch(e){ console.error(e); }
+
+      // Create category pills
+      createCategoryPills();
+
+      await Promise.all([
+        updateTrendingSection(),
+        updateRecommendedSection(),
+        updateCategorySection('Fiction'),
+        updateFavoritesSection(),
+        updateNewArrivalsSection(),
+        updateChallengesSection(),
+        updateAuthorSpotlightSection(),
+        updateHiddenGemsSection(),
+        updateClassicsSection(),
+        updateAwardsSection(),
+        updatePageTurnersSection(),
+        updateBlogSection()
+      ]);
+
+      // section reveals
+      const observer = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.style.opacity='1'; entry.target.style.transform='translateY(0)'; observer.unobserve(entry.target); }}); }, { threshold:0.15 });
+      document.querySelectorAll('.section').forEach(sec=>{ sec.style.opacity='0'; sec.style.transform='translateY(22px)'; observer.observe(sec); });
+    }
+
+    init();
+
+  </script>
+    <script src="script.js"></script>
+    
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

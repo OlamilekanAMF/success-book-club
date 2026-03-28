@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Triumphant Book Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B5CF6;
+            --secondary-color: #EC4899;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+            --dark-bg: #1F2937;
+            --sidebar-bg: #111827;
+            --card-bg: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --border-color: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            color: var(--text-primary);
+        }
+
+        /* Login Page */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            color: white;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-header h2 i {
+            color: var(--primary-color);
+        }
+
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 24px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+
+        .page-title p {
+            color: var(--text-secondary);
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.blue {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .stat-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .stat-icon.orange {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .stat-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .stat-change.positive {
+            color: var(--success-color);
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .content-card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-card-header h3 {
+            font-size: 18px;
+        }
+
+        .content-card-body {
+            padding: 24px;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: #F9FAFB;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-badge.published {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-badge.draft {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-badge.pending {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .action-btn.edit {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .action-btn.delete {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+        }
+
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Form Styles */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .image-upload {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .image-upload i {
+            font-size: 48px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        /* Section display */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--dark-bg);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 3000;
+        }
+
+        .toast.active {
+            display: flex;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success-color);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <h1><i class="fas fa-shield-alt" style="color: var(--primary-color);"></i> Admin Portal</h1>
+            <p>Triumphant Book Club Management</p>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminEmail">Email Address</label>
+                    <input type="email" id="adminEmail" placeholder="admin@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-book-open"></i>
+                    Admin Portal
+                </h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a class="nav-item active" onclick="showSection('dashboard-home')">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a class="nav-item" onclick="showSection('books')">
+                    <i class="fas fa-book"></i>
+                    Books
+                </a>
+                <a class="nav-item" onclick="showSection('articles')">
+                    <i class="fas fa-newspaper"></i>
+                    Articles/Blog
+                </a>
+                <a class="nav-item" onclick="showSection('press')">
+                    <i class="fas fa-bullhorn"></i>
+                    Press
+                </a>
+                <a class="nav-item" onclick="showSection('podcasts')">
+                    <i class="fas fa-podcast"></i>
+                    Podcasts
+                </a>
+                <a class="nav-item" onclick="showSection('challenges')">
+                    <i class="fas fa-trophy"></i>
+                    Challenges
+                </a>
+                <a class="nav-item" onclick="showSection('authors')">
+                    <i class="fas fa-user-check"></i>
+                    Author Approvals
+                </a>
+                <a class="nav-item" onclick="showSection('payments')">
+                    <i class="fas fa-credit-card"></i>
+                    Payments
+                </a>
+                <a class="nav-item" onclick="showSection('newsletter')">
+                    <i class="fas fa-envelope"></i>
+                    Newsletter
+                </a>
+                <a class="nav-item" onclick="showSection('users')">
+                    <i class="fas fa-users"></i>
+                    Users
+                </a>
+                <a class="nav-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="adminAvatar">A</div>
+                    <div class="user-details">
+                        <div class="user-name" id="adminName">Admin</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-sm" style="margin-top: 12px; width: 100%;" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Home Section -->
+            <div class="section active" id="dashboard-home">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                        <p>Welcome back! Here's what's happening today.</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-secondary" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value" id="totalUsers">0</div>
+                                <div class="stat-label">Total Members</div>
+                            </div>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 12% from last month
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value" id="totalBooks">0</div>
+                                <div class="stat-label">Books in Library</div>
+                            </div>
+                            <div class="stat-icon green">
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 5 new this week
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value" id="totalArticles">0</div>
+                                <div class="stat-label">Published Articles</div>
+                            </div>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 8 new this week
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value" id="pendingApprovals">0</div>
+                                <div class="stat-label">Pending Approvals</div>
+                            </div>
+                            <div class="stat-icon red">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change">
+                            Requires attention
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                            <button class="btn btn-secondary btn-sm">View All</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>User</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="activityTable">
+                                        <tr>
+                                            <td>New article published</td>
+                                            <td>System</td>
+                                            <td>2 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Book added to spotlight</td>
+                                            <td>Admin</td>
+                                            <td>5 hours ago</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3><i class="fas fa-chart-line"></i> Quick Stats</h3>
+                        </div>
+                        <div class="content-card-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div style="text-align: center; padding: 20px; background: #F9FAFB; border-radius: 8px;">
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--primary-color);" id="newsletterCount">0</div>
+                                    <div style="color: var(--text-secondary);">Newsletter Subscribers</div>
+                                </div>
+                                <div style="text-align: center; padding: 20px; background: #F9FAFB; border-radius: 8px;">
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--success-color);" id="activeChallenges">0</div>
+                                    <div style="color: var(--text-secondary);">Active Challenges</div>
+                                </div>
+                                <div style="text-align: center; padding: 20px; background: #F9FAFB; border-radius: 8px;">
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--warning-color);" id="totalPress">0</div>
+                                    <div style="color: var(--text-secondary);">Press Releases</div>
+                                </div>
+                                <div style="text-align: center; padding: 20px; background: #F9FAFB; border-radius: 8px;">
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--danger-color);" id="totalPodcasts">0</div>
+                                    <div style="color: var(--text-secondary);">Podcast Episodes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Section -->
+            <div class="section" id="books">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-book"></i> Books Management</h1>
+                        <p>Manage books for Book Spotlight and Author Spotlight</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('addBookModal')">
+                            <i class="fas fa-plus"></i> Add New Book
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>All Books</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" placeholder="Search books..." style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            <select style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                                <option value="">All Categories</option>
+                                <option value="spotlight">Book Spotlight</option>
+                                <option value="author">Author Spotlight</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Cover</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Added</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="booksTable">
+                                    <!-- Books will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles Section -->
+            <div class="section" id="articles">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-newspaper"></i> Articles & Blog</h1>
+                        <p>Manage blog posts and articles</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('addArticleModal')">
+                            <i class="fas fa-plus"></i> New Article
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>All Articles</h3>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                        <th>Author</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="articlesTable">
+                                    <!-- Articles will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other sections will be loaded dynamically -->
+            <div class="section" id="press">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-bullhorn"></i> Press Releases</h1>
+                        <p>Manage press releases and media content</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('addPressModal')">
+                            <i class="fas fa-plus"></i> New Press Release
+                        </button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pressTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="podcasts">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-podcast"></i> Podcasts</h1>
+                        <p>Manage podcast episodes</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('addPodcastModal')">
+                            <i class="fas fa-plus"></i> New Episode
+                        </button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Episode</th>
+                                        <th>Title</th>
+                                        <th>Duration</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="podcastsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="challenges">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-trophy"></i> Reading Challenges</h1>
+                        <p>Manage monthly reading challenges</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('addChallengeModal')">
+                            <i class="fas fa-plus"></i> New Challenge
+                        </button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Challenge</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Participants</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="challengesTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="authors">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-user-check"></i> Author Applications</h1>
+                        <p>Review and approve author applications</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Applicant</th>
+                                        <th>Email</th>
+                                        <th>Reason</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="authorsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="payments">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-credit-card"></i> Payment Management</h1>
+                        <p>Manage subscriptions and payments (Flutterwave)</p>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value">₦0</div>
+                                <div class="stat-label">Total Revenue</div>
+                            </div>
+                            <div class="stat-icon green">
+                                <i class="fas fa-naira-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Active Subscribers</div>
+                            </div>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>Recent Transactions</h3>
+                    </div>
+                    <div class="content-card-body">
+                        <p style="text-align: center; color: var(--text-secondary); padding: 40px;">
+                            Payment integration with Flutterwave coming soon.<br>
+                            This section will show all transactions and subscription management.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="newsletter">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-envelope"></i> Newsletter</h1>
+                        <p>Manage newsletter subscribers and send emails</p>
+                    </div>
+                    <div class="top-actions">
+                        <button class="btn btn-success" onclick="openModal('sendNewsletterModal')">
+                            <i class="fas fa-paper-plane"></i> Send Newsletter
+                        </button>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-value" id="subscriberCount">0</div>
+                                <div class="stat-label">Total Subscribers</div>
+                            </div>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>Subscribers</h3>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Date Subscribed</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="newsletterTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="users">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-users"></i> User Management</h1>
+                        <p>Manage all users and their roles</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>All Users</h3>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Joined</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="settings">
+                <div class="top-bar">
+                    <div class="page-title">
+                        <h1><i class="fas fa-cog"></i> Settings</h1>
+                        <p>Manage admin settings and preferences</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h3>Admin Profile</h3>
+                    </div>
+                    <div class="content-card-body">
+                        <form id="adminSettingsForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" id="adminSettingsName" placeholder="Admin Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="adminSettingsEmail" placeholder="admin@example.com">
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-top: 20px;">
+                                <div class="form-group">
+                                    <label>Current Password</label>
+                                    <input type="password" placeholder="••••••••">
+                                </div>
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input type="password" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Book Modal -->
+    <div class="modal" id="addBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-book"></i> Add New Book</h2>
+                <button class="modal-close" onclick="closeModal('addBookModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label>Book Title</label>
+                        <input type="text" id="bookTitle" required placeholder="Enter book title">
+                    </div>
+                    <div class="form-group">
+                        <label>Author Name</label>
+                        <input type="text" id="bookAuthor" required placeholder="Enter author name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="bookCategory">
+                                <option value="spotlight">Book Spotlight</option>
+                                <option value="author">Author Spotlight</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input type="text" id="bookGenre" placeholder="e.g., Fiction, Mystery">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="bookDescription" placeholder="Enter book description..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Image</label>
+                        <div class="image-upload" onclick="document.getElementById('bookCoverInput').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload book cover</p>
+                            <input type="file" id="bookCoverInput" accept="image/*">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addBookModal')">Cancel</button>
+                <button class="btn btn-success" onclick="submitBook()">
+                    <i class="fas fa-save"></i> Save Book
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operation successful</span>
+    </div>
+
+    <script>
+        // Admin Authentication
+        let adminToken = localStorage.getItem('adminToken');
+        let adminUser = JSON.parse(localStorage.getItem('adminUser') || '{}');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            if (adminToken && adminUser.email) {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+
+            // Login form
+            document.getElementById('adminLoginForm').addEventListener('submit', handleLogin);
+        });
+
+        function showLogin() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            
+            // Update admin info
+            document.getElementById('adminName').textContent = adminUser.name || 'Admin';
+            document.getElementById('adminAvatar').textContent = (adminUser.name || 'A')[0].toUpperCase();
+            
+            // Load initial data
+            loadDashboardData();
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:3001/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    adminToken = data.token;
+                    adminUser = data.user;
+                    localStorage.setItem('adminToken', adminToken);
+                    localStorage.setItem('adminUser', JSON.stringify(adminUser));
+                    showDashboard();
+                    showToast('Login successful!', 'success');
+                } else {
+                    showToast(data.error || 'Login failed', 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showToast('Network error. Please try again.', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            adminToken = null;
+            adminUser = {};
+            showLogin();
+        }
+
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.nav-item').classList.add('active');
+
+            // Load section data
+            loadSectionData(sectionId);
+        }
+
+        async function loadDashboardData() {
+            // This would load real data from the backend
+            // For now, showing placeholder data
+            document.getElementById('totalUsers').textContent = '1,234';
+            document.getElementById('totalBooks').textContent = '56';
+            document.getElementById('totalArticles').textContent = '128';
+            document.getElementById('pendingApprovals').textContent = '3';
+            document.getElementById('newsletterCount').textContent = '2,456';
+            document.getElementById('activeChallenges').textContent = '2';
+            document.getElementById('totalPress').textContent = '12';
+            document.getElementById('totalPodcasts').textContent = '24';
+        }
+
+        function loadSectionData(sectionId) {
+            // Load data specific to each section
+            console.log('Loading data for:', sectionId);
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Book Management
+        function submitBook() {
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+            
+            if (!title || !author) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Submit to backend
+            showToast('Book added successfully!', 'success');
+            closeModal('addBookModal');
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = 'toast ' + type;
+            toastMessage.textContent = message;
+            toast.classList.add('active');
+
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        function refreshData() {
+            showToast('Refreshing data...', 'success');
+            loadDashboardData();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQs - Success Book Club</title>
+    <meta name="description" content="Find answers to frequently asked questions about Success Book Club membership, book selections, events, and more.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                    </svg>
+                       <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search books, authors, topics..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Frequently Asked Questions</h1>
+                <p>Everything you need to know about Success Book Club</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-categories">
+                <!-- Membership FAQ -->
+                <div class="faq-category">
+                    <h2>Membership & Subscription</h2>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <button class="faq-question">How does Success Book Club membership work?</button>
+                            <div class="faq-answer">
+                                <p>As a member, you'll receive a carefully selected book each month featuring inspiring stories of triumph and resilience. Members also get access to exclusive author events, community discussions, and our private forum.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">What are the different membership tiers?</button>
+                            <div class="faq-answer">
+                                <p>We offer three membership tiers: Digital ($9.99/month) includes digital books and community access, Standard ($19.99/month) includes physical books and all digital benefits, and Premium ($29.99/month) includes everything plus exclusive author meet-and-greets.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Can I cancel my membership anytime?</button>
+                            <div class="faq-answer">
+                                <p>Yes, you can cancel your membership at any time. Your benefits will continue until the end of your current billing period, and you'll keep any books you've already received.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Selection FAQ -->
+                <div class="faq-category">
+                    <h2>Book Selections</h2>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <button class="faq-question">How do you choose the books?</button>
+                            <div class="faq-answer">
+                                <p>Our team reads hundreds of books each year and selects titles that feature compelling stories of triumph, resilience, and human achievement. We focus on diverse voices and genres that inspire and empower our readers.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Can I request specific books or authors?</button>
+                            <div class="faq-answer">
+                                <p>While our selections are curated, we love hearing from our members! You can suggest books through our community forum or contact page. We consider member feedback when planning future selections.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">What if I already own the selected book?</button>
+                            <div class="faq-answer">
+                                <p>If you already own the monthly selection, you can choose a credit toward any book in our collection or swap for an alternate inspirational title from our curated list.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping & Delivery FAQ -->
+                <div class="faq-category">
+                    <h2>Shipping & Delivery</h2>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <button class="faq-question">Where do you ship physical books?</button>
+                            <div class="faq-answer">
+                                <p>We currently ship to all 50 US states and Canada. International shipping is available to select countries for an additional fee. Digital memberships are available worldwide.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">When will I receive my monthly book?</button>
+                            <div class="faq-answer">
+                                <p>Physical books are shipped on the 1st of each month and typically arrive within 5-7 business days. Digital books are available for download on the 1st of each month.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">What if my book is damaged or lost in shipping?</button>
+                            <div class="faq-answer">
+                                <p>Contact us within 14 days of expected delivery and we'll immediately send a replacement copy or issue a full refund. We'll also investigate any shipping issues with our carrier.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community & Events FAQ -->
+                <div class="faq-category">
+                    <h2>Community & Events</h2>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <button class="faq-question">How do I join author events?</button>
+                            <div class="faq-answer">
+                                <p>Members receive automatic invitations to all author events via email. Events are held monthly and you can register through the links in your email or through our events page.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Are events recorded if I can't attend live?</button>
+                            <div class="faq-answer">
+                                <p>Yes! All author events are recorded and available to members in our community forum within 48 hours of the live event.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">How can I connect with other members?</button>
+                            <div class="faq-answer">
+                                <p>Join our private community forum where you can discuss books, share insights, participate in reading challenges, and connect with fellow book lovers who share your passion for inspiring stories.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing & Payments FAQ -->
+                <div class="faq-category">
+                    <h2>Billing & Payments</h2>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <button class="faq-question">What payment methods do you accept?</button>
+                            <div class="faq-answer">
+                                <p>We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, and Apple Pay. All payments are processed securely through our payment partners.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Can I change my membership tier?</button>
+                            <div class="faq-answer">
+                                <p>Yes, you can upgrade or downgrade your membership tier at any time. Changes take effect at the start of your next billing cycle, and we'll prorate any price differences.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Do you offer gift memberships?</button>
+                            <div class="faq-answer">
+                                <p>Absolutely! Gift memberships are available in 3, 6, and 12-month options. You can purchase them through our gift memberships page and schedule delivery for a special occasion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still have questions -->
+            <div class="faq-contact">
+                <h2>Still Have Questions?</h2>
+                <p>We're here to help! Contact our friendly support team.</p>
+                <div class="faq-contact-buttons">
+                    <a href="contact.html" class="btn btn-primary">Contact Support</a>
+                    <a href="community.html" class="btn btn-outline">Visit Community</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Stories of triumph, resilience, and the human spirit. Join our community celebrating books that inspire and empower.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="podcast.html">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

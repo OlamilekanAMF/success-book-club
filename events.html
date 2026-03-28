@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events - Success Book Club</title>
+    <meta name="description" content="Join Success Book Club events including author talks, book signings, community gatherings, and literary discussions. Connect with fellow readers and celebrate stories of triumph together.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                    </svg>
+                       <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html" class="active">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search events, locations, authors..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Triumphant Gatherings</h1>
+                <p class="hero-subtitle">Join us for inspiring author talks, community discussions, and celebrations of literature that transforms lives. Connect with fellow readers who share your love for stories of triumph and resilience.</p>
+                <div class="hero-buttons">
+                    <a href="#next-event" class="btn btn-primary btn-large">View Next Event</a>
+                    <a href="community.html" class="btn btn-secondary btn-large">Become a Member</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Event with Countdown -->
+    <section id="next-event" class="next-event-section">
+        <div class="next-event-background">
+            <div class="next-event-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="next-event-content">
+                <div class="next-event-badge">Live Q&A</div>
+                <div class="next-event-book">
+                    <img src="https://picsum.photos/seed/silent-echo/300/450" alt="The Silent Echo Book Cover">
+                </div>
+                <div class="next-event-details">
+                    <span class="next-event-type">Featured Book</span>
+                    <h2 class="next-event-title">Virtual Author Q&A: Amara Okafor</h2>
+                    <p class="next-event-description">Join Amara for an intimate conversation about her latest novel and writing process.</p>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="event-countdown" id="eventCountdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="countdownDays">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="countdownHours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="countdownMinutes">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="countdownSeconds">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                    
+                    <div class="next-event-info">
+                        <div class="next-event-datetime">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                            </svg>
+                            <span>March 15, 2026 • 7:00 PM GMT</span>
+                        </div>
+                        <div class="next-event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>Virtual</span>
+                        </div>
+                    </div>
+                    
+                    <div class="next-event-stats">
+                        <span class="registered-count">373 registered</span>
+                        <span class="spots-left">127 spots left</span>
+                    </div>
+                    
+                    <a href="mailto:support@succesbookclub.com?subject=Register for: Virtual Author Q&A: Amara Okafor" class="btn btn-primary btn-large">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Event Section -->
+    <section class="featured-event-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Event</h2>
+                <p class="section-subtitle">Don't miss our most anticipated gathering</p>
+            </div>
+            
+            <div class="featured-event">
+                <div class="featured-event-image">
+                    <img src="https://picsum.photos/seed/featured-event/600/400" alt="Featured Author Event">
+                    <div class="event-badge featured">Featured Event</div>
+                </div>
+                <div class="featured-event-content">
+                    <span class="event-type">Author Talk</span>
+                    <h3 class="event-title">An Evening with Charlotte McConaghy</h3>
+                    <p class="event-date">March 25, 2024 • 7:00 PM EST</p>
+                    <div class="event-location">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                        </svg>
+                        <span>The Grand Theater, New York, NY</span>
+                    </div>
+                    <p class="event-description">Join us for an intimate evening with the award-winning author of "Wild Dark Shore." Charlotte will discuss her journey as a writer, the inspiration behind her success stories, and participate in a Q&A session with the audience.</p>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <span class="detail-label">Tickets:</span>
+                            <span class="detail-value">$35 - $75</span>
+                        </div>
+                        <div class="event-detail">
+                            <span class="detail-label">Availability:</span>
+                            <span class="detail-value">Limited seats available</span>
+                        </div>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn btn-primary view-details" data-book="unbroken-legacy">View Featured Book</button>
+                        <a href="#register" class="btn btn-outline">Register Now</a>
+                        <a href="#calendar" class="btn btn-secondary">Add to Calendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Events</h2>
+                <p class="section-subtitle">Mark your calendar for these inspiring gatherings</p>
+            </div>
+            
+            <div class="events-grid">
+                <!-- Event 1 -->
+                <article class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/event1/400/250" alt="Book Club Meeting">
+                        <div class="event-badge">Virtual</div>
+                    </div>
+                    <div class="event-content">
+                        <span class="event-type">Book Club Discussion</span>
+                        <h3 class="event-title">Monthly Pick Discussion</h3>
+                        <p class="event-date">April 5, 2024 • 8:00 PM EST</p>
+                        <div class="event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>Online via Zoom</span>
+                        </div>
+                        <p class="event-description">Join our monthly discussion of "The Power Within" by Dr. Robert Chen. We'll explore themes of personal triumph and resilience in this thought-provoking memoir.</p>
+                        <div class="event-actions">
+                            <a href="#register" class="btn btn-primary">Free - RSVP</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Event 2 -->
+                <article class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/event2/400/250" alt="Author Signing">
+                        <div class="event-badge">In-Person</div>
+                    </div>
+                    <div class="event-content">
+                        <span class="event-type">Author Signing</span>
+                        <h3 class="event-title">Eliana Ramage Book Signing</h3>
+                        <p class="event-date">April 12, 2024 • 6:00 PM EST</p>
+                        <div class="event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>The Book Nook, Los Angeles, CA</span>
+                        </div>
+                        <p class="event-description">Meet the author of our September pick as she signs copies of "To the Moon and Back." Celebrate with us and get your book personally inscribed.</p>
+                        <div class="event-actions">
+                            <a href="#register" class="btn btn-primary">RSVP Required</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Event 3 -->
+                <article class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/event3/400/250" alt="Writing Workshop">
+                        <div class="event-badge">Workshop</div>
+                    </div>
+                    <div class="event-content">
+                        <span class="event-type">Writing Workshop</span>
+                        <h3 class="event-title">Write Your Triumph Story</h3>
+                        <p class="event-date">April 20, 2024 • 2:00 PM EST</p>
+                        <div class="event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>Community Space, Chicago, IL</span>
+                        </div>
+                        <p class="event-description">A hands-on workshop for aspiring writers. Learn techniques for crafting compelling stories of triumph and overcoming adversity. Led by published authors.</p>
+                        <div class="event-actions">
+                            <a href="#register" class="btn btn-primary">$45 - Register</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Event 4 -->
+                <article class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/event4/400/250" alt="Community Meetup">
+                        <div class="event-badge">Community</div>
+                    </div>
+                    <div class="event-content">
+                        <span class="event-type">Community Meetup</span>
+                        <h3 class="event-title">Spring Reading Social</h3>
+                        <p class="event-date">May 4, 2024 • 3:00 PM EST</p>
+                        <div class="event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>Central Park, New York, NY</span>
+                        </div>
+                        <p class="event-description">Bring your current read and join us for a relaxed afternoon in the park. Share recommendations, discuss triumph stories, and make new bookish friends.</p>
+                        <div class="event-actions">
+                            <a href="#register" class="btn btn-primary">Free - Join Us</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Event 5 -->
+                <article class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/event5/400/250" alt="Literary Festival">
+                        <div class="event-badge">Festival</div>
+                    </div>
+                    <div class="event-content">
+                        <span class="event-type">Literary Festival</span>
+                        <h3 class="event-title">Triumphant Stories Festival</h3>
+                        <p class="event-date">May 18-19, 2024 • All Day</p>
+                        <div class="event-location">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C8.9 2 8 2.9 8 4s-1.1 2-2.5 2-2.5S11.1 2 10 4zm-5 5v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v8z"/>
+                            </svg>
+                            <span>Various Locations, Boston, MA</span>
+                        </div>
+                        <p class="event-description">A weekend celebrating triumph in literature with author panels, workshops, readings, and community gatherings. Multiple venues across the city.</p>
+                        <div class="event-actions">
+                            <a href="#register" class="btn btn-primary">View Schedule</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="section-cta">
+                <button class="btn btn-outline" id="viewPastEvents">View Past Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section (Hidden by default) -->
+    <section id="past-events" class="past-events-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Past Events</h2>
+                <p class="section-subtitle">6 events</p>
+            </div>
+            
+            <div class="past-events-grid">
+                <!-- Past Event 1 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/garden-memories/400/250" alt="The Garden of Memories">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Masterclass</span>
+                        <h3 class="past-event-title">Author Masterclass: Kenji Tanaka on Craft</h3>
+                        <p class="past-event-date">January 18, 2024</p>
+                        <div class="view-count">487 views</div>
+                    </div>
+                </article>
+                
+                <!-- Past Event 2 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/new-year/400/250" alt="New Year Reading Challenge">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Community Event</span>
+                        <h3 class="past-event-title">New Year Reading Challenge Kickoff</h3>
+                        <p class="past-event-date">January 3, 2024</p>
+                        <div class="view-count">6,230 views</div>
+                    </div>
+                </article>
+                
+                <!-- Past Event 3 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/poetry-night/400/250" alt="Poetry Night">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Live Reading</span>
+                        <h3 class="past-event-title">Poetry Night with Isabella Moreno</h3>
+                        <p class="past-event-date">December 12, 2024</p>
+                        <div class="view-count">312 views</div>
+                    </div>
+                </article>
+                
+                <!-- Past Event 4 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/best-books/400/250" alt="Best Books Panel">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Panel Discussion</span>
+                        <h3 class="past-event-title">Best Books of 2024 Panel</h3>
+                        <p class="past-event-date">December 28, 2024</p>
+                        <div class="view-count">1,845 views</div>
+                    </div>
+                </article>
+                
+                <!-- Past Event 5 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/fantasy-workshop/400/250" alt="Fantasy Workshop">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Workshop</span>
+                        <h3 class="past-event-title">Fantasy World-Building Workshop</h3>
+                        <p class="past-event-date">November 9, 2024</p>
+                        <div class="view-count">50 views</div>
+                    </div>
+                </article>
+                
+                <!-- Past Event 6 -->
+                <article class="past-event-card">
+                    <div class="past-event-image">
+                        <img src="https://picsum.photos/seed/historical-fic/400/250" alt="Historical Fiction">
+                    </div>
+                    <div class="past-event-content">
+                        <span class="past-event-type">Live Q&A</span>
+                        <h3 class="past-event-title">David Osei: Writing Historical Fiction</h3>
+                        <p class="past-event-date">October 20, 2024</p>
+                        <div class="view-count">378 views</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Host Event Section -->
+    <section class="host-event-section">
+        <div class="host-event-background">
+            <div class="host-event-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="host-event-content">
+                <h2 class="host-event-title">Want to Host an Event?</h2>
+                <p class="host-event-subtitle">Whether you are an author, publisher, or passionate reader, our platform makes it easy to host virtual literary events for a global audience.</p>
+                <div class="host-event-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Author Support</h3>
+                        <p class="feature-description">We help coordinate with authors, handle logistics, and promote your event to our community</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Community Promotion</h3>
+                        <p class="feature-description">Access our extensive reader network and promotional channels to maximize event attendance</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Event Resources</h3>
+                        <p class="feature-description">Get access to our event planning toolkit, venue recommendations, and registration platform</p>
+                    </div>
+                </div>
+                
+                <div class="host-event-cta">
+                    <a href="mailto:support@succesbookclub.com?subject=Host an Event on Success Book Club" class="btn btn-primary btn-large">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Never Miss an Event</h2>
+                <p class="newsletter-subtitle">Get upcoming event announcements, exclusive author meet & greet opportunities, and early bird ticket offers delivered to your inbox</p>
+                <form class="newsletter-form">
+                    <label for="newsletter-email" class="visually-hidden">Email address:</label>
+                    <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe to Events</button>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Stories of triumph, resilience, and the human spirit. Join our community celebrating books that inspire and empower.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="podcast.html">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Book Discovery Modal -->
+    <div id="bookModal" class="book-modal modal-overlay">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">Book Title</h2>
+                <button id="closeModal" class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-left">
+                    <img id="modalBookCover" src="" alt="Book cover" class="book-cover-large">
+                    <div class="book-format-badges">
+                        <span class="format-badge ebook">Ebook</span>
+                        <span class="format-badge audio">Audio</span>
+                        <span class="format-badge pdf">PDF</span>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="detail-row">
+                        <span class="detail-label">Author:</span>
+                        <span id="modalAuthor" class="detail-value">Author Name</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Category:</span>
+                        <span id="modalCategory" class="detail-value">Fiction</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pages:</span>
+                        <span id="modalPages" class="detail-value">350</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Duration:</span>
+                        <span id="modalDuration" class="detail-value">8h 30m</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Published:</span>
+                        <span id="modalPublished" class="detail-value">March 2024</span>
+                    </div>
+                    <div class="rating-large">
+                        <span id="modalRating" class="stars">★★★★★</span>
+                        <span id="modalRatingCount" class="rating-text">(1,234 reviews)</span>
+                    </div>
+                    <div class="book-description">
+                        <h3>About this book</h3>
+                        <p id="modalDescription">Book description goes here...</p>
+                    </div>
+                    <div class="action-group">
+                        <h4>Download Options</h4>
+                        <div class="download-options">
+                            <button class="download-option" data-format="ebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>Ebook</span>
+                            </button>
+                            <button class="download-option" data-format="audio">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                                <span>Audio</span>
+                            </button>
+                            <button class="download-option" data-format="pdf">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="confirmDownload" class="btn btn-primary">Download</button>
+                        <button id="addToLibrary" class="btn btn-outline">Add to Library</button>
+                        <button id="shareBook" class="btn btn-secondary">Share</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="progress-info" id="downloadProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player Modal -->
+    <div id="audioPlayerModal" class="audio-modal modal-overlay">
+        <div class="audio-player-container">
+            <div class="audio-header">
+                <div class="audio-info">
+                    <h3 id="audioTitle">Book Title</h3>
+                    <p id="audioAuthor">Author Name</p>
+                </div>
+                <button id="closeAudioPlayer" class="modal-close" aria-label="Close audio player">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="audio-cover">
+                <img id="audioCover" src="" alt="Book cover">
+            </div>
+            <div class="audio-controls">
+                <div class="track-progress">
+                    <div class="progress-bar">
+                        <div id="audioProgress" class="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">8:30:00</span>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button id="playPauseBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </button>
+                    <div class="speed-control">
+                        <button id="speedBtn" class="speed-btn">1.0x</button>
+                        <div class="speed-menu">
+                            <button class="speed-option" data-speed="0.5">0.5x</button>
+                            <button class="speed-option" data-speed="0.75">0.75x</button>
+                            <button class="speed-option" data-speed="1">1.0x</button>
+                            <button class="speed-option" data-speed="1.25">1.25x</button>
+                            <button class="speed-option" data-speed="1.5">1.5x</button>
+                            <button class="speed-option" data-speed="2">2.0x</button>
+                        </div>
+                    </div>
+                    <div class="chapter-control">
+                        <label for="chapterSelect" class="visually-hidden">Select chapter:</label>
+                        <select id="chapterSelect" class="chapter-select">
+                            <option value="1">Chapter 1: Introduction</option>
+                            <option value="2">Chapter 2: The Journey Begins</option>
+                            <option value="3">Chapter 3: Rising from Ashes</option>
+                            <option value="4">Chapter 4: Finding Strength</option>
+                        </select>
+                    </div>
+                    <button id="bookmarkBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+                        </svg>
+                    </button>
+                    <button id="sleepTimerBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="extra-controls">
+                    <div class="volume-control">
+                        <label for="volumeSlider" class="visually-hidden">Volume:</label>
+                        <input id="volumeSlider" type="range" min="0" max="100" value="70" class="volume-slider">
+                        <button id="muteBtn" class="control-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="11,5 6,9 2,9 2,15 6,15 11,19 11,5"/>
+                                <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-footer">
+                <div class="progress-info" id="audioProgressInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="api/api-service.js"></script>
+    <script src="book-discovery-enhanced.js"></script>
+    
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

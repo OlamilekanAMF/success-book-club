@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Podcast - Success Book Club</title>
+    <meta name="description" content="Listen to Success Book Club's podcast featuring inspiring conversations with authors, book discussions, and stories of triumph and resilience. Hosted by award-winning journalist Danielle Robay.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+ 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                    </svg>
+                       <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="podcast.html" class="active">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search episodes, guests, topics..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Success Conversations</h1>
+                <p class="hero-subtitle">Books we love. Voices we celebrate. Conversations that stay with you.</p>
+                <div class="hero-buttons">
+                    <a href="#episodes" class="btn btn-primary btn-large">Listen to Episodes</a>
+                    <a href="#subscribe" class="btn btn-secondary btn-large">Subscribe Free</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Intro Section -->
+    <section class="podcast-intro-section">
+        <div class="container">
+            <div class="podcast-intro">
+                <div class="podcast-logo">
+                    <img src="https://picsum.photos/seed/podcast-logo/200/200" alt="Success Book Club Podcast Logo">
+                </div>
+                <div class="podcast-description">
+                    <h2 class="podcast-title">Introducing a new podcast by Success Book Club</h2>
+                     <p class="podcast-subtitle">Where great stories, inspiring voices, and irresistible conversations collide</p>
+                     <p class="podcast-text">Welcome to Success Conversations by Success Book Club – a podcast where great stories, inspiring voices, and irresistible conversations collide! Hosted by award-winning journalist Danielle Robay, each week new episodes balance thoughtful literary insight with the fervor of buzzy book trends, pop culture and more.</p>
+                    
+                    <div class="listening-platforms">
+                        <h3>Listen on Your Favorite Platform</h3>
+                        <div class="platform-buttons">
+                            <a href="https://podcasts.apple.com" target="_blank" rel="noopener noreferrer" class="platform-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 18.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm5.5-4c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm-10-4c-1.38 0-2.5-1.12-2.5-2.5S4.62 5 6 5s2.5 1.12 2.5 2.5S7.38 10.5 6 10.5zm11 0c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5S19.5 7.62 19.5 9s-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                Apple Podcasts
+                            </a>
+                            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="platform-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                </svg>
+                                Spotify
+                            </a>
+                            <a href="https://www.iheart.com" target="_blank" rel="noopener noreferrer" class="platform-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21.35l-1.45-1.32C3.4 15.36 0 12.28 0 8.5 0 5.42 2.42 3 5.5 3c1.74 0 3.41.81 4.5 2.09C11.09 3.81 12.76 3 14.5 3 17.58 3 20 5.42 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                                iHeart Radio
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Host Section -->
+    <section class="host-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Your Host</h2>
+                <p class="section-subtitle">The voice behind Success Conversations</p>
+            </div>
+            
+            <div class="host-profile">
+                <div class="host-image">
+                    <img src="https://picsum.photos/seed/podcast-host/300/300" alt="Danielle Robay">
+                </div>
+                <div class="host-info">
+                    <h3 class="host-name">Danielle Robay</h3>
+                    <p class="host-bio">Danielle Robay is a journalist celebrated for her open-hearted and thought-provoking interview style. Known as "The Queen of Questions," she is best recognized as host of Success Book Club's Success Conversations and other acclaimed interview shows.</p>
+                    
+                    <p class="host-description">Her guest list spans the likes of renowned authors, thought leaders, and cultural influencers. Danielle began her career under the mentorship of broadcasting legends and carries forward a legacy of meaningful, culturally relevant conversations.</p>
+                    
+                    <p class="host-mission">Through every conversation, Danielle's mission is to help us live better by learning from each other's stories of triumph and resilience.</p>
+                    
+                    <div class="host-favorites">
+                        <h4>Danielle's Current Favorite Reads Are:</h4>
+                        <div class="favorite-books">
+                            <div class="favorite-book">
+                                <img src="https://picsum.photos/seed/book-fav1/150/225" alt="Favorite Book 1">
+                                <h5>From Scratch</h5>
+                                <p>By Tembi Locke</p>
+                            </div>
+                            <div class="favorite-book">
+                                <img src="https://picsum.photos/seed/book-fav2/150/225" alt="Favorite Book 2">
+                                <h5>Seven Days in June</h5>
+                                <p>By Tia Williams</p>
+                            </div>
+                            <div class="favorite-book">
+                                <img src="https://picsum.photos/seed/book-fav3/150/225" alt="Favorite Book 3">
+                                <h5>The Power Within</h5>
+                                <p>By Dr. Robert Chen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section class="episodes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Episodes</h2>
+                <p class="section-subtitle">Explore our recent conversations with authors and thought leaders</p>
+            </div>
+            
+            <div class="episodes-grid">
+                <!-- Episode 34 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode34/400/400" alt="Jennifer Wallace Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 34</span>
+                        <h3 class="episode-title">Jennifer Wallace</h3>
+                        <p class="episode-guest">Author & Advocate</p>
+                        <p class="episode-excerpt">If you've ever struggled to feel like you matter, you're not alone. Feeling like you matter is as essential to human existence as breathing. Jennifer shares her profound insights on building confidence and finding your voice.</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">March 10, 2024</span>
+                            <span class="episode-duration">45 min</span>
+                        </div>
+                        <div class="episode-actions">
+                            <button class="btn btn-primary listen-episode" data-episode="29">Listen Now</button>
+                            <button class="btn btn-outline view-details" data-episode="29">Episode Details</button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Episode 33 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode33/400/400" alt="Julia Quinn Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 33</span>
+                        <h3 class="episode-title">Julia Quinn</h3>
+                        <p class="episode-guest">Historical Romance Author</p>
+                        <p class="episode-excerpt">What better way to kick off the month of love than with the queen of historical romance, Julia Quinn? Julia discusses writing triumph stories that span generations and the joy of creating beloved characters.</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">March 3, 2024</span>
+                            <span class="episode-duration">52 min</span>
+                        </div>
+                        <div class="episode-actions">
+                            <button class="btn btn-primary listen-episode" data-episode="33">Listen Now</button>
+                            <button class="btn btn-outline view-details" data-episode="33">Episode Details</button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Episode 32 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode32/400/400" alt="Laura Dave Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 32</span>
+                        <h3 class="episode-title">Laura Dave</h3>
+                        <p class="episode-guest">Returning Triumphant Author</p>
+                        <p class="episode-excerpt">Returning Success Book Club author, Laura Dave, gives us all of the earnest insights on her newest release, The First Time I Saw Him, and discusses crafting suspenseful stories of triumph.</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">February 24, 2024</span>
+                            <span class="episode-duration">48 min</span>
+                        </div>
+                        <a href="#episode" class="btn btn-primary">Listen Now</a>
+                    </div>
+                </article>
+                
+                <!-- Episode 31 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode31/400/400" alt="Hamnet Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 31</span>
+                        <h3 class="episode-title">Hamnet</h3>
+                        <p class="episode-guest">Literary Adaptation Discussion</p>
+                        <p class="episode-excerpt">This week, Danielle sits down to discuss the adaptation of Hamnet for the screen with director Chloé Zhao. They explore bringing stories of historical triumph to modern audiences.</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">February 17, 2024</span>
+                            <span class="episode-duration">55 min</span>
+                        </div>
+                        <a href="#episode" class="btn btn-primary">Listen Now</a>
+                    </div>
+                </article>
+                
+                <!-- Episode 30 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode30/400/400" alt="Vacation Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 30</span>
+                        <h3 class="episode-title">People We Meet On Vacation</h3>
+                        <p class="episode-guest">Summer Reading Discussion</p>
+                        <p class="episode-excerpt">It may be winter, but this week we are feeling the summer heat with the crew behind the beach reads that have become community favorites. Stories of triumph in paradise settings!</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">February 10, 2024</span>
+                            <span class="episode-duration">42 min</span>
+                        </div>
+                        <a href="#episode" class="btn btn-primary">Listen Now</a>
+                    </div>
+                </article>
+                
+                <!-- Episode 29 -->
+                <article class="episode-card">
+                    <div class="episode-image">
+                        <img src="https://picsum.photos/seed/episode29/400/400" alt="Bobbi Brown Episode">
+                    </div>
+                    <div class="episode-content">
+                        <span class="episode-number">Episode 29</span>
+                        <h3 class="episode-title">Bobbi Brown</h3>
+                        <p class="episode-guest">Beauty & Business Icon</p>
+                        <p class="episode-excerpt">Happy New Year, book club friends! What better way to start anew than to chat with inspiring leaders who have built remarkable success stories.</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">January 27, 2024</span>
+                            <span class="episode-duration">38 min</span>
+                        </div>
+                        <a href="#episode" class="btn btn-primary">Listen Now</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="section-cta">
+                <a href="#load-more" class="btn btn-primary">Load More Episodes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Never Miss an Episode</h2>
+                <p class="newsletter-subtitle">Get new episodes and exclusive behind-the-scenes content delivered to your inbox every week</p>
+                <form class="newsletter-form">
+                    <label for="newsletter-email" class="visually-hidden">Email address:</label>
+                    <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe to Podcast</button>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" /> 
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                    </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Stories of triumph, resilience, and the human spirit. Join our community celebrating books that inspire and empower.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="podcast.html">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <a href="community.html" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Book Discovery Modal -->
+    <div id="bookModal" class="book-modal modal-overlay">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">Book Title</h2>
+                <button id="closeModal" class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-left">
+                    <img id="modalBookCover" src="" alt="Book cover" class="book-cover-large">
+                    <div class="book-format-badges">
+                        <span class="format-badge ebook">Ebook</span>
+                        <span class="format-badge audio">Audio</span>
+                        <span class="format-badge pdf">PDF</span>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="detail-row">
+                        <span class="detail-label">Author:</span>
+                        <span id="modalAuthor" class="detail-value">Author Name</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Category:</span>
+                        <span id="modalCategory" class="detail-value">Fiction</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pages:</span>
+                        <span id="modalPages" class="detail-value">350</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Duration:</span>
+                        <span id="modalDuration" class="detail-value">8h 30m</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Published:</span>
+                        <span id="modalPublished" class="detail-value">March 2024</span>
+                    </div>
+                    <div class="rating-large">
+                        <span id="modalRating" class="stars">★★★★★</span>
+                        <span id="modalRatingCount" class="rating-text">(1,234 reviews)</span>
+                    </div>
+                    <div class="book-description">
+                        <h3>About this book</h3>
+                        <p id="modalDescription">Book description goes here...</p>
+                    </div>
+                    <div class="action-group">
+                        <h4>Download Options</h4>
+                        <div class="download-options">
+                            <button class="download-option" data-format="ebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>Ebook</span>
+                            </button>
+                            <button class="download-option" data-format="audio">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                                <span>Audio</span>
+                            </button>
+                            <button class="download-option" data-format="pdf">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="confirmDownload" class="btn btn-primary">Download</button>
+                        <button id="addToLibrary" class="btn btn-outline">Add to Library</button>
+                        <button id="shareBook" class="btn btn-secondary">Share</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="progress-info" id="downloadProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Audio Player Modal -->
+    <div id="audioPlayerModal" class="audio-modal modal-overlay">
+        <div class="audio-player-container">
+            <div class="audio-header">
+                <div class="audio-info">
+                    <h3 id="audioTitle">Episode Title</h3>
+                    <p id="audioAuthor">Guest Name</p>
+                </div>
+                <button id="closeAudioPlayer" class="modal-close" aria-label="Close audio player">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="audio-cover">
+                <img id="audioCover" src="" alt="Episode cover">
+            </div>
+            <div class="audio-controls">
+                <div class="track-progress">
+                    <div class="progress-bar">
+                        <div id="audioProgress" class="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">45:00</span>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button id="playPauseBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </button>
+                    <div class="speed-control">
+                        <button id="speedBtn" class="speed-btn">1.0x</button>
+                        <div class="speed-menu">
+                            <button class="speed-option" data-speed="0.5">0.5x</button>
+                            <button class="speed-option" data-speed="0.75">0.75x</button>
+                            <button class="speed-option" data-speed="1">1.0x</button>
+                            <button class="speed-option" data-speed="1.25">1.25x</button>
+                            <button class="speed-option" data-speed="1.5">1.5x</button>
+                            <button class="speed-option" data-speed="2">2.0x</button>
+                        </div>
+                    </div>
+                    <div class="chapter-control">
+                        <label for="chapterSelect" class="visually-hidden">Select chapter:</label>
+                        <select id="chapterSelect" class="chapter-select">
+                            <option value="1">Chapter 1: Introduction</option>
+                            <option value="2">Chapter 2: The Journey Begins</option>
+                            <option value="3">Chapter 3: Rising from Ashes</option>
+                            <option value="4">Chapter 4: Finding Strength</option>
+                        </select>
+                    </div>
+                    <button id="bookmarkBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+                        </svg>
+                    </button>
+                    <button id="sleepTimerBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="extra-controls">
+                    <div class="volume-control">
+                        <label for="volumeSlider" class="visually-hidden">Volume:</label>
+                        <input id="volumeSlider" type="range" min="0" max="100" value="70" class="volume-slider">
+                        <button id="muteBtn" class="control-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="11,5 6,9 2,9 2,15 6,15 11,19 11,5"/>
+                                <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-footer">
+                <div class="progress-info" id="audioProgressInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="podcast-player.js"></script>
+</body>
+</html>

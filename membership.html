@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Portal - Success Book Club</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B5CF6;
+            --secondary-color: #EC4899;
+            --success-color: #10B981;
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        .header-nav a:hover {
+            opacity: 1;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-section p {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .membership-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon.blue {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .feature-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .feature-icon.orange {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Active Challenges Section */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-header h3 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .challenge-card {
+            border: 2px solid var(--bg-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .challenge-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .challenge-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .challenge-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .challenge-status.active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .challenge-status.upcoming {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .challenge-description {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .challenge-progress {
+            margin-bottom: 16px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            space-y: 16px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--bg-color);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.blue {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .activity-content h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .activity-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .activity-time {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Login Required */
+        .login-required {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .login-required h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .login-required p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#fff;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                </svg>
+                <h1>Membership Portal</h1>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Blog</a>
+                <a href="community.html">Community</a>
+            </nav>
+            <div class="user-menu" id="userMenu">
+                <div class="user-avatar" id="userAvatar">M</div>
+                <button class="btn btn-outline" onclick="logout()" style="color: white; border-color: white;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Required -->
+    <div class="login-required" id="loginRequired">
+        <h2><i class="fas fa-lock"></i> Members Only</h2>
+        <p>Please log in to access the membership portal and enjoy exclusive benefits.</p>
+        <a href="community.html#login" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i> Log In
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content hidden" id="mainContent">
+        <div class="welcome-section">
+            <h2>Welcome back, <span id="memberName">Member</span>!</h2>
+            <p>Explore your membership benefits and join our reading community</p>
+            <div class="membership-badge" id="membershipBadge">Member</div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon blue">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Read Articles</h3>
+                <p>Access exclusive articles, book reviews, and author interviews from our blog.</p>
+                <a href="blog.html" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Browse Articles
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon green">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Join Discussions</h3>
+                <p>Participate in community discussions, share your thoughts, and connect with fellow readers.</p>
+                <a href="community.html" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Go to Community
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon orange">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Reading Challenges</h3>
+                <p>Join monthly reading challenges, track your progress, and compete with other members.</p>
+                <a href="community.html#challenges" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> View Challenges
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3><i class="fas fa-trophy"></i> Active Reading Challenges</h3>
+                <a href="community.html#challenges" class="btn btn-outline">View All</a>
+            </div>
+            <div id="challengesList">
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <span class="challenge-title">March Reading Challenge</span>
+                        <span class="challenge-status active">Active</span>
+                    </div>
+                    <p class="challenge-description">Read books by diverse authors from around the world</p>
+                    <div class="challenge-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="progress-text">3 of 5 books completed</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="logProgress()">
+                        <i class="fas fa-plus"></i> Log Progress
+                    </button>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <span class="challenge-title">April Reading Challenge</span>
+                        <span class="challenge-status upcoming">Upcoming</span>
+                    </div>
+                    <p class="challenge-description">Complete a memoir or biography about overcoming adversity</p>
+                    <button class="btn btn-outline" disabled>
+                        <i class="fas fa-clock"></i> Starts April 1st
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+            </div>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-icon blue">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>You commented on "The Garden of Memories"</h4>
+                        <p>Great insights on character development!</p>
+                    </div>
+                    <span class="activity-time">2 hours ago</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon blue">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>Joined March Reading Challenge</h4>
+                        <p>You're reading 5 books this month</p>
+                    </div>
+                    <span class="activity-time">1 day ago</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon blue">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>Liked an article</h4>
+                        <p>"10 Must-Read Books for 2024"</p>
+                    </div>
+                    <span class="activity-time">3 days ago</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="frontend/auth.js"></script>
+    <script>
+        // Check authentication
+        async function init() {
+            const isLoggedIn = await checkAuth();
+            
+            if (!isLoggedIn) {
+                document.getElementById('loginRequired').classList.remove('hidden');
+                document.getElementById('mainContent').classList.add('hidden');
+                return;
+            }
+
+            const user = getCurrentUser();
+            
+            document.getElementById('loginRequired').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+            
+            // Update user info
+            document.getElementById('memberName').textContent = user?.full_name || 'Member';
+            document.getElementById('membershipBadge').textContent = (user?.membership_tier || 'Free').toUpperCase() + ' MEMBER';
+            document.getElementById('userAvatar').textContent = (user?.full_name || 'M')[0].toUpperCase();
+        }
+
+        function logProgress() {
+            alert('Progress logging feature coming soon! You\'ll be able to log books you\'ve read for the challenge.');
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.href = 'community.html';
+        }
+
+        // Initialize
+        init();
+    </script>
+    
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

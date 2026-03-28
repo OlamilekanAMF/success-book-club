@@ -1,0 +1,17 @@
+{
+  "name": "success-book-club",
+  "version": "1.0.0",
+  "description": "A comprehensive book club and community platform built with Node.js, Express, and Supabase",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3001",
+    "build": "echo 'Build complete'",
+    "dev": "live-server --port=3001 --open=/index.html"
+  },
+  "keywords": ["youtube", "clone", "video", "streaming"],
+  "author": "Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

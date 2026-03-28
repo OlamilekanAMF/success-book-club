@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Library - Success Book Club</title>
+    <meta name="description" content="Your personal library - Track your books, votes, events, and comment replies">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #8B5CF6, #EC4899);
+            --primary-color: #8B5CF6;
+            --secondary-color: #EC4899;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            min-height: 100vh;
+        }
+        
+        .library-header {
+            background: var(--primary-gradient);
+            padding: 60px 0 40px;
+            color: white;
+        }
+        
+        .library-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .library-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+        
+        .user-details h2 {
+            font-size: 1.5rem;
+            color: #1f2937;
+        }
+        
+        .user-details .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: -30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dashboard-card h3 {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dashboard-card h3 svg {
+            color: var(--primary-color);
+        }
+        
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
+        }
+        
+        .book-item {
+            text-align: center;
+        }
+        
+        .book-cover {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8px;
+        }
+        
+        .book-title {
+            font-size: 0.85rem;
+            color: #374151;
+            font-weight: 500;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .book-author {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+        
+        .empty-state svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        /* Votes List */
+        .votes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .vote-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .vote-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .vote-info h4 {
+            font-size: 0.95rem;
+            color: #1f2937;
+        }
+        
+        .vote-info p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        /* Events List */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .event-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .event-date {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .event-date .month {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        
+        .event-date .day {
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .event-info h4 {
+            font-size: 0.95rem;
+            color: #1f2937;
+        }
+        
+        .event-info .event-time {
+            font-size: 0.8rem;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Comment Replies */
+        .replies-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .reply-item {
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .reply-item .article-title {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .reply-item .reply-content {
+            font-size: 0.9rem;
+            color: #374151;
+        }
+        
+        .reply-item .reply-time {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-top: 6px;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-back:hover {
+            opacity: 1;
+        }
+        
+        /* Notification bell */
+        .notification-badge {
+            position: relative;
+        }
+        
+        .notification-badge::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header" style="background: linear-gradient(135deg, #8B5CF6, #EC4899);">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 50px;">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#fff;stop-opacity:0.8" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                        </svg>
+                    </a>
+                </div>
+                <nav class="main-nav" style="margin-left: auto;">
+                    <a href="index.html" style="color: white;">Home</a>
+                    <a href="community.html" style="color: white;">Community</a>
+                    <a href="library.html" style="color: white; font-weight: 600;">My Library</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="library-header">
+        <div class="container">
+            <a href="community.html" class="nav-back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Community
+            </a>
+            <h1>My Library</h1>
+            <p>Your books, votes, events, and notifications</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="user-info" id="userInfo">
+            <!-- Will be populated by JS -->
+        </div>
+        
+        <!-- Action Buttons for Authors/Editors -->
+        <div id="adminActions" style="display: none; margin-bottom: 20px;">
+            <a href="admin.html" class="btn btn-primary" style="text-decoration: none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                Admin Dashboard
+            </a>
+        </div>
+        
+        <div class="dashboard-grid" id="dashboardContent">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="frontend/auth.js"></script>
+    <script>
+        async function initLibrary() {
+            if (!isLoggedIn()) {
+                window.location.href = 'community.html#login';
+                return;
+            }
+            
+            const user = getCurrentUser();
+            
+            // Show premium actions if user is premium or author
+            if (user?.membership_tier === 'premium' || user?.membership_tier === 'author') {
+                document.getElementById('premiumActions').style.display = 'block';
+            }
+            
+            // Update user info
+            document.getElementById('userInfo').innerHTML = `
+                <img src="${user?.avatar_url || 'https://picsum.photos/seed/defaultavatar/200/200'}" alt="${user?.full_name}" class="user-avatar">
+                <div class="user-details">
+                    <h2>${user?.full_name || 'User'}</h2>
+                    <span class="tier-badge">${user?.membership_tier || 'free'} Member</span>
+                </div>
+            `;
+            
+            // Show admin button if user is admin or editor
+            if (user?.membership_tier === 'admin' || user?.membership_tier === 'editor' || user?.is_admin) {
+                document.getElementById('adminActions').style.display = 'block';
+            }
+            
+            // Load dashboard data
+            const result = await getLibraryDashboard();
+            
+            // Load user's articles if premium/author
+            let myArticles = [];
+            if (user?.membership_tier === 'premium' || user?.membership_tier === 'author') {
+                const articlesResult = await getMyArticles();
+                if (articlesResult.success) {
+                    myArticles = articlesResult.articles || [];
+                }
+            }
+            
+            if (result.success) {
+                renderDashboard(result.data, myArticles);
+            } else {
+                document.getElementById('dashboardContent').innerHTML = `
+                    <div class="empty-state">
+                        <p>Failed to load library data. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function renderDashboard(data, myArticles = []) {
+            const { library = [], votes = [], upcoming_events = [], comment_replies = [] } = data;
+            
+            document.getElementById('dashboardContent').innerHTML = `
+                <!-- My Books -->
+                <div class="dashboard-card">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        My Books (${library.length})
+                    </h3>
+                    ${library.length > 0 ? `
+                        <div class="books-grid">
+                            ${library.map(item => `
+                                <div class="book-item">
+                                    <img src="${item.books?.cover_url || 'https://picsum.photos/seed/' + item.book_id + '/150/225'}" alt="${item.books?.title || 'Book'}" class="book-cover">
+                                    <div class="book-title">${item.books?.title || 'Unknown'}</div>
+                                    <div class="book-author">${item.books?.author || ''}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="empty-state">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                            <p>No books in your library yet</p>
+                            <a href="all-books.html" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">Browse Books</a>
+                        </div>
+                    `}
+                </div>
+                
+                <!-- My Votes -->
+                <div class="dashboard-card">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        My Votes (${votes.length})
+                    </h3>
+                    ${votes.length > 0 ? `
+                        <div class="votes-list">
+                            ${votes.map(vote => `
+                                <div class="vote-item">
+                                    <div class="vote-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                    </div>
+                                    <div class="vote-info">
+                                        <h4>${vote.book_recommendations?.title || 'Recommendation'}</h4>
+                                        <p>by ${vote.book_recommendations?.author || 'Unknown'}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="empty-state">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                            </svg>
+                            <p>No votes yet</p>
+                            <a href="community.html" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">Explore Recommendations</a>
+                        </div>
+                    `}
+                </div>
+                
+                <!-- Upcoming Events -->
+                <div class="dashboard-card">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        Upcoming Events (${upcoming_events.length})
+                    </h3>
+                    ${upcoming_events.length > 0 ? `
+                        <div class="events-list">
+                            ${upcoming_events.map(event => `
+                                <div class="event-item">
+                                    <div class="event-date">
+                                        <span class="month">${new Date(event.event_date).toLocaleString('default', { month: 'short' })}</span>
+                                        <span class="day">${new Date(event.event_date).getDate()}</span>
+                                    </div>
+                                    <div class="event-info">
+                                        <h4>${event.title}</h4>
+                                        <span class="event-time">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <polyline points="12 6 12 12 16 14"/>
+                                            </svg>
+                                            ${new Date(event.event_date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+                                        </span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="empty-state">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                            <p>No upcoming events</p>
+                            <a href="community.html" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">View Events</a>
+                        </div>
+                    `}
+                </div>
+                
+                <!-- Comment Replies -->
+                <div class="dashboard-card">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Comment Replies (${comment_replies.length})
+                    </h3>
+                    ${comment_replies.length > 0 ? `
+                        <div class="replies-list">
+                            ${comment_replies.map(reply => `
+                                <div class="reply-item">
+                                    <div class="article-title">${reply.articles?.title || 'Article'}</div>
+                                    <div class="reply-content">${reply.content}</div>
+                                    <div class="reply-time">${new Date(reply.created_at).toLocaleDateString()}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="empty-state">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <p>No comment replies yet</p>
+                            <a href="blog.html" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">Read Articles</a>
+                        </div>
+                    `}
+                </div>
+                
+                ${myArticles && myArticles.length > 0 ? `
+                <div class="dashboard-card" style="grid-column: 1 / -1;">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        My Articles (${myArticles.length})
+                    </h3>
+                    <div class="articles-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                        ${myArticles.map(article => `
+                            <div class="article-card" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+                                ${article.cover_image ? `<img src="${article.cover_image}" alt="${article.title}" style="width: 100%; height: 150px; object-fit: cover;">` : ''}
+                                <div style="padding: 16px;">
+                                    <span style="font-size: 12px; color: ${article.published ? '#10B981' : '#6B7280'}; font-weight: 500;">${article.published ? 'Published' : 'Draft'}</span>
+                                    <h4 style="margin: 8px 0; font-size: 16px; color: #1f2937;">${article.title || 'Untitled'}</h4>
+                                    <p style="font-size: 13px; color: #6b7280; margin-bottom: 12px;">${article.category || ''} • ${new Date(article.created_at).toLocaleDateString()}</p>
+                                    <div style="display: flex; gap: 8px;">
+                                        <a href="editor.html?id=${article.id}" class="btn btn-outline" style="padding: 6px 12px; font-size: 13px;">Edit</a>
+                                        ${article.published ? `<a href="article.html?id=${article.id}" class="btn btn-primary" style="padding: 6px 12px; font-size: 13px;">View</a>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+            `;
+        }
+        
+        // Create Event Modal
+        globalThis.openCreateEventModal = function() {
+            const user = getCurrentUser();
+            if (!user || (user.membership_tier !== 'premium' && user.membership_tier !== 'author')) {
+                alert('Premium membership required to create events. Please upgrade your membership.');
+                return;
+            }
+            
+            const modalHTML = `
+                <div id="createEventModal" class="info-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+                    <div class="info-modal-content" style="background: white; border-radius: 16px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                        <div class="info-modal-header" style="background: linear-gradient(135deg, #8B5CF6, #EC4899); padding: 24px; border-radius: 16px 16px 0 0; position: relative;">
+                            <h2 style="color: white; margin: 0; font-size: 24px;">Create New Event</h2>
+                            <button onclick="closeCreateEventModal()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 20px;">×</button>
+                        </div>
+                        <div class="info-modal-body" style="padding: 32px;">
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Event Title</label>
+                                <input type="text" id="eventTitle" placeholder="Enter event title" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Date & Time</label>
+                                <input type="datetime-local" id="eventDate" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Description</label>
+                                <textarea id="eventDescription" rows="4" placeholder="Describe your event..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; resize: vertical;"></textarea>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Event Type</label>
+                                <select id="eventType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                                    <option value="virtual">Virtual (Online)</option>
+                                    <option value="in-person">In-Person</option>
+                                    <option value="hybrid">Hybrid</option>
+                                </select>
+                            </div>
+                            <button onclick="submitEvent()" class="btn btn-primary btn-full" style="padding: 14px; font-size: 16px;">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+            
+            document.getElementById('createEventModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCreateEventModal();
+                }
+            });
+        };
+        
+        globalThis.closeCreateEventModal = function() {
+            const modal = document.getElementById('createEventModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        };
+        
+        globalThis.submitEvent = async function() {
+            const title = document.getElementById('eventTitle').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const description = document.getElementById('eventDescription').value;
+            const eventType = document.getElementById('eventType').value;
+            
+            if (!title || title.length < 3) {
+                alert('Please enter a title (at least 3 characters)');
+                return;
+            }
+            
+            if (!eventDate) {
+                alert('Please select a date and time');
+                return;
+            }
+            
+            const result = await createEvent({
+                title,
+                event_date: new Date(eventDate).toISOString(),
+                description: description || null,
+                event_type: eventType
+            });
+            
+            if (result.success) {
+                closeCreateEventModal();
+                alert('Event created successfully!');
+            } else {
+                alert(result.error || 'Failed to create event');
+            }
+        };
+        
+        // Initialize on page load
+        initLibrary();
+    </script>
+    
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-switch">Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button></div>
+            </div>
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-switch">Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>

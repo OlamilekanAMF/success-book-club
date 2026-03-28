@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Community - Success Book Club</title>
+    <meta name="description" content="Join the Success Book Club community forum to discuss books, share reading experiences, connect with fellow readers, and participate in literary conversations about stories of triumph and resilience.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Auth Modal (Login/Signup) -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle">Welcome</h2>
+                <button class="auth-modal-close" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to the community</p>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google" onclick="loginWithGoogle()">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    <button type="button" class="social-btn facebook" onclick="loginWithFacebook()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Continue with Facebook
+                    </button>
+                </div>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Your password">
+                    </div>
+                    <div class="form-links">
+                        <button type="button" onclick="showForgotPassword(event)">Forgot password?</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                
+                <div class="auth-switch">
+                    Don't have an account? <button type="button" onclick="showSignup(event)">Sign up</button>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="auth-form-container" id="signupForm" class="hidden">
+                <div class="auth-header">
+                    <h2>Join the Community</h2>
+                    <p>Create an account to connect with fellow readers</p>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google" onclick="loginWithGoogle()">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    <button type="button" class="social-btn facebook" onclick="loginWithFacebook()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Continue with Facebook
+                    </button>
+                </div>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="full_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="At least 8 characters" minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                
+                <div class="auth-switch">
+                    Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a>
+                </div>
+            </div>
+            
+            <!-- User Profile (shown when logged in) -->
+            <div class="auth-form-container" id="userProfile" class="hidden">
+                <div class="user-profile-header">
+                    <img src="" alt="Profile" id="profileAvatar" class="profile-avatar">
+                    <h3 id="profileName">User Name</h3>
+                    <p id="profileEmail">user@email.com</p>
+                    <span class="membership-badge" id="profileTier">Free Member</span>
+                </div>
+                <div class="user-profile-menu">
+                    <button onclick="openProfileEditor()" class="profile-menu-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        My Profile
+                    </button>
+                    <a href="library.html" class="profile-menu-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        My Library
+                    </a>
+                    <a href="membership.html" class="profile-menu-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        Membership Portal
+                    </a>
+                    <button onclick="logout()" class="profile-menu-item logout">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                        </svg>
+                       <span class="logo-text">Success Book Club</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="all-books.html">Book Picks</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="header-cta">
+                    <a href="#signup-form" class="btn btn-primary">Join Now</a>
+                    <button class="search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="container">
+                <div class="search-content">
+                    <button class="search-close" aria-label="Close search">×</button>
+                    <form role="search" method="get" class="search-form">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Search discussions, topics, books..." value="">
+                        </label>
+                        <button type="submit" class="search-submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Where Readers Become Family</h1>
+                <p class="hero-subtitle">Welcome to your home for passionate discussions about books that celebrate the triumph of the human spirit. Connect with fellow readers, share your insights, and grow together through the power of literature.</p>
+                <div class="hero-buttons">
+                    <a href="#join" class="btn btn-primary btn-large">Join the Discussion</a>
+                    <a href="#guidelines" class="btn btn-secondary btn-large">Community Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Stats Section -->
+    <section class="community-stats-section">
+        <div class="container">
+            <div class="community-stats">
+                <div class="stat-item">
+                    <div class="stat-number">15,234</div>
+                    <div class="stat-label">Active Members</div>
+                    <p class="stat-description">Readers sharing their triumph stories</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">3,456</div>
+                    <div class="stat-label">Book Discussions</div>
+                    <p class="stat-description">Conversations about our featured picks</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">892</div>
+                    <div class="stat-label">Daily Posts</div>
+                    <p class="stat-description">Average community engagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forum Categories Section -->
+    <section class="forum-categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Discussion Categories</h2>
+                <p class="section-subtitle">Find your corner of the community</p>
+            </div>
+            
+            <div class="forum-categories">
+                <div class="category-card category-all" data-category="all">
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">All Categories</h3>
+                    <p class="category-description">Browse all discussions across every category</p>
+                    <div class="category-stats">
+                        <span class="topic-count">538 topics</span>
+                        <span class="post-count">4,194 posts</span>
+                    </div>
+                    <button class="btn btn-primary category-filter-btn" data-category="all">View All Discussions</button>
+                </div>
+                
+                <div class="category-card" data-category="Monthly Picks">
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            <path d="M12 6v7"/>
+                            <path d="M9 9h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">Monthly Picks</h3>
+                    <p class="category-description">Discuss this month's featured book with fellow readers</p>
+                    <div class="category-stats">
+                        <span class="topic-count">248 topics</span>
+                        <span class="post-count">1,892 posts</span>
+                    </div>
+                    <button class="btn btn-primary category-filter-btn" data-category="Monthly Picks">Join Discussion</button>
+                </div>
+                
+                <div class="category-card" data-category="Reading Challenges">
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                            <path d="M4 22h16"/>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">Reading Challenges</h3>
+                    <p class="category-description">Participate in reading challenges and share your progress</p>
+                    <div class="category-stats">
+                        <span class="topic-count">45 topics</span>
+                        <span class="post-count">623 posts</span>
+                    </div>
+                    <button class="btn btn-primary category-filter-btn" data-category="Reading Challenges">View Challenges</button>
+                </div>
+                
+                <div class="category-card" data-category="Author Spotlights">
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">Author Spotlights</h3>
+                    <p class="category-description">Celebrate and learn more about our featured authors</p>
+                    <div class="category-stats">
+                        <span class="topic-count">89 topics</span>
+                        <span class="post-count">445 posts</span>
+                    </div>
+                    <button class="btn btn-primary category-filter-btn" data-category="Author Spotlights">Explore Authors</button>
+                </div>
+                
+                <div class="category-card" data-category="Triumph Stories">
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                            <path d="M4 22h16"/>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">Triumph Stories</h3>
+                    <p class="category-description">Share your personal triumph stories and inspire others</p>
+                    <div class="category-stats">
+                        <span class="topic-count">156 topics</span>
+                        <span class="post-count">1,234 posts</span>
+                    </div>
+                    <button class="btn btn-primary category-filter-btn" data-category="Triumph Stories">Share Your Story</button>
+                </div>
+            </div>
+            
+            <div class="category-filter-status" style="display: none;">
+                <span class="filter-label">Showing discussions in: <strong class="active-category">All Categories</strong></span>
+                <button class="btn btn-outline btn-small clear-filter">Show All</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Discussions Section -->
+    <section class="recent-discussions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Active Discussions</h2>
+                <p class="section-subtitle">See what the community is talking about right now</p>
+            </div>
+            
+            <div class="discussions-grid">
+                <!-- Discussion 1 -->
+                <article class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-author">
+                            <img src="https://picsum.photos/seed/user1/50/50" alt="Sarah Mitchell">
+                            <div class="author-info">
+                                <h4 class="author-name">Sarah Mitchell</h4>
+                                <p class="discussion-time">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="discussion-category">Monthly Picks</div>
+                    </div>
+                    <div class="discussion-content">
+                        <h3 class="discussion-title">The ending of "The Unbreakable Spirit" brought me to tears</h3>
+                        <p class="discussion-excerpt">I just finished reading this month's pick and I'm completely overwhelmed. The way Sarah writes about overcoming adversity through faith and community... Has anyone else felt this moved by a book?</p>
+                        <div class="discussion-stats">
+                            <span class="replies">24 replies</span>
+                            <span class="likes">156 likes</span>
+                        </div>
+                        <div class="discussion-actions">
+                            <button class="btn btn-primary view-details" data-book="rising-from-ashes">Get Featured Book</button>
+                            <a href="#discussion" class="btn btn-outline">Join Discussion</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Discussion 2 -->
+                <article class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-author">
+                            <img src="https://picsum.photos/seed/user2/50/50" alt="Michael Torres">
+                            <div class="author-info">
+                                <h4 class="author-name">Michael Torres</h4>
+                                <p class="discussion-time">5 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="discussion-category">Reading Challenges</div>
+                    </div>
+                    <div class="discussion-content">
+                        <h3 class="discussion-title">Completed my first reading challenge!</h3>
+                        <p class="discussion-excerpt">I just finished reading 12 books this month! The "Triumphant Stories" challenge really pushed me to explore outside my comfort zone. What books helped you grow this year?</p>
+                        <div class="discussion-stats">
+                            <span class="replies">18 replies</span>
+                            <span class="likes">89 likes</span>
+                        </div>
+                        <div class="discussion-actions">
+                            <button class="btn btn-primary view-details" data-book="against-all-odds">Get Featured Book</button>
+                            <a href="#discussion" class="btn btn-outline">Celebrate With Us</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Discussion 3 -->
+                <article class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-author">
+                            <img src="https://picsum.photos/seed/user3/50/50" alt="Jennifer Liu">
+                            <div class="author-info">
+                                <h4 class="author-name">Jennifer Liu</h4>
+                                <p class="discussion-time">8 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="discussion-category">Author Spotlights</div>
+                    </div>
+                    <div class="discussion-content">
+                        <h3 class="discussion-title">Character analysis: Discussing resilience in "Against All Odds"</h3>
+                        <p class="discussion-excerpt">I'm fascinated by how Jennifer Liu crafted such complex characters who face overwhelming odds yet find strength in community. The mother-daughter relationship particularly resonated with me.</p>
+                        <div class="discussion-stats">
+                            <span class="replies">42 replies</span>
+                            <span class="likes">234 likes</span>
+                        </div>
+                        <a href="#discussion" class="btn btn-primary">Share Your Analysis</a>
+                    </div>
+                </article>
+                
+                <!-- Discussion 4 -->
+                <article class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-author">
+                            <img src="https://picsum.photos/seed/user4/50/50" alt="Community Team">
+                            <div class="author-info">
+                                <h4 class="author-name">Community Team</h4>
+                                <p class="discussion-time">1 day ago</p>
+                            </div>
+                        </div>
+                        <div class="discussion-category">Triumph Stories</div>
+                    </div>
+                    <div class="discussion-content">
+                        <h3 class="discussion-title">Monthly Theme: "Stories of Second Chances"</h3>
+                        <p class="discussion-excerpt">This month we're exploring how triumph isn't always about the first try. Share your stories of persistence, comebacks, and finding success after setbacks.</p>
+                        <div class="discussion-stats">
+                            <span class="replies">67 replies</span>
+                            <span class="likes">445 likes</span>
+                        </div>
+                        <a href="#discussion" class="btn btn-primary">Share Your Story</a>
+                    </div>
+                </article>
+                
+                <!-- Discussion 5 -->
+                <article class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-author">
+                            <img src="https://picsum.photos/seed/user5/50/50" alt="Dr. Robert Chen">
+                            <div class="author-info">
+                                <h4 class="author-name">Dr. Robert Chen</h4>
+                                <p class="discussion-time">2 days ago</p>
+                            </div>
+                        </div>
+                        <div class="discussion-category">Monthly Picks</div>
+                    </div>
+                    <div class="discussion-content">
+                        <h3 class="discussion-title">AMA with Dr. Robert Chen - Ask Me Anything!</h3>
+                        <p class="discussion-excerpt">The author of "The Power Within" is joining us live to answer your questions about writing, psychology, and his journey of creating practical self-help content.</p>
+                        <div class="discussion-stats">
+                            <span class="replies">156 replies</span>
+                            <span class="likes">892 likes</span>
+                        </div>
+                        <a href="#discussion" class="btn btn-primary">Join Live Session</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="section-cta">
+                <a href="#all-discussions" class="btn btn-primary">View All Discussions</a>
+            </div>
+        </div>
+    </section>
+    <!-- Community Guidelines Section -->
+    <section class="guidelines-section">
+        <div class="container">
+            <div class="guidelines-content">
+                <h2 class="guidelines-title">Community Guidelines</h2>
+                <p class="guidelines-subtitle">Help us create a safe, welcoming space for all readers</p>
+                
+                <div class="guidelines-grid">
+                    <div class="guideline-item">
+                        <h3 class="guideline-heading">Be Respectful</h3>
+                        <p class="guideline-text">Honor diverse opinions and experiences. Treat all members with kindness and consideration, even when you disagree with their perspective.</p>
+                    </div>
+                    
+                    <div class="guideline-item">
+                        <h3 class="guideline-heading">Stay On Topic</h3>
+                        <p class="guideline-text">Keep discussions focused on books, reading experiences, and themes of triumph. Avoid unrelated topics and self-promotion.</p>
+                    </div>
+                    
+                    <div class="guideline-item">
+                        <h3 class="guideline-heading">No Spoilers Without Warning</h3>
+                        <p class="guideline-text">Use spoiler warnings when discussing plot details. Not everyone has read every book, so help preserve the reading experience for others.</p>
+                    </div>
+                    
+                    <div class="guideline-item">
+                        <h3 class="guideline-heading">Share Thoughtfully</h3>
+                        <p class="guideline-text">Contribute valuable insights rather than just agreeing. Bring your unique perspective to enrich the conversation for everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Community Section -->
+    <section class="join-community-section" id="join-community">
+        <div class="container">
+            <div class="join-community-content">
+                <h2 class="join-community-title">Ready to Join Our Community?</h2>
+                <p class="join-community-subtitle">Become part of a vibrant community of readers who celebrate stories of triumph, resilience, and the human spirit through literature.</p>
+                <div class="join-community-buttons">
+                    <button class="btn btn-primary btn-large" onclick="openAuthModal('signup')">Sign Up Free</button>
+                    <button class="btn btn-outline btn-large" onclick="showMembershipInfo()">Learn About Membership</button>
+                </div>
+                <div class="community-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="benefit-text">Free membership with exclusive benefits</span>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="benefit-text">Connect with 15,000+ passionate readers</span>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="benefit-text">Early access to events and author discussions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Polls Section -->
+    <section class="polls-section" id="polls">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Community Polls</h2>
+                <p class="section-subtitle">Vote on what matters to our reading community</p>
+            </div>
+            <div class="polls-grid">
+                <div class="poll-card">
+                    <div class="poll-question">
+                        <h3>Which genre should we feature next month?</h3>
+                        <p class="poll-votes">156 votes</p>
+                    </div>
+                    <div class="poll-options">
+                        <div class="poll-option" data-votes="45">
+                            <div class="poll-bar" style="width: 45%"></div>
+                            <span class="poll-label">Historical Fiction</span>
+                            <span class="poll-percent">45%</span>
+                        </div>
+                        <div class="poll-option" data-votes="38">
+                            <div class="poll-bar" style="width: 38%"></div>
+                            <span class="poll-label">Memoir & Biography</span>
+                            <span class="poll-percent">38%</span>
+                        </div>
+                        <div class="poll-option" data-votes="17">
+                            <div class="poll-bar" style="width: 17%"></div>
+                            <span class="poll-label">Science Fiction</span>
+                            <span class="poll-percent">17%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline poll-vote-btn">Vote Now</button>
+                </div>
+                <div class="poll-card">
+                    <div class="poll-question">
+                        <h3>What's your favorite reading time?</h3>
+                        <p class="poll-votes">243 votes</p>
+                    </div>
+                    <div class="poll-options">
+                        <div class="poll-option" data-votes="52">
+                            <div class="poll-bar" style="width: 52%"></div>
+                            <span class="poll-label">Evening (6PM - 10PM)</span>
+                            <span class="poll-percent">52%</span>
+                        </div>
+                        <div class="poll-option" data-votes="31">
+                            <div class="poll-bar" style="width: 31%"></div>
+                            <span class="poll-label">Morning (5AM - 9AM)</span>
+                            <span class="poll-percent">31%</span>
+                        </div>
+                        <div class="poll-option" data-votes="17">
+                            <div class="poll-bar" style="width: 17%"></div>
+                            <span class="poll-label">Weekend Afternoons</span>
+                            <span class="poll-percent">17%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline poll-vote-btn">Vote Now</button>
+                </div>
+                <div class="poll-card">
+                    <div class="poll-question">
+                        <h3>How many books do you read per month?</h3>
+                        <p class="poll-votes">189 votes</p>
+                    </div>
+                    <div class="poll-options">
+                        <div class="poll-option" data-votes="34">
+                            <div class="poll-bar" style="width: 34%"></div>
+                            <span class="poll-label">2-3 books</span>
+                            <span class="poll-percent">34%</span>
+                        </div>
+                        <div class="poll-option" data-votes="28">
+                            <div class="poll-bar" style="width: 28%"></div>
+                            <span class="poll-label">1-2 books</span>
+                            <span class="poll-percent">28%</span>
+                        </div>
+                        <div class="poll-option" data-votes="22">
+                            <div class="poll-bar" style="width: 22%"></div>
+                            <span class="poll-label">4+ books</span>
+                            <span class="poll-percent">22%</span>
+                        </div>
+                        <div class="poll-option" data-votes="16">
+                            <div class="poll-bar" style="width: 16%"></div>
+                            <span class="poll-label">Less than 1</span>
+                            <span class="poll-percent">16%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline poll-vote-btn">Vote Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chat Rooms Section -->
+    <section class="chat-rooms-section" id="chat">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Live Chat Rooms</h2>
+                <p class="section-subtitle">Join real-time discussions with fellow readers</p>
+            </div>
+            <div class="chat-rooms-grid">
+                <div class="chat-room-card active" data-room="general">
+                    <div class="chat-room-header">
+                        <h4>General Discussion</h4>
+                        <span class="chat-status online">12 online</span>
+                    </div>
+                    <div class="chat-messages" id="chat-general">
+                        <div class="chat-message">
+                            <img src="https://picsum.photos/seed/user10/32/32" alt="User">
+                            <div class="message-content">
+                                <span class="message-author">Sarah M.</span>
+                                <p>Just finished "The Unbreakable Spirit" - what a read!</p>
+                                <span class="message-time">2m ago</span>
+                            </div>
+                        </div>
+                        <div class="chat-message">
+                            <img src="https://picsum.photos/seed/user11/32/32" alt="User">
+                            <div class="message-content">
+                                <span class="message-author">David K.</span>
+                                <p>I'm halfway through - can't put it down!</p>
+                                <span class="message-time">1m ago</span>
+                            </div>
+                        </div>
+                        <div class="chat-message system">
+                            <p>Welcome to the General Discussion room!</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message..." id="chat-input-general">
+                        <button class="send-btn" data-room="general">Send</button>
+                    </div>
+                </div>
+                <div class="chat-room-card" data-room="monthly-pick">
+                    <div class="chat-room-header">
+                        <h4>Monthly Pick Discussion</h4>
+                        <span class="chat-status online">8 online</span>
+                    </div>
+                    <div class="chat-messages" id="chat-monthly-pick">
+                        <div class="chat-message">
+                            <img src="https://picsum.photos/seed/user12/32/32" alt="User">
+                            <div class="message-content">
+                                <span class="message-author">Jennifer L.</span>
+                                <p>Anyone ready for our discussion tomorrow?</p>
+                                <span class="message-time">5m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message..." id="chat-input-monthly-pick">
+                        <button class="send-btn" data-room="monthly-pick">Send</button>
+                    </div>
+                </div>
+                <div class="chat-room-card" data-room="new-releases">
+                    <div class="chat-room-header">
+                        <h4>New Releases</h4>
+                        <span class="chat-status online">5 online</span>
+                    </div>
+                    <div class="chat-messages" id="chat-new-releases">
+                        <div class="chat-message">
+                            <img src="https://picsum.photos/seed/user13/32/32" alt="User">
+                            <div class="message-content">
+                                <span class="message-author">Michael T.</span>
+                                <p>Check out the new triumph books dropping this week!</p>
+                                <span class="message-time">10m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message..." id="chat-input-new-releases">
+                        <button class="send-btn" data-room="new-releases">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reading Challenges Tracker Section -->
+    <section class="challenges-section" id="challenges">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Reading Challenges</h2>
+                <p class="section-subtitle">Track your reading progress and compete with the community</p>
+            </div>
+            <div class="challenges-tabs">
+                <button class="challenge-tab active" data-tab="monthly">Monthly Challenges</button>
+                <button class="challenge-tab" data-tab="weekly">Weekly Goals</button>
+                <button class="challenge-tab" data-tab="yearly">Yearly Progress</button>
+            </div>
+            <div class="challenges-content">
+                <div class="challenge-panel active" id="monthly-challenges">
+                    <div class="challenge-cards">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h4>February Challenge</h4>
+                                <span class="challenge-status completed">Completed</span>
+                            </div>
+                            <p class="challenge-description">Read 5 books featuring inspiring protagonists</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%">100%</div>
+                                </div>
+                                <span class="progress-text">5/5 books</span>
+                            </div>
+                            <div class="challenge-books">
+                                <img src="https://picsum.photos/seed/challenge1/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge2/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge3/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge4/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge5/60/80" alt="Book">
+                            </div>
+                        </div>
+                        <div class="challenge-card current">
+                            <div class="challenge-header">
+                                <h4>March Challenge</h4>
+                                <span class="challenge-status in-progress">In Progress</span>
+                            </div>
+                            <p class="challenge-description">Read books by diverse authors from around the world</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%">60%</div>
+                                </div>
+                                <span class="progress-text">3/5 books</span>
+                            </div>
+                            <div class="challenge-books">
+                                <img src="https://picsum.photos/seed/challenge6/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge7/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge8/60/80" alt="Book">
+                                <img src="https://picsum.photos/seed/challenge9/60/80" alt="Book" class="locked">
+                                <img src="https://picsum.photos/seed/challenge10/60/80" alt="Book" class="locked">
+                            </div>
+                            <button class="btn btn-primary btn-sm">Log a Book</button>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h4>April Challenge</h4>
+                                <span class="challenge-status upcoming">Upcoming</span>
+                            </div>
+                            <p class="challenge-description">Complete a memoir or biography about overcoming adversity</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%">0%</div>
+                                </div>
+                                <span class="progress-text">0/3 books</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">View Challenge</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="challenge-panel" id="weekly-challenges">
+                    <div class="weekly-stats">
+                        <div class="weekly-stat">
+                            <div class="stat-icon">📖</div>
+                            <div class="stat-info">
+                                <span class="stat-value">247</span>
+                                <span class="stat-label">Pages This Week</span>
+                            </div>
+                        </div>
+                        <div class="weekly-stat">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-info">
+                                <span class="stat-value">5.2h</span>
+                                <span class="stat-label">Reading Time</span>
+                            </div>
+                        </div>
+                        <div class="weekly-stat">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-info">
+                                <span class="stat-value">2/3</span>
+                                <span class="stat-label">Goals Met</span>
+                            </div>
+                        </div>
+                        <div class="weekly-stat">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-info">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Day Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="challenge-panel" id="yearly-challenges">
+                    <div class="yearly-progress">
+                        <h3>2024 Reading Goal</h3>
+                        <div class="yearly-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#E5E7EB" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#yearlyGrad)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="170" transform="rotate(-90 50 50)"/>
+                                <defs>
+                                    <linearGradient id="yearlyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#8B5CF6"/>
+                                        <stop offset="100%" style="stop-color:#EC4899"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="yearly-text">
+                                <span class="yearly-number">18</span>
+                                <span class="yearly-label">of 24</span>
+                            </div>
+                        </div>
+                        <p>You're 6 books ahead of schedule!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Recommendation Board Section -->
+    <section class="recommendations-section" id="recommendations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Book Recommendations</h2>
+                <p class="section-subtitle">Suggest and vote on books for the community</p>
+            </div>
+            <div class="recommendations-actions">
+                <button class="btn btn-primary" id="add-recommendation-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
+                    </svg>
+                    Add Recommendation
+                </button>
+                <div class="recommendations-filter">
+                    <button class="filter-btn active" data-sort="popular">Popular</button>
+                    <button class="filter-btn" data-sort="recent">Recent</button>
+                </div>
+            </div>
+            <div class="recommendations-grid" id="recommendations-grid">
+                <div class="recommendation-card">
+                    <img src="https://picsum.photos/seed/rec1/80/120" alt="Book cover" class="rec-cover">
+                    <div class="rec-content">
+                        <h4>The Midnight Library</h4>
+                        <p class="rec-author">by Matt Haig</p>
+                        <p class="rec-description">A beautiful story about choices and parallel lives.</p>
+                        <div class="rec-meta">
+                            <span class="rec-votes">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                </svg>
+                                89
+                            </span>
+                            <span class="rec-comments">12 comments</span>
+                        </div>
+                    </div>
+                    <button class="vote-btn" data-id="1">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 5v10M5 10h10"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="recommendation-card">
+                    <img src="https://picsum.photos/seed/rec2/80/120" alt="Book cover" class="rec-cover">
+                    <div class="rec-content">
+                        <h4>Atomic Habits</h4>
+                        <p class="rec-author">by James Clear</p>
+                        <p class="rec-description">Life-changing book about building good habits.</p>
+                        <div class="rec-meta">
+                            <span class="rec-votes">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                </svg>
+                                76
+                            </span>
+                            <span class="rec-comments">8 comments</span>
+                        </div>
+                    </div>
+                    <button class="vote-btn" data-id="2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 5v10M5 10h10"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="recommendation-card">
+                    <img src="https://picsum.photos/seed/rec3/80/120" alt="Book cover" class="rec-cover">
+                    <div class="rec-content">
+                        <h4>Project Hail Mary</h4>
+                        <p class="rec-author">by Andy Weir</p>
+                        <p class="rec-description">Incredible sci-fi about survival and friendship.</p>
+                        <div class="rec-meta">
+                            <span class="rec-votes">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                </svg>
+                                65
+                            </span>
+                            <span class="rec-comments">15 comments</span>
+                        </div>
+                    </div>
+                    <button class="vote-btn" data-id="3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 5v10M5 10h10"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="recommendation-card">
+                    <img src="https://picsum.photos/seed/rec4/80/120" alt="Book cover" class="rec-cover">
+                    <div class="rec-content">
+                        <h4>The Four Agreements</h4>
+                        <p class="rec-author">by Don Miguel Ruiz</p>
+                        <p class="rec-description">Ancient wisdom for modern life.</p>
+                        <div class="rec-meta">
+                            <span class="rec-votes">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                </svg>
+                                54
+                            </span>
+                            <span class="rec-comments">6 comments</span>
+                        </div>
+                    </div>
+                    <button class="vote-btn" data-id="4">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 5v10M5 10h10"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Book Club Meetings Section -->
+    <section class="meetings-section" id="meetings">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Virtual Book Club Meetings</h2>
+                <p class="section-subtitle">Join live sessions with authors and fellow readers</p>
+            </div>
+            <div class="meetings-grid">
+                <div class="meeting-card featured">
+                    <div class="meeting-badge">Next Meeting</div>
+                    <div class="meeting-date">
+                        <span class="date-day">15</span>
+                        <span class="date-month">Mar</span>
+                    </div>
+                    <div class="meeting-content">
+                        <h4>Monthly Book Discussion</h4>
+                        <p class="meeting-book">"Rising from Ashes" by Michael Torres</p>
+                        <div class="meeting-time">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14A6 6 0 118 2a6 6 0 010 12zm.5-9H7v5l4.25 2.5.75-1.23-3.5-2.08V5z"/>
+                            </svg>
+                            7:00 PM - 8:30 PM EST
+                        </div>
+                        <div class="meeting-attendees">
+                            <img src="https://picsum.photos/seed/attendee1/28/28" alt="Member">
+                            <img src="https://picsum.photos/seed/attendee2/28/28" alt="Member">
+                            <img src="https://picsum.photos/seed/attendee3/28/28" alt="Member">
+                            <span>+47 going</span>
+                        </div>
+                        <button class="btn btn-primary">Register Now</button>
+                    </div>
+                </div>
+                <div class="meeting-card">
+                    <div class="meeting-date">
+                        <span class="date-day">22</span>
+                        <span class="date-month">Mar</span>
+                    </div>
+                    <div class="meeting-content">
+                        <h4>Author Q&A Session</h4>
+                        <p class="meeting-book">Live with Dr. Robert Chen</p>
+                        <div class="meeting-time">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14A6 6 0 118 2a6 6 0 010 12zm.5-9H7v5l4.25 2.5.75-1.23-3.5-2.08V5z"/>
+                            </svg>
+                            8:00 PM - 9:00 PM EST
+                        </div>
+                        <div class="meeting-attendees">
+                            <img src="https://picsum.photos/seed/attendee4/28/28" alt="Member">
+                            <img src="https://picsum.photos/seed/attendee5/28/28" alt="Member">
+                            <span>+32 going</span>
+                        </div>
+                        <button class="btn btn-outline">Register</button>
+                    </div>
+                </div>
+                <div class="meeting-card">
+                    <div class="meeting-date">
+                        <span class="date-day">29</span>
+                        <span class="date-month">Mar</span>
+                    </div>
+                    <div class="meeting-content">
+                        <h4>Reading Strategy Workshop</h4>
+                        <p class="meeting-book">"Speed Reading for Book Lovers"</p>
+                        <div class="meeting-time">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14A6 6 0 118 2a6 6 0 010 12zm.5-9H7v5l4.25 2.5.75-1.23-3.5-2.08V5z"/>
+                            </svg>
+                            6:00 PM - 7:00 PM EST
+                        </div>
+                        <div class="meeting-attendees">
+                            <img src="https://picsum.photos/seed/attendee6/28/28" alt="Member">
+                            <span>+18 going</span>
+                        </div>
+                        <button class="btn btn-outline">Register</button>
+                    </div>
+                </div>
+                <div class="meeting-card">
+                    <div class="meeting-date">
+                        <span class="date-day">05</span>
+                        <span class="date-month">Apr</span>
+                    </div>
+                    <div class="meeting-content">
+                        <h4>Genre Deep Dive</h4>
+                        <p class="meeting-book">Exploring Biography & Memoir</p>
+                        <div class="meeting-time">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14A6 6 0 118 2a6 6 0 010 12zm.5-9H7v5l4.25 2.5.75-1.23-3.5-2.08V5z"/>
+                            </svg>
+                            7:30 PM - 9:00 PM EST
+                        </div>
+                        <div class="meeting-attendees">
+                            <img src="https://picsum.photos/seed/attendee7/28/28" alt="Member">
+                            <img src="https://picsum.photos/seed/attendee8/28/28" alt="Member">
+                            <img src="https://picsum.photos/seed/attendee9/28/28" alt="Member">
+                            <span>+25 going</span>
+                        </div>
+                        <button class="btn btn-outline">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Directory Section -->
+    <section class="directory-section" id="directory">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Connect with Members</h2>
+                <p class="section-subtitle">Find fellow readers who share your interests</p>
+            </div>
+            <div class="directory-filters">
+                <div class="search-box">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="9" r="8"/>
+                        <path d="M14 14l4 4"/>
+                    </svg>
+                    <input type="text" placeholder="Search members..." id="member-search">
+                </div>
+                <div class="filter-group">
+                    <select id="interest-filter" title="Filter members by interest">
+                        <option value="">All Interests</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="nonfiction">Non-Fiction</option>
+                        <option value="memoir">Memoir</option>
+                        <option value="self-help">Self-Help</option>
+                        <option value="biography">Biography</option>
+                    </select>
+                </div>
+            </div>
+            <div class="directory-grid" id="directory-grid">
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir1/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>Emily Richardson</h4>
+                        <p class="member-location">New York, USA</p>
+                        <div class="member-interests">
+                            <span>Fiction</span>
+                            <span>Memoir</span>
+                        </div>
+                        <p class="member-bio">Passionate about stories of triumph and resilience. Always looking for my next great read!</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir2/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>James Walker</h4>
+                        <p class="member-location">London, UK</p>
+                        <div class="member-interests">
+                            <span>Biography</span>
+                            <span>History</span>
+                        </div>
+                        <p class="member-bio">History buff and aspiring writer. Love discussing character development!</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir3/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>Maria Santos</h4>
+                        <p class="member-location">São Paulo, Brazil</p>
+                        <div class="member-interests">
+                            <span>Self-Help</span>
+                            <span>Philosophy</span>
+                        </div>
+                        <p class="member-bio">Believer in the power of books to transform lives. Book club organizer!</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir4/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>Alex Kim</h4>
+                        <p class="member-location">Seoul, South Korea</p>
+                        <div class="member-interests">
+                            <span>Fiction</span>
+                            <span>Science Fiction</span>
+                        </div>
+                        <p class="member-bio">Sci-fi enthusiast with a passion for stories about human resilience.</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir5/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>Sarah Johnson</h4>
+                        <p class="member-location">Toronto, Canada</p>
+                        <div class="member-interests">
+                            <span>Memoir</span>
+                            <span>Biography</span>
+                        </div>
+                        <p class="member-bio">Love reading stories of real people overcoming challenges. Monthly book club host!</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/memberdir6/80/80" alt="Member" class="member-avatar">
+                    <div class="member-info">
+                        <h4>David Chen</h4>
+                        <p class="member-location">Sydney, Australia</p>
+                        <div class="member-interests">
+                            <span>Non-Fiction</span>
+                            <span>Self-Help</span>
+                        </div>
+                        <p class="member-bio">Always seeking books that challenge my perspective and expand my thinking.</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm connect-btn">Connect</button>
+                </div>
+            </div>
+            <div class="directory-pagination">
+                <button class="page-btn" disabled>&laquo;</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">&raquo;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 20,50 50,90 80,50" fill="none" stroke="url(#footerLogoGrad)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="5" fill="url(#footerLogoGrad)"/>
+                        </svg>
+                        <h3>Success Book Club</h3>
+                    </div>
+                    <p class="footer-description">Stories of triumph, resilience, and the human spirit. Join our community celebrating books that inspire and empower.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/succesbookclub" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="all-books.html">Our Picks</a></li>
+                        <li><a href="podcast.html">Podcast</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partnerships.html">Partnerships</a></li>
+                        <li><a href="gift.html">Gift Memberships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Join the Club</h4>
+                    <p>Start your journey with inspiring stories of triumph and resilience.</p>
+                    <a href="#join" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Success Book Club. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="bookModal" class="book-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">Book Title</h2>
+                <button id="closeModal" class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-left">
+                    <img id="modalBookCover" src="" alt="Book cover" class="book-cover-large">
+                    <div class="book-format-badges">
+                        <span class="format-badge ebook">Ebook</span>
+                        <span class="format-badge audio">Audio</span>
+                        <span class="format-badge pdf">PDF</span>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="detail-row">
+                        <span class="detail-label">Author:</span>
+                        <span id="modalAuthor" class="detail-value">Author Name</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Category:</span>
+                        <span id="modalCategory" class="detail-value">Fiction</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pages:</span>
+                        <span id="modalPages" class="detail-value">350</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Duration:</span>
+                        <span id="modalDuration" class="detail-value">8h 30m</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Published:</span>
+                        <span id="modalPublished" class="detail-value">March 2024</span>
+                    </div>
+                    <div class="rating-large">
+                        <span id="modalRating" class="stars">★★★★★</span>
+                        <span id="modalRatingCount" class="rating-text">(1,234 reviews)</span>
+                    </div>
+                    <div class="book-description">
+                        <h3>About this book</h3>
+                        <p id="modalDescription">Book description goes here...</p>
+                    </div>
+                    <div class="action-group">
+                        <h4>Download Options</h4>
+                        <div class="download-options">
+                            <button class="download-option" data-format="ebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>Ebook</span>
+                            </button>
+                            <button class="download-option" data-format="audio">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                                <span>Audio</span>
+                            </button>
+                            <button class="download-option" data-format="pdf">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span>PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="confirmDownload" class="btn btn-primary">Download</button>
+                        <button id="addToLibrary" class="btn btn-outline">Add to Library</button>
+                        <button id="shareBook" class="btn btn-secondary">Share</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="progress-info" id="downloadProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player Modal -->
+    <div id="audioPlayerModal" class="audio-modal">
+        <div class="audio-player-container">
+            <div class="audio-header">
+                <div class="audio-info">
+                    <h3 id="audioTitle">Book Title</h3>
+                    <p id="audioAuthor">Author Name</p>
+                </div>
+                <button id="closeAudioPlayer" class="modal-close" aria-label="Close audio player">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="audio-cover">
+                <img id="audioCover" src="" alt="Book cover">
+            </div>
+            <div class="audio-controls">
+                <div class="track-progress">
+                    <div class="progress-bar">
+                        <div id="audioProgress" class="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">8:30:00</span>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button id="playPauseBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </button>
+                    <div class="speed-control">
+                        <button id="speedBtn" class="speed-btn">1.0x</button>
+                        <div class="speed-menu">
+                            <button class="speed-option" data-speed="0.5">0.5x</button>
+                            <button class="speed-option" data-speed="0.75">0.75x</button>
+                            <button class="speed-option" data-speed="1">1.0x</button>
+                            <button class="speed-option" data-speed="1.25">1.25x</button>
+                            <button class="speed-option" data-speed="1.5">1.5x</button>
+                            <button class="speed-option" data-speed="2">2.0x</button>
+                        </div>
+                    </div>
+                    <div class="chapter-control">
+                        <label for="chapterSelect" class="visually-hidden">Select chapter:</label>
+                        <select id="chapterSelect" class="chapter-select" title="Select chapter">
+                            <option value="1">Chapter 1: Introduction</option>
+                            <option value="2">Chapter 2: The Journey Begins</option>
+                            <option value="3">Chapter 3: Rising from Ashes</option>
+                            <option value="4">Chapter 4: Finding Strength</option>
+                        </select>
+                    </div>
+                    <button id="bookmarkBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+                        </svg>
+                    </button>
+                    <button id="sleepTimerBtn" class="control-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="extra-controls">
+                    <div class="volume-control">
+                        <label for="volumeSlider" class="visually-hidden">Volume:</label>
+                        <input id="volumeSlider" type="range" min="0" max="100" value="70" class="volume-slider" title="Volume control">
+                        <button id="muteBtn" class="control-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="11,5 6,9 2,9 2,15 6,15 11,19 11,5"/>
+                                <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-footer">
+                <div class="progress-info" id="audioProgressInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="api/api-service.js"></script>
+    <script src="book-discovery-enhanced.js"></script>
+    <script src="frontend/auth.js"></script>
+    
+    <!-- Auth Modal JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const authModal = document.getElementById('authModal');
+        const loginFormContainer = document.getElementById('loginForm');
+        const signupFormContainer = document.getElementById('signupForm');
+        const userProfileContainer = document.getElementById('userProfile');
+        const authModalClose = document.querySelector('.auth-modal-close');
+        const authModalBackdrop = document.querySelector('.auth-modal-backdrop');
+        
+        console.log('Auth modal initialized:', authModal);
+        console.log('Auth modal has active class:', authModal.classList.contains('active'));
+        console.log('Auth modal computed display:', globalThis.getComputedStyle(authModal).display);
+        console.log('Auth modal position:', globalThis.getComputedStyle(authModal).position);
+        
+        // Calculate scrollbar width for body padding
+        function getScrollbarWidth() {
+            return globalThis.innerWidth - document.documentElement.clientWidth;
+        }
+        
+        // Open auth modal functions
+        globalThis.openAuthModal = function(tab = 'login') {
+            console.log('Opening auth modal, tab:', tab);
+            
+            // Calculate and set scrollbar width
+            const scrollbarWidth = getScrollbarWidth();
+            document.documentElement.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
+            
+            // Clear any inline display style
+            authModal.style.display = '';
+            
+            // Add active class to show modal (CSS will handle display: flex !important)
+            authModal.classList.add('active');
+            document.body.classList.add('modal-open');
+            
+            if (tab === 'signup') {
+                showSignup(new Event('click'));
+            } else {
+                showLogin(new Event('click'));
+            }
+        };
+        
+        // Close modal
+        function closeAuthModal() {
+            authModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            
+            // Clear inline display to let CSS :not(.active) rule take over
+            setTimeout(() => {
+                if (!authModal.classList.contains('active')) {
+                    authModal.style.display = '';
+                }
+            }, 350);
+        }
+        
+        authModalClose?.addEventListener('click', closeAuthModal);
+        authModalBackdrop?.addEventListener('click', closeAuthModal);
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && authModal.classList.contains('active')) {
+                closeAuthModal();
+            }
+        });
+        
+        // Toggle between login and signup
+        globalThis.showSignup = function(e) {
+            if (e) e.preventDefault();
+            loginFormContainer.style.display = 'none';
+            signupFormContainer.style.display = 'block';
+            userProfileContainer.style.display = 'none';
+            document.getElementById('authModalTitle').textContent = 'Create Account';
+        };
+
+        globalThis.showLogin = function(e) {
+            if (e) e.preventDefault();
+            loginFormContainer.style.display = 'block';
+            signupFormContainer.style.display = 'none';
+            userProfileContainer.style.display = 'none';
+            document.getElementById('authModalTitle').textContent = 'Welcome Back';
+        };
+        
+        // Login form submission
+        document.getElementById('loginFormElement')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Signing in...';
+            submitBtn.disabled = true;
+            
+            const result = await login(email, password);
+            
+            if (result.success) {
+                closeAuthModal();
+                showNotification('Welcome back, ' + result.user.full_name + '!', 'success');
+                updateHeaderForUser(result.user);
+            } else {
+                showNotification(result.error, 'error');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        // Signup form submission
+        document.getElementById('signupFormElement')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const full_name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Creating account...';
+            submitBtn.disabled = true;
+            
+            const result = await register(email, password, full_name);
+            
+            if (result.success) {
+                closeAuthModal();
+                showNotification('Welcome to the community, ' + result.user.full_name + '!', 'success');
+                updateHeaderForUser(result.user);
+            } else {
+                showNotification(result.error, 'error');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        // Update header for logged in user
+        function updateHeaderForUser(user) {
+            const joinBtn = document.querySelector('.header-cta .btn-primary');
+            if (joinBtn) {
+                joinBtn.textContent = user.full_name.split(' ')[0];
+                joinBtn.href = '#profile';
+                joinBtn.onclick = function(e) {
+                    e.preventDefault();
+                    showUserProfile(user);
+                };
+            }
+        }
+        
+        // Show user profile
+        globalThis.showUserProfile = function(user) {
+            // Calculate and set scrollbar width
+            const scrollbarWidth = getScrollbarWidth();
+            document.documentElement.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
+            
+            // Clear any inline display style and add active class
+            authModal.style.display = '';
+            authModal.classList.add('active');
+            document.body.classList.add('modal-open');
+            
+            loginFormContainer.style.display = 'none';
+            signupFormContainer.style.display = 'none';
+            userProfileContainer.style.display = 'block';
+            
+            document.getElementById('profileAvatar').src = user.avatar_url || 'https://picsum.photos/seed/defaultavatar/80/80';
+            document.getElementById('profileName').textContent = user.full_name;
+            document.getElementById('profileEmail').textContent = user.email;
+            
+            const tierBadge = document.getElementById('profileTier');
+            if (user.membership_tier === 'premium') {
+                tierBadge.textContent = 'Premium Member';
+                tierBadge.classList.add('premium');
+            } else {
+                tierBadge.textContent = 'Free Member';
+                tierBadge.classList.remove('premium');
+            }
+        };
+        
+        // Override logout to update header
+        const originalLogout = logout;
+        globalThis.logout = async function() {
+            await originalLogout();
+            const joinBtn = document.querySelector('.header-cta .btn-primary');
+            if (joinBtn) {
+                joinBtn.textContent = 'Join Now';
+                joinBtn.href = '#signup-form';
+                joinBtn.onclick = null;
+            }
+            closeAuthModal();
+            showNotification('You have been signed out.', 'success');
+        };
+        
+        // Handle Join Now button click
+        document.querySelectorAll('a[href="#signup-form"], a[href="#join"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openAuthModal('signup');
+            });
+        });
+        
+        // Check auth on load and update UI
+        checkAuth().then(isLoggedIn => {
+            if (isLoggedIn && currentUser) {
+                const joinBtn = document.querySelector('.header-cta .btn-primary');
+                if (joinBtn) {
+                    joinBtn.textContent = currentUser.full_name.split(' ')[0];
+                    joinBtn.href = '#profile';
+                    joinBtn.onclick = function(e) {
+                        e.preventDefault();
+                        showUserProfile(currentUser);
+                    };
+                }
+            }
+        });
+        
+        // Add login required check to interactive features
+        const loginRequiredElements = document.querySelectorAll('.poll-vote-btn, .send-btn, .challenge-card .btn-sm, .connect-btn, .recommendations-actions .btn, .forum-post-btn, .create-post-btn');
+        loginRequiredElements.forEach(el => {
+            el.addEventListener('click', async function(e) {
+                if (!isLoggedIn()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openAuthModal('login');
+                    showNotification('Please login to participate!', 'info');
+                }
+            });
+        });
+        
+        // Forgot password (placeholder)
+        globalThis.showForgotPassword = function(e) {
+            e.preventDefault();
+            showNotification('Password reset feature coming soon!', 'success');
+        };
+        
+        // Show membership information modal
+        globalThis.showMembershipInfo = function() {
+            // Create modal content
+            const modalHTML = `
+                <div id="membershipModal" class="info-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+                    <div class="info-modal-content" style="background: white; border-radius: 16px; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                        <div class="info-modal-header" style="background: linear-gradient(135deg, #8B5CF6, #EC4899); padding: 24px; border-radius: 16px 16px 0 0; position: relative;">
+                            <h2 style="color: white; margin: 0; font-size: 24px;">Membership Benefits</h2>
+                            <button onclick="closeMembershipModal()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">×</button>
+                        </div>
+                        <div class="info-modal-body" style="padding: 32px;">
+                            <div class="membership-tier" style="margin-bottom: 24px;">
+                                <h3 style="color: #8B5CF6; margin-bottom: 16px; font-size: 20px;">Free Member</h3>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #10B981; font-weight: bold;">✓</span>
+                                        <span>Join community discussions</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #10B981; font-weight: bold;">✓</span>
+                                        <span>Access to monthly book picks</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #10B981; font-weight: bold;">✓</span>
+                                        <span>Weekly newsletter</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #10B981; font-weight: bold;">✓</span>
+                                        <span>Basic reading challenges</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="membership-tier" style="margin-bottom: 24px; padding: 24px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05)); border-radius: 12px; border: 2px solid #8B5CF6;">
+                                <h3 style="color: #8B5CF6; margin-bottom: 16px; font-size: 20px;">Premium Member - $9.99/month</h3>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #10B981; font-weight: bold;">✓</span>
+                                        <span><strong>All Free Member benefits</strong></span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #F59E0B; font-weight: bold;">★</span>
+                                        <span>Exclusive author Q&A sessions</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #F59E0B; font-weight: bold;">★</span>
+                                        <span>Early access to book sales</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #F59E0B; font-weight: bold;">★</span>
+                                        <span>Monthly virtual book club meetings</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #F59E0B; font-weight: bold;">★</span>
+                                        <span>Personalized reading recommendations</span>
+                                    </li>
+                                    <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
+                                        <span style="color: #F59E0B; font-weight: bold;">★</span>
+                                        <span>Ad-free experience</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="text-align: center; margin-top: 24px;">
+                                <button onclick="closeMembershipModal(); openAuthModal('signup');" class="btn btn-primary btn-large" style="padding: 14px 32px; font-size: 16px;">Get Started - It's Free!</button>
+                                <p style="margin-top: 12px; font-size: 14px; color: #6B7280;">No credit card required for free membership</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+            
+            // Close on backdrop click
+            document.getElementById('membershipModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeMembershipModal();
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function escapeHandler(e) {
+                if (e.key === 'Escape') {
+                    closeMembershipModal();
+                    document.removeEventListener('keydown', escapeHandler);
+                }
+            });
+        };
+        
+        // Close membership modal
+        globalThis.closeMembershipModal = function() {
+            const modal = document.getElementById('membershipModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        };
+        
+        // Profile Editor Modal
+        globalThis.openProfileEditor = function() {
+            const user = getCurrentUser();
+            if (!user) {
+                openAuthModal('login');
+                return;
+            }
+            
+            // Close the user profile dropdown first
+            const userProfileContainer = document.getElementById('userProfile');
+            if (userProfileContainer) {
+                userProfileContainer.style.display = 'none';
+            }
+            
+            const modalHTML = `
+                <div id="profileEditorModal" class="info-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+                    <div class="info-modal-content" style="background: white; border-radius: 16px; max-width: 500px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                        <div class="info-modal-header" style="background: linear-gradient(135deg, #8B5CF6, #EC4899); padding: 24px; border-radius: 16px 16px 0 0; position: relative;">
+                            <h2 style="color: white; margin: 0; font-size: 24px;">Edit Profile</h2>
+                            <button onclick="closeProfileEditor()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 20px;">×</button>
+                        </div>
+                        <div class="info-modal-body" style="padding: 32px;">
+                            <!-- Avatar Section -->
+                            <div style="text-align: center; margin-bottom: 24px;">
+                                <img id="profileEditorAvatar" src="${user.avatar_url || 'https://picsum.photos/seed/defaultavatar/100/100'}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #8B5CF6;">
+                                <div style="margin-top: 12px;">
+                                    <label for="avatarUrlInput" style="cursor: pointer; color: #8B5CF6; font-weight: 500;">Change Avatar URL</label>
+                                    <input type="text" id="avatarUrlInput" placeholder="Enter image URL" style="display: block; margin: 8px auto; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; max-width: 300px;">
+                                </div>
+                            </div>
+                            
+                            <!-- Name Section -->
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Full Name</label>
+                                <input type="text" id="profileNameInput" value="${user.full_name || ''}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                            </div>
+                            
+                            <!-- Email (read only) -->
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">Email</label>
+                                <input type="email" value="${user.email || ''}" disabled style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; background: #f3f4f6; color: #6b7280;">
+                            </div>
+                            
+                            <!-- Change Password Section -->
+                            <div style="margin-bottom: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                                <h3 style="font-size: 16px; margin-bottom: 16px; color: #374151;">Change Password</h3>
+                                <div style="margin-bottom: 12px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151; font-size: 14px;">Current Password</label>
+                                    <input type="password" id="currentPasswordInput" placeholder="Enter current password" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                                </div>
+                                <div style="margin-bottom: 12px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151; font-size: 14px;">New Password</label>
+                                    <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                                </div>
+                            </div>
+                            
+                            <!-- Save Button -->
+                            <button onclick="saveProfile()" class="btn btn-primary btn-full" style="padding: 14px; font-size: 16px; margin-top: 16px;">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+            
+            // Handle avatar URL change
+            document.getElementById('avatarUrlInput')?.addEventListener('change', function() {
+                const url = this.value;
+                if (url) {
+                    document.getElementById('profileEditorAvatar').src = url;
+                }
+            });
+            
+            document.getElementById('profileEditorModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeProfileEditor();
+                }
+            });
+        };
+        
+        globalThis.closeProfileEditor = function() {
+            const modal = document.getElementById('profileEditorModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        };
+        
+        globalThis.saveProfile = async function() {
+            const name = document.getElementById('profileNameInput').value;
+            const avatarUrl = document.getElementById('avatarUrlInput').value;
+            const currentPassword = document.getElementById('currentPasswordInput').value;
+            const newPassword = document.getElementById('newPasswordInput').value;
+            
+            if (avatarUrl) {
+                await updateAvatar(avatarUrl);
+            }
+            
+            if (name) {
+                await updateProfile({ full_name: name });
+            }
+            
+            if (currentPassword && newPassword) {
+                const pwResult = await changePassword(currentPassword, newPassword);
+                if (!pwResult.success) {
+                    showNotification(pwResult.error, 'error');
+                    return;
+                }
+            }
+            
+            closeProfileEditor();
+            
+            // Refresh user data
+            await checkAuth();
+            const updatedUser = getCurrentUser();
+            
+            // Update header avatar if exists
+            const headerAvatar = document.querySelector('.user-avatar');
+            if (headerAvatar && updatedUser?.avatar_url) {
+                headerAvatar.src = updatedUser.avatar_url;
+            }
+            
+            showNotification('Profile updated successfully!', 'success');
+        };
+        
+        // Premium Upgrade Modal
+        globalThis.openPremiumModal = function() {
+            const user = getCurrentUser();
+            if (!user) {
+                openAuthModal('login');
+                return;
+            }
+            
+            // Close the user profile dropdown first
+            const userProfileContainer = document.getElementById('userProfile');
+            if (userProfileContainer) {
+                userProfileContainer.style.display = 'none';
+            }
+            
+            const currentTier = user.membership_tier || 'free';
+            
+            const modalHTML = `
+                <div id="premiumUpgradeModal" class="info-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+                    <div class="info-modal-content" style="background: white; border-radius: 16px; max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                        <div class="info-modal-header" style="background: linear-gradient(135deg, #8B5CF6, #EC4899); padding: 24px; border-radius: 16px 16px 0 0; position: relative;">
+                            <h2 style="color: white; margin: 0; font-size: 24px;">Upgrade Your Membership</h2>
+                            <button onclick="closePremiumModal()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 20px;">×</button>
+                        </div>
+                        <div class="info-modal-body" style="padding: 32px;">
+                            <p style="text-align: center; color: #6b7280; margin-bottom: 24px;">Choose the plan that works best for you</p>
+                            
+                            <!-- Free Plan -->
+                            <div class="membership-tier" style="margin-bottom: 16px; padding: 20px; border: 2px solid ${currentTier === 'free' ? '#8B5CF6' : '#e5e7eb'}; border-radius: 12px; ${currentTier === 'free' ? 'background: rgba(139, 92, 246, 0.05);' : ''}">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h3 style="color: #8B5CF6; margin: 0 0 8px 0;">Free Member</h3>
+                                        <p style="color: #6b7280; margin: 0; font-size: 14px;">Basic access to community</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 24px; font-weight: bold; color: #374151;">$0</span>
+                                        <span style="color: #6b7280; font-size: 14px;">/month</span>
+                                    </div>
+                                </div>
+                                <ul style="list-style: none; padding: 0; margin: 16px 0 0 0; font-size: 14px; color: #6b7280;">
+                                    <li style="padding: 6px 0;">✓ Access to community discussions</li>
+                                    <li style="padding: 6px 0;">✓ Monthly book picks</li>
+                                    <li style="padding: 6px 0;">✓ Weekly newsletter</li>
+                                </ul>
+                                ${currentTier === 'free' ? '<button class="btn btn-outline" style="width: 100%; margin-top: 16px;" disabled>Current Plan</button>' : '<button onclick="upgradeToTier(\'free\')" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Downgrade</button>'}
+                            </div>
+                            
+                            <!-- Premium Plan -->
+                            <div class="membership-tier" style="margin-bottom: 16px; padding: 20px; border: 2px solid ${currentTier === 'premium' ? '#8B5CF6' : '#e5e7eb'}; border-radius: 12px; ${currentTier === 'premium' ? 'background: rgba(139, 92, 246, 0.05);' : ''}">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h3 style="color: #8B5CF6; margin: 0 0 8px 0;">Premium Member</h3>
+                                        <p style="color: #6b7280; margin: 0; font-size: 14px;">Publish articles & create events</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 24px; font-weight: bold; color: #374151;">$9.99</span>
+                                        <span style="color: #6b7280; font-size: 14px;">/month</span>
+                                    </div>
+                                </div>
+                                <ul style="list-style: none; padding: 0; margin: 16px 0 0 0; font-size: 14px; color: #6b7280;">
+                                    <li style="padding: 6px 0;">✓ <strong>All Free benefits</strong></li>
+                                    <li style="padding: 6px 0;">✓ <strong>Publish articles to blog</strong></li>
+                                    <li style="padding: 6px 0;">✓ <strong>Create virtual events</strong></li>
+                                    <li style="padding: 6px 0;">✓ Exclusive author Q&A</li>
+                                    <li style="padding: 6px 0;">✓ Early access to book sales</li>
+                                </ul>
+                                ${currentTier === 'premium' ? '<button class="btn btn-primary" style="width: 100%; margin-top: 16px;" disabled>Current Plan</button>' : '<button onclick="upgradeToTier(\'premium\')" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Upgrade to Premium</button>'}
+                            </div>
+                            
+                            <!-- Author Plan -->
+                            <div class="membership-tier" style="margin-bottom: 16px; padding: 20px; border: 2px solid ${currentTier === 'author' ? '#8B5CF6' : '#e5e7eb'}; border-radius: 12px; ${currentTier === 'author' ? 'background: rgba(139, 92, 246, 0.05);' : ''}">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h3 style="color: #8B5CF6; margin: 0 0 8px 0;">Author Member</h3>
+                                        <p style="color: #6b7280; margin: 0; font-size: 14px;">Full access + author badge</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 24px; font-weight: bold; color: #374151;">$19.99</span>
+                                        <span style="color: #6b7280; font-size: 14px;">/month</span>
+                                    </div>
+                                </div>
+                                <ul style="list-style: none; padding: 0; margin: 16px 0 0 0; font-size: 14px; color: #6b7280;">
+                                    <li style="padding: 6px 0;">✓ <strong>All Premium benefits</strong></li>
+                                    <li style="padding: 6px 0;">✓ <strong>Author badge on profile</strong></li>
+                                    <li style="padding: 6px 0;">✓ Priority event creation</li>
+                                    <li style="padding: 6px 0;">✓ Featured article placement</li>
+                                </ul>
+                                ${currentTier === 'author' ? '<button class="btn btn-primary" style="width: 100%; margin-top: 16px;" disabled>Current Plan</button>' : '<button onclick="upgradeToTier(\'author\')" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Upgrade to Author</button>'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+            
+            document.getElementById('premiumUpgradeModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closePremiumModal();
+                }
+            });
+        };
+        
+        globalThis.closePremiumModal = function() {
+            const modal = document.getElementById('premiumUpgradeModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        };
+        
+        globalThis.upgradeToTier = async function(tier) {
+            const result = await upgradeMembership(tier);
+            
+            if (result.success) {
+                closePremiumModal();
+                showNotification(`Successfully upgraded to ${tier}!`, 'success');
+                
+                // Update header if premium
+                const joinBtn = document.querySelector('.header-cta .btn-primary');
+                if (joinBtn && tier !== 'free') {
+                    joinBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ${tier.charAt(0).toUpperCase() + tier.slice(1)}`;
+                }
+            } else {
+                showNotification(result.error || 'Upgrade failed', 'error');
+            }
+        };
+    });
+    </script>
+    
+    <!-- Category Filter Functionality -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Category Filter System
+        const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+        const discussionCards = document.querySelectorAll('.discussion-card');
+        const filterStatus = document.querySelector('.category-filter-status');
+        const activeCategoryLabel = document.querySelector('.active-category');
+        const clearFilterBtn = document.querySelector('.clear-filter');
+        const categoryCards = document.querySelectorAll('.category-card');
+        
+        let currentFilter = 'all';
+        
+        // Filter discussions by category
+        function filterDiscussions(category) {
+            currentFilter = category;
+            
+            discussionCards.forEach(card => {
+                const cardCategory = card.querySelector('.discussion-category')?.textContent.trim();
+                
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = '';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    // Animate in
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Update UI
+            if (category === 'all') {
+                filterStatus.style.display = 'none';
+                categoryCards.forEach(card => card.classList.remove('active'));
+            } else {
+                filterStatus.style.display = 'flex';
+                activeCategoryLabel.textContent = category;
+                
+                // Highlight active category card
+                categoryCards.forEach(card => {
+                    if (card.dataset.category === category) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Scroll to discussions
+            const discussionsSection = document.querySelector('.recent-discussions-section');
+            if (discussionsSection) {
+                discussionsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Show notification
+            if (typeof showNotification === 'function') {
+                if (category === 'all') {
+                    showNotification('Showing all discussions', 'success');
+                } else {
+                    showNotification(`Filtered to show ${category} discussions`, 'success');
+                }
+            }
+        }
+        
+        // Category button click handlers
+        categoryFilterBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const category = this.dataset.category;
+                
+                // Check if user is logged in for certain actions
+                const btnText = this.textContent.trim().toLowerCase();
+                const requiresAuth = ['share your story', 'join discussion'].some(text => 
+                    btnText.includes(text)
+                );
+                
+                if (requiresAuth && typeof isLoggedIn === 'function' && !isLoggedIn()) {
+                    openAuthModal('login');
+                    showNotification('Please login to participate in discussions!', 'info');
+                    return;
+                }
+                
+                if (currentFilter === category) {
+                    // If clicking same category, clear filter
+                    filterDiscussions('all');
+                } else {
+                    filterDiscussions(category);
+                }
+            });
+        });
+        
+        // Clear filter button
+        clearFilterBtn?.addEventListener('click', function() {
+            filterDiscussions('all');
+        });
+        
+        // Also make category cards clickable
+        categoryCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking the button (it has its own handler)
+                if (e.target.closest('.category-filter-btn')) return;
+                
+                const category = this.dataset.category;
+                const btn = this.querySelector('.category-filter-btn');
+                
+                if (currentFilter === category) {
+                    filterDiscussions('all');
+                } else {
+                    btn.click();
+                }
+            });
+        });
+    });
+    </script>
+    
+    <!-- Community Page Interactive Features -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // ===== POLLS FUNCTIONALITY =====
+        const pollVoteBtns = document.querySelectorAll('.poll-vote-btn');
+        pollVoteBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const pollCard = this.closest('.poll-card');
+                const pollOptions = pollCard.querySelectorAll('.poll-option');
+                const totalVotes = Number.parseInt(pollCard.querySelector('.poll-votes').textContent) + 1;
+                
+                // Randomly select an option to vote for (simulated)
+                const randomOption = Math.floor(Math.random() * pollOptions.length);
+                pollOptions[randomOption].querySelector('.poll-bar').style.width = 
+                    (Math.random() * 30 + 30) + '%';
+                pollOptions[randomOption].querySelector('.poll-percent').textContent = 
+                    Math.round(Math.random() * 30 + 30) + '%';
+                
+                // Update total votes
+                pollCard.querySelector('.poll-votes').textContent = totalVotes + ' votes';
+                
+                // Disable voting after voting
+                this.textContent = 'Voted!';
+                this.disabled = true;
+                this.classList.add('voted');
+                
+                showNotification('Your vote has been recorded!', 'success');
+            });
+        });
+        
+        // ===== LIVE CHAT FUNCTIONALITY =====
+        const chatInputs = document.querySelectorAll('.chat-input input');
+        const sendBtns = document.querySelectorAll('.send-btn');
+        
+        // Sample user data
+        const currentUser = {
+            name: 'You',
+            avatar: 'https://picsum.photos/seed/currentuser/32/32'
+        };
+        
+        sendBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const room = this.dataset.room;
+                const input = document.getElementById('chat-input-' + room);
+                const message = input.value.trim();
+                
+                if (message) {
+                    addMessage(room, currentUser, message);
+                    input.value = '';
+                    
+                    // Simulate response after a delay
+                    setTimeout(() => {
+                        const responses = [
+                            'That\'s a great point!',
+                            'I totally agree with you.',
+                            'Interesting perspective!',
+                            'Love that book!',
+                            'Thanks for sharing!',
+                            'Can\'t wait to discuss more!'
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        const responder = {
+                            name: 'Community Member',
+                            avatar: 'https://picsum.photos/seed/responder' + Math.floor(Math.random() * 10) + '/32/32'
+                        };
+                        addMessage(room, responder, randomResponse);
+                    }, 2000);
+                }
+            });
+        });
+        
+        // Allow Enter key to send
+        chatInputs.forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const room = this.id.replace('chat-input-', '');
+                    const sendBtn = document.querySelector('.send-btn[data-room="' + room + '"]');
+                    sendBtn.click();
+                }
+            });
+        });
+        
+        function addMessage(room, user, text) {
+            const chatContainer = document.getElementById('chat-' + room);
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            messageDiv.innerHTML = `
+                <img src="${user.avatar}" alt="${user.name}">
+                <div class="message-content">
+                    <span class="message-author">${user.name}</span>
+                    <p>${text}</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            `;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        // ===== READING CHALLENGES TABS =====
+        const challengeTabs = document.querySelectorAll('.challenge-tab');
+        const challengePanels = document.querySelectorAll('.challenge-panel');
+        
+        challengeTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                
+                // Update tabs
+                challengeTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update panels
+                challengePanels.forEach(panel => {
+                    panel.classList.remove('active');
+                    if (panel.id === tabId + '-challenges' || panel.id === tabId) {
+                        panel.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // ===== BOOK RECOMMENDATIONS =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const recommendationsGrid = document.getElementById('recommendations-grid');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const sortType = this.dataset.sort;
+                const cards = Array.from(recommendationsGrid.children);
+                
+                cards.sort((a, b) => {
+                    const votesA = Number.parseInt(a.querySelector('.rec-votes').textContent);
+                    const votesB = Number.parseInt(b.querySelector('.rec-votes').textContent);
+                    
+                    if (sortType === 'popular') {
+                        return votesB - votesA;
+                    } else {
+                        return Math.random() - 0.5; // Random for recent
+                    }
+                });
+                
+                cards.forEach(card => recommendationsGrid.appendChild(card));
+            });
+        });
+        
+        // Vote button functionality
+        const voteBtns = document.querySelectorAll('.vote-btn');
+        voteBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.classList.contains('voted')) return;
+                
+                const card = this.closest('.recommendation-card');
+                const voteCount = card.querySelector('.rec-votes');
+                const currentVotes = Number.parseInt(voteCount.textContent);
+                
+                voteCount.textContent = currentVotes + 1;
+                this.classList.add('voted');
+                this.style.background = 'var(--primary-color)';
+                this.style.color = 'white';
+                this.style.borderColor = 'var(--primary-color)';
+                
+                showNotification('Thanks for voting!', 'success');
+            });
+        });
+        
+        // Add recommendation modal (simplified)
+        const addRecBtn = document.getElementById('add-recommendation-btn');
+        addRecBtn?.addEventListener('click', function() {
+            showNotification('Recommendation form coming soon!', 'success');
+        });
+        
+        // ===== MEMBER DIRECTORY =====
+        const memberSearch = document.getElementById('member-search');
+        const interestFilter = document.getElementById('interest-filter');
+        const memberCards = document.querySelectorAll('.member-card');
+        
+        function filterMembers() {
+            const searchTerm = memberSearch?.value.toLowerCase() || '';
+            const interest = interestFilter?.value || '';
+            
+            memberCards.forEach(card => {
+                const name = card.querySelector('h4').textContent.toLowerCase();
+                const bio = card.querySelector('.member-bio').textContent.toLowerCase();
+                const interests = card.querySelector('.member-interests').textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm) || bio.includes(searchTerm);
+                const matchesInterest = !interest || interests.includes(interest);
+                
+                if (matchesSearch && matchesInterest) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        memberSearch?.addEventListener('input', filterMembers);
+        interestFilter?.addEventListener('change', filterMembers);
+        
+        // Connect button functionality
+        const connectBtns = document.querySelectorAll('.connect-btn');
+        connectBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent === 'Connect') {
+                    this.textContent = 'Pending...';
+                    this.classList.add('pending');
+                    showNotification('Connection request sent!', 'success');
+                }
+            });
+        });
+        
+        // ===== PAGINATION =====
+        const pageBtns = document.querySelectorAll('.page-btn');
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.disabled || this.classList.contains('active')) return;
+                
+                pageBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Simulate loading new page
+                showNotification('Loading more members...', 'success');
+            });
+        });
+        
+        // ===== MEETING REGISTRATION =====
+        const meetingRegisterBtns = document.querySelectorAll('.meeting-card .btn');
+        meetingRegisterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const meetingCard = this.closest('.meeting-card');
+                const meetingTitle = meetingCard.querySelector('h4').textContent;
+                
+                if (this.textContent === 'Register Now' || this.textContent === 'Register') {
+                    this.textContent = 'Registered!';
+                    this.classList.remove('btn-outline');
+                    this.classList.add('btn-primary');
+                    
+                    // Update attendees count
+                    const attendees = meetingCard.querySelector('.meeting-attendees span');
+                    if (attendees) {
+                        const count = Number.parseInt(attendees.textContent) + 1;
+                        attendees.textContent = '+' + count + ' going';
+                    }
+                    
+                    showNotification('You\'re registered for ' + meetingTitle + '!', 'success');
+                }
+            });
+        });
+        
+        // ===== LOG A BOOK BUTTON =====
+        const logBookBtn = document.querySelector('.challenge-card.current .btn-sm');
+        logBookBtn?.addEventListener('click', function() {
+            showNotification('Book logging form coming soon!', 'success');
+        });
+        
+        // Notification function
+        function showNotification(message, type = 'success') {
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            // Set background color based on type
+            let bgColor = 'linear-gradient(135deg, #10B981, #059669)'; // success
+            if (type === 'error') {
+                bgColor = 'linear-gradient(135deg, #EF4444, #DC2626)';
+            } else if (type === 'info') {
+                bgColor = 'linear-gradient(135deg, #3B82F6, #2563EB)';
+            }
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                padding: 16px 24px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                background: ${bgColor};
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // ===== SMOOTH SCROLL FOR NAVIGATION =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+        
+        // ===== ANIMATE ELEMENTS ON SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe new sections
+        const newSections = document.querySelectorAll('.polls-section, .chat-rooms-section, .challenges-section, .recommendations-section, .meetings-section, .directory-section');
+        newSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+        
+        // Add animation class
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ===== COMMUNITY API INITIALIZATION =====
+        // Only enhance existing content, don't overwrite
+        
+        // Community API functions using window.BlogAPI
+        const CommunityAPI = window.BlogAPI?.community || {
+            fetchCommunityStats: async () => ({ members: 15234, discussions: 3456, dailyPosts: 892 }),
+            fetchDiscussions: async () => ({ posts: [], pagination: {} }),
+            fetchPolls: async () => ({ polls: [] }),
+            voteOnPoll: async () => {},
+            fetchRecommendations: async () => ({ recommendations: [] }),
+            voteOnRecommendation: async () => {},
+            addRecommendation: async () => {},
+            fetchUpcomingMeetings: async () => ({ events: [] }),
+            fetchChatMessages: async () => ({ messages: [] }),
+            sendChatMessage: async () => {},
+            createForumPost: async () => {},
+            addForumReply: async () => {},
+            getFallbackCategories: () => [],
+            getFallbackDiscussions: () => ({ posts: [], pagination: {} }),
+            getFallbackPolls: () => [],
+            getFallbackRecommendations: () => [],
+            getFallbackMeetings: () => []
+        };
+
+        // Toast notification helper (only if not already defined)
+        if (typeof window.showToast === 'undefined') {
+            window.showToast = function(message, type = 'info') {
+                const toast = document.createElement('div');
+                const bgColor = type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#8B5CF6';
+                toast.style.cssText = `
+                    position: fixed; bottom: 20px; right: 20px; padding: 12px 24px;
+                    border-radius: 8px; color: white; font-weight: 500; z-index: 10000;
+                    transform: translateX(100%); transition: transform 0.3s ease;
+                    max-width: 300px; background: ${bgColor}; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            };
+        }
+
+        // Format relative time
+        function formatTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
+            if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            return date.toLocaleDateString();
+        }
+
+        // Update stats from API (non-destructive)
+        async function updateCommunityStats() {
+            try {
+                const stats = await CommunityAPI.fetchCommunityStats();
+                const statNumbers = document.querySelectorAll('.stat-number');
+                if (statNumbers[0]) statNumbers[0].textContent = stats.members?.toLocaleString() || '15,234';
+                if (statNumbers[1]) statNumbers[1].textContent = stats.discussions?.toLocaleString() || '3,456';
+                if (statNumbers[2]) statNumbers[2].textContent = stats.dailyPosts?.toLocaleString() || '892';
+            } catch (err) {
+                console.warn('Using fallback stats');
+            }
+        }
+
+        // Initialize community data (only if elements exist)
+        async function initCommunity() {
+            // Update stats if element exists
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length > 0) {
+                await updateCommunityStats();
+            }
+
+            // Setup chat rooms if they exist
+            const chatRooms = document.querySelectorAll('.chat-room-card');
+            if (chatRooms.length > 0) {
+                chatRooms.forEach(room => {
+                    const roomId = room.dataset.room;
+                    // Chat messages will be loaded via polling
+                    setInterval(() => {
+                        const chatContainer = document.getElementById(`chat-${roomId}`);
+                        if (chatContainer) {
+                            // Just refresh existing messages periodically
+                        }
+                    }, 30000);
+                });
+            }
+        }
+
+        // Handle poll voting using event delegation
+        document.addEventListener('click', async function(e) {
+            if (e.target.closest('.poll-vote-btn')) {
+                e.preventDefault();
+                const pollCard = e.target.closest('.poll-card');
+                if (!pollCard) return;
+                
+                const pollId = pollCard.dataset.pollId;
+                const selectedOption = pollCard.querySelector('.poll-option.selected');
+                const optionEl = selectedOption || pollCard.querySelector('.poll-option');
+                
+                if (!optionEl) return;
+                
+                const optionId = optionEl.dataset.optionId;
+                
+                try {
+                    await CommunityAPI.voteOnPoll(pollId, optionId);
+                    window.showToast?.('Vote recorded!', 'success');
+                    // Refresh poll display
+                    location.reload();
+                } catch (err) {
+                    window.showToast?.('Please sign in to vote', 'error');
+                    if (typeof window.openAuthModal === 'function') {
+                        window.openAuthModal('login');
+                    }
+                }
+            }
+            
+            // Recommendation vote
+            if (e.target.closest('.vote-btn') && e.target.closest('.recommendation-card')) {
+                e.preventDefault();
+                const recCard = e.target.closest('.recommendation-card');
+                const recId = recCard.dataset.recId;
+                
+                try {
+                    await CommunityAPI.voteOnRecommendation(recId);
+                    window.showToast?.('Vote recorded!', 'success');
+                } catch (err) {
+                    window.showToast?.('Please sign in to vote', 'error');
+                    if (typeof window.openAuthModal === 'function') {
+                        window.openAuthModal('login');
+                    }
+                }
+            }
+        });
+
+        // Category filter click handler
+        document.querySelectorAll('.category-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                window.showToast?.(`Filtering by: ${category || 'All'}`, 'info');
+            });
+        });
+
+        // Recommendation sort handler
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const sort = this.dataset.sort;
+                window.showToast?.(`Sorted by: ${sort}`, 'info');
+            });
+        });
+
+        // Add recommendation button
+        const addRecBtn = document.getElementById('add-recommendation-btn');
+        if (addRecBtn) {
+            addRecBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (typeof window.openAuthModal === 'function') {
+                    window.openAuthModal('login');
+                } else {
+                    window.showToast?.('Please sign in to add recommendations', 'info');
+                }
+            });
+        }
+
+        // Initialize community data on load
+        initCommunity();
+    });
+    </script>
+    
+    <!-- Shared Auth Script -->
+    <script src="frontend/shared-auth.js"></script>
+</body>
+</html>
