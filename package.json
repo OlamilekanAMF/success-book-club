@@ -11,7 +11,7 @@
   "keywords": ["youtube", "clone", "video", "streaming"],
   "author": "Developer",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "live-server": "^1.2.2"
   }
 }
